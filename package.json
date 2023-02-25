@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
+    "@nuxtjs/google-fonts": "^2.0.0",
+    "@sidebase/nuxt-auth": "^0.4.0-alpha.5",
+    "@tailwindcss/typography": "^0.5.9",
+    "@vueuse/core": "^9.12.0",
+    "@vueuse/nuxt": "^9.12.0",
+    "nuxt": "^3.2.2",
+    "nuxt-api-party": "^0.7.0",
+    "prettier": "^2.8.3"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
+    "@formkit/nuxt": "^1.0.0-beta.15",
+    "@nuxtjs/tailwindcss": "^6.4.1",
+    "bcrypt": "^5.1.0",
+    "daisyui": "^2.50.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.3",
+    "phosphor-vue": "^4.4.1",
+    "vue-disqus": "^5.1.0"
+  }
+}
