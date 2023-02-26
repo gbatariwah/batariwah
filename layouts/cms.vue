@@ -2,7 +2,7 @@
   <div class="container mx-auto max-w-4xl">
     <!-- header -->
 
-    <header class="sticky z-10 top-0 bg-base-100">
+    <header class="sticky z-50 top-0 bg-base-100">
       <div
         class="navbar bg-base-100 px-6 transition-all"
         :class="{ 'pl-0': !isDark }"
@@ -41,6 +41,12 @@
                 </a>
               </li>
               <li>
+                <NuxtLink to="/cms/posts" class="gap-2">
+                  <PhNotePencil :size="16" weight="duotone" />
+                  Manage Posts
+                </NuxtLink>
+              </li>
+              <li>
                 <a class="gap-2 hover:bg-error" @click="signOut()">
                   <PhSignOut :size="16" weight="duotone" />
                   Logout
@@ -62,14 +68,12 @@
 </template>
 
 <script setup>
-import { PhSignOut, PhUser, PhPen } from "phosphor-vue";
+import { PhSignOut, PhUser, PhPen, PhNotePencil } from "phosphor-vue";
 import { useDark } from "@vueuse/core";
 
 const { data, signOut, status } = useSession();
 
 const route = useRoute();
-
-definePageMeta({ middleware: "auth", layout: "cms" });
 
 const isDark = useDark({
   selector: "html",

@@ -23,9 +23,12 @@
     "@element-plus/icons-vue": "^2.0.10",
     "@formkit/nuxt": "^1.0.0-beta.15",
     "@nuxtjs/tailwindcss": "^6.4.1",
+    "@vavt/md-editor-extension": "^1.5.0",
     "bcrypt": "^5.1.0",
     "daisyui": "^2.50.2",
     "jsonwebtoken": "^9.0.0",
+    "mavon-editor": "^3.0.0",
+    "md-editor-v3": "^2.8.1",
     "mongoose": "^6.9.3",
     "phosphor-vue": "^4.4.1",
     "vue-disqus": "^5.1.0"

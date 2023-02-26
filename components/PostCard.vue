@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="`/posts/${post.slug}`">
     <div
-      class="card bg-base-300 card-compact shadow-xl hover:ring-1 ring-primary rounded-md h-full group"
+      class="card bg-base-300 card-compact shadow-lg hover:ring-1 ring-primary rounded-md h-full group"
     >
       <figure>
         <NuxtImg

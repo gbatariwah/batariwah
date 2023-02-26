@@ -88,7 +88,7 @@
             </li>
 
             <li>
-              <NuxtLink to="/cms" class="gap-2">
+              <NuxtLink to="/cms/posts" class="gap-2">
                 <PhNotePencil :size="16" weight="duotone" />
                 Manage Content
               </NuxtLink>

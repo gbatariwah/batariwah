@@ -3,7 +3,7 @@
     <figure class="mb-6">
       <nuxt-img
         :src="data.post.featured_image.url"
-        class="w-full object-cover max-h-sm"
+        class="aspect-video w-full object-cover max-h-sm"
       />
     </figure>
     <div class="space-y-12 max-w-2xl mx-auto">

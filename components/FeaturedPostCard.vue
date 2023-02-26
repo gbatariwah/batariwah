@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="`/posts/${featuredPost.slug}`">
     <div
-      class="block card bg-base-300 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-xl hover:ring-1 ring-primary rounded-md h-full group"
+      class="block card bg-base-300 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-lg hover:ring-1 ring-primary rounded-md h-full group"
     >
       <figure class="md:col-span-7">
         <NuxtImg
