@@ -2,7 +2,7 @@
   <div class="container mx-auto max-w-4xl">
     <!-- header -->
 
-    <header class="sticky z-10 top-0 bg-base-100">
+    <header class="sticky z-50 top-0 bg-base-100">
       <div
         class="navbar bg-base-100 px-6 transition-all"
         :class="{ 'pl-0': !isDark }"
@@ -68,8 +68,6 @@ import { useDark } from "@vueuse/core";
 const { data, signOut, status } = useSession();
 
 const route = useRoute();
-
-definePageMeta({ middleware: "auth", layout: "cms" });
 
 const isDark = useDark({
   selector: "html",

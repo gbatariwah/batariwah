@@ -8,6 +8,7 @@
     <FormKit
       type="form"
       id="login-form"
+      method="post"
       submit-label="Login"
       @submit="handleSubmit"
       :actions="false"
@@ -73,5 +74,5 @@ const handleSubmit = async ({ email, password }) => {
   await signIn("credentials", { email, password, callbackUrl: "/" });
 };
 
-definePageMeta({ auth: false, layout: "login" });
+definePageMeta({ layout: "login" });
 </script>

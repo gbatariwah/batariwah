@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@formkit/nuxt",
   ],
+  plugins: [],
   // app: {
   //     head: {
   //         bodyAttrs: {

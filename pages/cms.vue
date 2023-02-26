@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-definePageMeta({ layout: "cms" });
+definePageMeta({ middleware: "auth", layout: "cms" });
 </script>
