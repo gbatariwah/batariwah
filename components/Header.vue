@@ -66,12 +66,9 @@
 
         <ThemeToggler />
 
-        <div
-          v-if="status === 'authenticated'"
-          class="dropdown dropdown-end pt-2"
-        >
-          <label tabindex="0" class="avatar">
-            <div class="w-8 rounded-full cursor-pointer hover:ring-1">
+        <div v-if="status === 'authenticated'" class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
               <NuxtImg src="https://api.lorem.space/image/face?w=150&h=150" />
             </div>
           </label>
@@ -91,10 +88,10 @@
             </li>
 
             <li>
-              <a class="gap-2">
+              <NuxtLink to="/cms" class="gap-2">
                 <PhNotePencil :size="16" weight="duotone" />
                 Manage Content
-              </a>
+              </NuxtLink>
             </li>
             <li>
               <a class="gap-2 hover:bg-error" @click="signOut()">

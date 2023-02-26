@@ -1,5 +1,5 @@
 <template>
-  <div class="py-10">
+  <div>
     <figure class="mb-6">
       <nuxt-img
         :src="data.post.featured_image.url"
