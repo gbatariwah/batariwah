@@ -4,7 +4,7 @@
       <div class="flex justify-between items-center">
         <h2 class="text-2xl font-semibold">Create New Post</h2>
         <button class="btn btn-primary hover:bg-primary-focus gap-2">
-          <PhArticle :size="18" weight="duotone" />
+          <PhCheck :size="18" weight="duotone" />
           Publish
         </button>
       </div>
@@ -33,16 +33,20 @@
         </label>
 
         <div class="space-y-1">
-          <img
-            src="https://source.unsplash.com/random/100x100/?5"
+          <!-- <NuxtImg
+            src="/images/placeholder-image.svg"
             class="aspect-video w-full object-cover mb-2 hover:ring-1"
             alt="Featured Image"
-          />
-          <div class="text-right">
-            <label class="btn btn-primary gap-2 hover:bg-primary-focus">
+          /> -->
+          <div>
+            <label
+              class="block border p-4 cursor-pointer rounded-lg border-dashed flex justify-center items-center border-gray-500 border-opacity-50"
+            >
               <input type="file" hidden />
-              <PhUpload :size="18" weight="duotone" />
-              Upload Image
+              <span class="flex flex-col items-center text-lg font-semibold">
+                <PhUpload :size="44" weight="duotone" />
+                Upload Image
+              </span>
             </label>
           </div>
         </div>
@@ -116,6 +120,7 @@ import {
   PhUpload,
   PhImage,
   PhPlusCircle,
+  PhCheck,
 } from "phosphor-vue";
 
 import MdEditor from "md-editor-v3";
