@@ -2,7 +2,7 @@
   <section>
     <div class="space-y-6">
       <div class="flex justify-between items-center">
-        <h2 class="text-2xl font-semibold">Create New Post</h2>
+        <h2 class="text-2xl font-semibold">Edit Post</h2>
         <button class="btn btn-primary hover:bg-primary-focus gap-2">
           <PhArticle :size="18" weight="duotone" />
           Publish

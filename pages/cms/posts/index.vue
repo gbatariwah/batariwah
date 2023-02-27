@@ -63,8 +63,6 @@ const { data, pending, error, refresh } = await useAsyncData(
   { watch: [page], server: false }
 );
 
-console.log(pending);
-
 const previousPage = () => {
   page.value--;
   router.push(`?page=${page.value}`);

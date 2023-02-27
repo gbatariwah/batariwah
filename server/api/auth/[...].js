@@ -44,7 +44,15 @@ export default NuxtAuthHandler({
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
         const {
-          user: { _id, firstname, lastname, email, admin, profile_picture },
+          user: {
+            _id,
+            firstname,
+            lastname,
+            email,
+            admin,
+            profile_picture,
+            bio,
+          },
           token: jwtToken,
         } = token.email;
         token.firstname = firstname;
@@ -53,6 +61,7 @@ export default NuxtAuthHandler({
         token.admin = admin;
         token.profile_picture = profile_picture;
         token.id = _id;
+        token.bio = bio;
         token.jwt = jwtToken;
       }
       return token;
@@ -68,6 +77,7 @@ export default NuxtAuthHandler({
         admin: token.admin,
         profile_picture: token.profile_picture,
         id: token.id,
+        bio: token.bio,
       };
 
       return session;

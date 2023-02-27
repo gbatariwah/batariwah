@@ -2,7 +2,10 @@
   <section>
     <div class="space-y-6">
       <div class="flex justify-between items-center">
-        <h2 class="text-2xl font-semibold">Create New Post</h2>
+        <h2 class="text-2xl font-semibold flex gap-2 items-center">
+          <PhPen :size="32" weight="duotone" />
+          Create New Post
+        </h2>
         <button class="btn btn-primary hover:bg-primary-focus gap-2">
           <PhCheck :size="18" weight="duotone" />
           Publish
@@ -121,6 +124,7 @@ import {
   PhImage,
   PhPlusCircle,
   PhCheck,
+PhPen,
 } from "phosphor-vue";
 
 import MdEditor from "md-editor-v3";

@@ -77,14 +77,17 @@
             class="mt-3 p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
           >
             <li>
-              <a class="flex justify-between">
+              <NuxtLink
+                :to="`/profile/${data.user.id}`"
+                class="flex justify-between"
+              >
                 <span class="gap-2 flex items-center"
                   ><PhUser :size="16" weight="duotone" /> Profile</span
                 >
                 <span class="badge badge-sm badge-info capitalize">{{
                   data.user.firstname
                 }}</span>
-              </a>
+              </NuxtLink>
             </li>
 
             <li>
