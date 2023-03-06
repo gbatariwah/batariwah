@@ -11,16 +11,22 @@
 
     <div class="navbar-end">
       <div class="md:flex gap-2 hidden md:block">
-        <NuxtLink title="Home" to="/" class="flex gap-2">
-          <button class="btn btn-ghost btn-circle">
-            <PhHouseLine :size="32" weight="duotone" />
-          </button>
+        <NuxtLink
+          active-class="text-primary"
+          title="Home"
+          to="/"
+          class="btn btn-ghost btn-circle"
+        >
+          <PhHouseLine :size="32" weight="duotone" />
         </NuxtLink>
 
-        <NuxtLink title="About" to="/about" class="flex gap-2">
-          <button class="btn btn-ghost btn-circle">
-            <PhInfo :size="32" weight="duotone" />
-          </button>
+        <NuxtLink
+          active-class="text-primary"
+          title="About"
+          to="/about"
+          class="btn btn-ghost btn-circle"
+        >
+          <PhInfo :size="32" weight="duotone" />
         </NuxtLink>
       </div>
 
@@ -66,7 +72,7 @@
 
         <ThemeToggler />
 
-        <div v-if="status === 'authenticated'" class="dropdown dropdown-end">
+        <div v-if="user" class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 rounded-full">
               <NuxtImg src="https://api.lorem.space/image/face?w=150&h=150" />
@@ -78,14 +84,14 @@
           >
             <li>
               <NuxtLink
-                :to="`/profile/${data.user.id}`"
+                :to="`/profile/${user._id}`"
                 class="flex justify-between"
               >
                 <span class="gap-2 flex items-center"
                   ><PhUser :size="16" weight="duotone" /> Profile</span
                 >
                 <span class="badge badge-sm badge-info capitalize">{{
-                  data.user.firstname
+                  user.firstname
                 }}</span>
               </NuxtLink>
             </li>
@@ -97,7 +103,7 @@
               </NuxtLink>
             </li>
             <li>
-              <a class="gap-2 hover:bg-error" @click="signOut()">
+              <a class="gap-2 hover:bg-error" @click="logout()">
                 <PhSignOut :size="16" weight="duotone" />
                 Logout
               </a>
@@ -120,9 +126,8 @@ import {
 } from "phosphor-vue";
 import { useDark } from "@vueuse/core";
 
-const { data, signOut, status } = useSession();
-
 const route = useRoute();
+const { user, logout } = useAuth();
 
 const links = [
   { name: "home", url: "/" },

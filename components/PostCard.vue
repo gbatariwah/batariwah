@@ -1,13 +1,11 @@
 <template>
   <NuxtLink :to="`/posts/${post.slug}`">
     <div
-      class="card bg-base-300 card-compact shadow-lg hover:ring-1 ring-primary rounded-md h-full group"
+      class="card bg-base-300 card-compact shadow-md hover:border border-zinc-600 rounded-md h-full"
+      :class="{ 'bg-transparent border-zinc-300': !isDark }"
     >
       <figure>
-        <NuxtImg
-          :src="post.featured_image.url"
-          class="group-hover:scale-105 trasform transition"
-        />
+        <NuxtImg :src="post.featured_image.url" class="object-cover" />
       </figure>
       <div class="px-4 pt-2 pb-4 space-y-2 post-body">
         <p class="flex items-center gap-2">
@@ -38,18 +36,11 @@ const datePublished = computed(() =>
     day: "numeric",
   }).format(new Date(props.post.createdAt))
 );
+
+const isDark = useDark({
+  selector: "html",
+  attribute: "data-theme",
+  valueDark: "halloween",
+  valueLight: "lofi",
+});
 </script>
-
-<style scoped>
-/* [data-theme="halloween"] .post-body {
-  color: #9ca3af;
-} */
-
-[data-theme="lofi"] .card {
-  background-color: transparent;
-}
-
-[data-theme="lofi"] .post-body {
-  color: #4b5563;
-}
-</style>

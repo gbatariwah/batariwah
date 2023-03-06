@@ -23,7 +23,10 @@ postSchema.post("save", function (error, doc, next) {
     if (error.message.includes("title_1 dup key")) {
       const error = new Error("A post with the same title already exist.");
       error.status = 400;
-      return next(error);
+      throw createError({
+        statusCode: error.status,
+        statusMessage: error.message,
+      });
     }
   } else next();
 });

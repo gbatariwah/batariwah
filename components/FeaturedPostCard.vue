@@ -1,12 +1,15 @@
 <template>
   <NuxtLink :to="`/posts/${featuredPost.slug}`">
     <div
-      class="block card bg-base-300 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-lg hover:ring-1 ring-primary rounded-md h-full group"
+      class="block card bg-base-300 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md hover:border rounded-md h-full border-zinc-600 overflow-hidden"
+      :class="{
+        'bg-transparent border-zinc-300': !isDark,
+      }"
     >
       <figure class="md:col-span-7">
         <NuxtImg
           :src="featuredPost.featured_image.url"
-          class="object-cover h-full group-hover:scale-105 trasform transition"
+          class="object-cover h-full w-full sm:aspect-video"
         />
       </figure>
       <div class="p-6 md:col-span-5">
@@ -14,13 +17,13 @@
           <h2 class="card-title text-xl sm:text-2xl">
             {{ featuredPost.title }}
           </h2>
-          <p class="flex items-center gap-2 mb-4">
+          <p class="flex items-center gap-2 mb-4 mt-1">
             <PhCalendar :size="16" weight="duotone" />
             <span class="text-sm font-thin">
               {{ datePublished }}
             </span>
           </p>
-          <p class="font-light">{{ featuredPost.content.slice(0, 360) }}...</p>
+          <p class="font-light">{{ featuredPost.content.slice(0, 220) }}...</p>
         </div>
       </div>
     </div>
@@ -40,14 +43,11 @@ const datePublished = computed(() =>
     day: "numeric",
   }).format(new Date(props.featuredPost.createdAt))
 );
+
+const isDark = useDark({
+  selector: "html",
+  attribute: "data-theme",
+  valueDark: "halloween",
+  valueLight: "lofi",
+});
 </script>
-
-<style scoped>
-[data-theme="lofi"] .card {
-  background-color: transparent;
-}
-
-[data-theme="lofi"] .post-body {
-  color: #4b5563;
-}
-</style>

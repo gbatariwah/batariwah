@@ -26,7 +26,7 @@
         </div>
         <div class="prose prose-xl pt-2">
           <div
-            class="first-letter:text-5xl first-letter:font-semibold prose-lg"
+            class="first-letter:text-5xl first-letter:font-semibold prose-lg font-thin"
           >
             {{ data.post.content }}
           </div>

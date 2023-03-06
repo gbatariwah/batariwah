@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <label
-      htmlFor="search-modal"
-      class="btn btn-ghost btn-circle"
-      title="Search"
-    >
-      <PhMagnifyingGlass :size="32" weight="duotone" />
-    </label>
+  <label for="search-modal" class="btn btn-ghost btn-circle" title="Search">
+    <PhMagnifyingGlass :size="32" weight="duotone" />
+  </label>
 
-    <input type="checkbox" id="search-modal" className="modal-toggle" />
+  <!-- Put this part before </body> tag -->
+  <Teleport to="body">
+    <input type="checkbox" id="search-modal" class="modal-toggle" />
     <label
-      htmlFor="search-modal"
-      className="modal modal-bottom items-start cursor-pointer"
+      for="search-modal"
+      class="modal modal-bottom items-start cursor-pointer"
     >
-      <label className="modal-box md:max-w-xl md:rounded-b-xl" htmlFor="">
+      <label class="modal-box relative md:max-w-xl md:rounded-b-xl" for="">
         <div class="form-control">
-          <label class="input-group">
+          <div class="input-group">
             <input
               type="search"
               placeholder="Search blog..."
@@ -30,11 +27,11 @@
             >
               <PhMagnifyingGlass :size="32" weight="duotone" />
             </button>
-          </label>
+          </div>
         </div>
       </label>
     </label>
-  </div>
+  </Teleport>
 </template>
 
 <script setup>

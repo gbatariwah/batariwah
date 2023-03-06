@@ -8,29 +8,27 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0",
     "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
     "@nuxtjs/google-fonts": "^2.0.0",
-    "@sidebase/nuxt-auth": "^0.4.0-alpha.5",
     "@tailwindcss/typography": "^0.5.9",
     "@vueuse/core": "^9.12.0",
     "@vueuse/nuxt": "^9.12.0",
-    "nuxt": "^3.2.2",
-    "nuxt-api-party": "^0.7.0",
+    "nuxt": "^3.2.3",
     "prettier": "^2.8.3"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.0.10",
     "@formkit/nuxt": "^1.0.0-beta.15",
     "@nuxtjs/tailwindcss": "^6.4.1",
     "@vavt/md-editor-extension": "^1.5.0",
     "bcrypt": "^5.1.0",
+    "cloudinary": "^1.34.0",
     "daisyui": "^2.50.2",
+    "h3-formidable": "^0.2.2",
     "jsonwebtoken": "^9.0.0",
-    "mavon-editor": "^3.0.0",
     "md-editor-v3": "^2.8.1",
     "mongoose": "^6.9.3",
     "phosphor-vue": "^4.4.1",
+    "slugify": "^1.6.5",
     "vue-disqus": "^5.1.0"
   }
 }

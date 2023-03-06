@@ -20,7 +20,7 @@
 
       <ThemeToggler />
 
-      <div v-if="status === 'authenticated'" class="dropdown dropdown-end">
+      <div v-if="user" class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
             <NuxtImg src="https://api.lorem.space/image/face?w=150&h=150" />
@@ -31,15 +31,12 @@
           class="mt-3 p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
         >
           <li>
-            <NuxtLink
-              :to="`/profile/${data.user.id}`"
-              class="flex justify-between"
-            >
+            <NuxtLink :to="`/profile/${user._id}`" class="flex justify-between">
               <span class="gap-2 flex items-center"
                 ><PhUser :size="16" weight="duotone" /> Profile</span
               >
               <span class="badge badge-sm badge-info capitalize">{{
-                data.user.firstname
+                user.firstname
               }}</span>
             </NuxtLink>
           </li>
@@ -50,7 +47,7 @@
             </NuxtLink>
           </li>
           <li>
-            <a class="gap-2 hover:bg-error" @click="signOut()">
+            <a class="gap-2 hover:bg-error" @click="logout()">
               <PhSignOut :size="16" weight="duotone" />
               Logout
             </a>
@@ -65,7 +62,7 @@
 import { PhSignOut, PhUser, PhPen, PhNotePencil } from "phosphor-vue";
 import { useDark } from "@vueuse/core";
 
-const { data, signOut, status } = useSession();
+const { user, logout } = useAuth();
 
 const route = useRoute();
 

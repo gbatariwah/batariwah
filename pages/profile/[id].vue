@@ -11,7 +11,6 @@
       </button>
     </div>
     <div
-      v-if="status === 'authenticated'"
       class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
     >
       <fieldset class="grid grid-cols-4 gap-6 rounded-md shadow-sm">
@@ -26,7 +25,7 @@
               type="text"
               placeholder="First name"
               class="w-full input input-bordered capitalize"
-              v-model="data.user.firstname"
+              v-model="user.firstname"
             />
           </div>
           <div class="col-span-full sm:col-span-3">
@@ -36,7 +35,7 @@
               type="text"
               placeholder="Last name"
               class="w-full input input-bordered capitalize"
-              v-model="data.user.lastname"
+              v-model="user.lastname"
             />
           </div>
           <div class="col-span-full sm:col-span-3">
@@ -46,7 +45,7 @@
               type="email"
               placeholder="Email"
               class="w-full input input-bordered"
-              v-model="data.user.email"
+              v-model="user.email"
             />
           </div>
         </div>
@@ -62,7 +61,7 @@
               id="bio"
               placeholder=""
               class="w-full textarea textarea-bordered"
-              v-model="data.user.bio"
+              v-model="user.bio"
             ></textarea>
           </div>
           <div class="col-span-full">
@@ -110,7 +109,7 @@
               type="password"
               id="password-repeat"
               class="w-full input input-bordered"
-              v-model="data.user.bio"
+              v-model="bio"
             />
           </div>
         </div>
@@ -129,14 +128,11 @@
 </template>
 
 <script setup>
-import {
-  PhArticle,
-  PhImage,
-  PhUser,
-  PhUserGear,
-  PhPassword,
-} from "phosphor-vue";
-const { data, status } = useSession();
+import { PhImage, PhUser, PhUserGear, PhPassword } from "phosphor-vue";
+
+const { user } = useAuth();
+
+const bio = ref(user.bio || "");
 
 definePageMeta({ middleware: "auth", layout: "cms" });
 </script>

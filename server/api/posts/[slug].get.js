@@ -8,7 +8,6 @@ export default defineEventHandler(async (event) => {
     "firstname lastname profile_picture bio"
   );
   // .populate("tags", "name slug color")
-  // .populate("views", "total_views -_id");
 
   const suggestedPosts = await Post.aggregate([
     { $match: { slug: { $ne: slug } } },

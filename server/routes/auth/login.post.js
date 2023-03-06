@@ -20,8 +20,8 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const token = user.generateToken();
+  user.generateCookie(event);
 
   const { password, ...rest } = user.toObject();
-  return { token, user: rest };
+  return { user: rest };
 });

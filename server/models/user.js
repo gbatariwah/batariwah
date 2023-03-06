@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+const config = useRuntimeConfig();
+
 const userSchema = new mongoose.Schema(
   {
     firstname: {
@@ -50,8 +52,22 @@ userSchema.post("save", function (error, doc, next) {
   } else next();
 });
 userSchema.methods.generateToken = function () {
-  return jwt.sign({ _id: this._id }, process.env.JWT_API_SECRET, {
+  return jwt.sign({ _id: this._id }, config.JWT_API_SECRET, {
     expiresIn: "1d",
+  });
+};
+
+userSchema.methods.generateCookie = function (event) {
+  let user = this;
+
+  const token = user.generateToken();
+
+  setCookie(event, config.COOKIE_NAME, token, {
+    httpOnly: true,
+    path: "/",
+    sameSite: "strict",
+    secure: false,
+    maxAge: 86400,
   });
 };
 

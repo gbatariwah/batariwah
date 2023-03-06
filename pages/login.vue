@@ -69,9 +69,12 @@
 
 <script setup>
 const initialValue = { email: "batariwahg@gmail.com", password: "123456" };
-const { signIn } = useSession();
+
+const { login } = useAuth();
+
 const handleSubmit = async ({ email, password }) => {
-  await signIn("credentials", { email, password, callbackUrl: "/" });
+  await login(email, password);
+  await navigateTo("/");
 };
 
 definePageMeta({ layout: "login" });

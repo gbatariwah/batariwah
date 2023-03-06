@@ -2,8 +2,6 @@
 export default defineNuxtConfig({
   // css: ["~/assets/scss/index.scss"],
   modules: [
-    "nuxt-api-party",
-    "@sidebase/nuxt-auth",
     "@vueuse/nuxt",
     "@nuxt/image-edge",
     "@nuxtjs/tailwindcss",
@@ -17,24 +15,15 @@ export default defineNuxtConfig({
   //         }
   //     }
   // },
-  apiParty: {
-    endpoints: {
-      batariwah: {
-        url: process.env.API_PARTY_BASE_URL,
-      },
-    },
-  },
   runtimeConfig: {
-    NUXT_SECRET: process.env.NUXT_SECRET,
-    API_PARTY_BASE_URL: process.env.API_PARTY_BASE_URL,
     MONGODB_URI: process.env.MONGODB_URI,
-    public: {
-      API_URL: process.env.API_URL,
-    },
-  },
-  auth: {
-    origin: process.env.ORIGIN,
-    basePath: "/api/auth",
-    // enableGlobalAppMiddleware: true
+    MONGODB_URL: process.env.MONGODB_URL,
+    JWT_API_SECRET: process.env.JWT_API_SECRET,
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+    COOKIE_NAME: process.env.COOKIE_NAME,
+    ENV: process.env.ENV,
+    public: {},
   },
 });
