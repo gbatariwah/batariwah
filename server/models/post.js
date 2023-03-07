@@ -13,7 +13,6 @@ const postSchema = new mongoose.Schema(
     featured_image: { url: String, srcset: Array, public_id: String },
     author: { type: mongoose.Schema.Types.ObjectId, ref: User },
     tags: [{ type: mongoose.Schema.Types.ObjectId, ref: Tag }],
-    // views: { type: mongoose.Schema.Types.ObjectId, ref: "Views" },
   },
   { timestamps: true }
 );

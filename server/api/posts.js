@@ -44,9 +44,12 @@ router
         includeFields: true,
       });
 
-      const { title, content } = Object.keys(fields).reduce((obj, key) => {
-        return { ...obj, [key]: fields[key][0] };
-      }, {});
+      const { title, content, tags } = Object.keys(fields).reduce(
+        (obj, key) => {
+          return { ...obj, [key]: fields[key][0] };
+        },
+        {}
+      );
 
       event.context.body = { title, content, author: event.context.user._id };
 
@@ -59,9 +62,9 @@ router
           public_id: featured_image.public_id,
         };
 
-        // if (files.tags) {
-        //   tags = files.tags.split(",");
-        // }
+        if (tags) {
+          event.context.body.tags = tags.split(",");
+        }
         event.context.body.slug = slugify(title.toLowerCase());
 
         const new_post = await new Post(event.context.body).populate(

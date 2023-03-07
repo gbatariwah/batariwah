@@ -6,7 +6,7 @@
         class="aspect-video w-full object-cover max-h-sm"
       />
     </figure>
-    <div class="space-y-12 max-w-2xl mx-auto">
+    <div class="space-y-8 max-w-2xl mx-auto">
       <div class="space-y-8">
         <div class="space-y-6">
           <h1 class="text-3xl font-bold md:tracking-tight md:text-4xl prose">
@@ -33,38 +33,15 @@
         </div>
       </div>
 
-      <div class="flex justify-center gap-4 flex-wrap">
-        <div class="badge badge-outline badge-success">#MambaUI</div>
-        <div class="badge badge-outline badge-primary">#TailwindCSS</div>
-        <div class="badge badge-outline badge-error">#Angular</div>
-      </div>
-
-      <div class="divider" />
-
-      <!-- <div class="space-y-4 card">
-        <h4 class="font-bold tracking-wider uppercase text-xl">
-            Author
-          </h4>
-
-        <div class="flex gap-4">
-          <el-avatar
-            :size="64"
-            src="https://source.unsplash.com/75x75/?portrait"
-            class="md:justify-self-start flex-shrink-0"
-          />
-          <div class="prose font-thin">
-            <h4 class="tracking-wider uppercase">
-              {{ post.author.firstname }} {{ post.author.lastname }}
-            </h4>
-            <p class="text-sm">
-              Sed non nibh iaculis, posuere diam vitae, consectetur neque.
-              Integer velit ligula, semper sed nisl in, cursus commodo elit.
-              Pellentesque sit amet mi luctus ligula euismod lobortis ultricies
-              et nibh.
-            </p>
+      <template v-if="data.post.tags">
+        <div class="flex justify-center gap-4 flex-wrap">
+          <div v-for="tag in data.post.tags" class="badge badge-outline">
+            #{{ tag.name }}
           </div>
         </div>
-      </div> -->
+      </template>
+
+      <div class="divider" />
 
       <div class="py-4">
         <div class="flex gap-4">

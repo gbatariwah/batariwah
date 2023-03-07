@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import User from "./user";
 const tagSchema = new mongoose.Schema(
   {
     name: {
@@ -8,8 +8,7 @@ const tagSchema = new mongoose.Schema(
       lowercase: true,
     },
     slug: String,
-    color: { type: String, default: "blue" },
-    addedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    addedBy: { type: mongoose.Schema.Types.ObjectId, ref: User },
   },
   { timestamps: true }
 );
@@ -19,9 +18,12 @@ tagSchema.post("save", function (error, doc, next) {
     if (error.message.includes("dup key")) {
       const error = new Error("Tag already exists.");
       error.status = 400;
-      return next(error);
+      throw createError({
+        statusCode: error.status,
+        statusMessage: error.message,
+      });
     }
-  } else next();
+  }
 });
 
 export default mongoose.model("tag", tagSchema);

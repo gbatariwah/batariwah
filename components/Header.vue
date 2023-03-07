@@ -9,8 +9,8 @@
       </NuxtLink>
     </div>
 
-    <div class="navbar-end">
-      <div class="md:flex gap-2 hidden md:block">
+    <div class="navbar-end gap-2">
+      <div class="space-x-1 hidden md:block">
         <NuxtLink
           active-class="text-primary"
           title="Home"
@@ -65,7 +65,7 @@
 
       <!-- <div class="divider divider-horizontal"></div> -->
 
-      <div class="flex gap-2">
+      <div class="flex gap-1">
         <!-- search -->
         <Search v-if="route.name !== 'search'" />
         <!-- search -->
