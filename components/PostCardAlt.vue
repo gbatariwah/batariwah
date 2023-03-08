@@ -44,6 +44,7 @@ const props = defineProps({
   } */
 
 /* [data-theme="lofi"] .card {
+/* [data-theme="lofi"] .card {
   background-color: transparent;
   color: #4b5563;
 } */
