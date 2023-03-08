@@ -10,13 +10,8 @@
 
 <script setup>
 import { PhSun, PhMoon } from "phosphor-vue";
-import { useDark, useToggle } from "@vueuse/core";
 
-const isDark = useDark({
-  selector: "html",
-  attribute: "data-theme",
-  valueDark: "halloween",
-  valueLight: "lofi",
-});
+const { isDark, useToggle } = useTheme();
+
 const toggleDark = useToggle(isDark);
 </script>

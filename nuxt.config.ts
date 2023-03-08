@@ -8,13 +8,13 @@ export default defineNuxtConfig({
     "@formkit/nuxt",
   ],
   plugins: [],
-  // app: {
-  //     head: {
-  //         bodyAttrs: {
-  //             class: 'dark',
-  //         }
-  //     }
-  // },
+  app: {
+    head: {
+      bodyAttrs: {
+        class: "bg-base-300",
+      },
+    },
+  },
   runtimeConfig: {
     MONGODB_URI: process.env.MONGODB_URI,
     MONGODB_URL: process.env.MONGODB_URL,

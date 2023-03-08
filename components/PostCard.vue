@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="`/posts/${post.slug}`">
     <div
-      class="card bg-base-300 card-compact shadow-md hover:border border-zinc-600 rounded-md h-full"
+      class="card bg-base-200 card-compact shadow-md hover:border border-zinc-600 rounded-md h-full"
       :class="{ 'bg-transparent border-zinc-300': !isDark }"
     >
       <figure>
@@ -29,6 +29,8 @@ const props = defineProps({
   post: Object,
 });
 
+const { isDark } = useTheme();
+
 const datePublished = computed(() =>
   new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -36,11 +38,4 @@ const datePublished = computed(() =>
     day: "numeric",
   }).format(new Date(props.post.createdAt))
 );
-
-const isDark = useDark({
-  selector: "html",
-  attribute: "data-theme",
-  valueDark: "halloween",
-  valueLight: "lofi",
-});
 </script>

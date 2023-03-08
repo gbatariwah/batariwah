@@ -104,7 +104,6 @@ import {
 } from "phosphor-vue";
 
 const route = useRoute();
-const tags = ["#mambaui", "#tailwindcss", "#vuejs"];
 
 const { data, pending } = await useAsyncData("post", () =>
   $fetch(`/api/posts/${route.params.slug}`)
@@ -125,5 +124,3 @@ const formatDate = (date) => {
   }).format(new Date(date));
 };
 </script>
-
-<style scoped></style>
