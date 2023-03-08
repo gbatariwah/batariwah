@@ -45,13 +45,10 @@
 
       <div class="space-y-2">
         <div>
-          <FormKit
-            type="submit"
-            label="Login"
-            :classes="{
-              input: 'btn btn-primary btn-outline my-6 w-full',
-            }"
-          />
+          <button type="submit" class="btn btn-primary my-6 w-full gap-2">
+            <PhSignIn :size="18" weight="duotone" />
+            Login
+          </button>
         </div>
         <p class="px-6 text-sm text-center dark:text-gray-400">
           Don't have an account yet?
@@ -68,6 +65,8 @@
 </template>
 
 <script setup>
+import { PhSignIn } from "phosphor-vue";
+
 const initialValue = { email: "batariwahg@gmail.com", password: "123456" };
 
 const { login } = useAuth();

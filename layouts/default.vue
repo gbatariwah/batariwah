@@ -8,6 +8,4 @@
   </div>
 </template>
 
-<script setup>
-import { PhMagnifyingGlass } from "phosphor-vue";
-</script>
+<script setup></script>

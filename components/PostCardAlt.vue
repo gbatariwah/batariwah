@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="`/posts/${post.slug}`"
-    class="flex flex-col card group shadow-lg bg-base-300 md:flex-row md:max-w-xl"
+    class="flex flex-col card group shadow-lg bg-base-200 md:flex-row md:max-w-xl"
   >
     <NuxtImg
       class="object-cover aspect-video w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg"
@@ -43,8 +43,8 @@ const props = defineProps({
     color: #9ca3af;
   } */
 
-[data-theme="lofi"] .card {
+/* [data-theme="lofi"] .card {
   background-color: transparent;
   color: #4b5563;
-}
+} */
 </style>

@@ -1,10 +1,7 @@
 <template>
   <NuxtLink :to="`/posts/${featuredPost.slug}`">
     <div
-      class="block card bg-base-300 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md hover:border rounded-md h-full border-zinc-600 overflow-hidden"
-      :class="{
-        'bg-transparent border-zinc-300': !isDark,
-      }"
+      class="block card bg-base-200 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md hover:border rounded-md h-full border-zinc-600 overflow-hidden"
     >
       <figure class="md:col-span-7">
         <NuxtImg
@@ -43,11 +40,4 @@ const datePublished = computed(() =>
     day: "numeric",
   }).format(new Date(props.featuredPost.createdAt))
 );
-
-const isDark = useDark({
-  selector: "html",
-  attribute: "data-theme",
-  valueDark: "halloween",
-  valueLight: "lofi",
-});
 </script>

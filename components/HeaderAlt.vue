@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navbar bg-base-100 px-6 transition-all"
+    class="navbar bg-base-300 px-6 transition-all"
     :class="{ 'pl-0': !isDark }"
   >
     <div class="navbar-start">
@@ -60,16 +60,10 @@
 
 <script setup>
 import { PhSignOut, PhUser, PhPen, PhNotePencil } from "phosphor-vue";
-import { useDark } from "@vueuse/core";
 
 const { user, logout } = useAuth();
 
 const route = useRoute();
 
-const isDark = useDark({
-  selector: "html",
-  attribute: "data-theme",
-  valueDark: "halloween",
-  valueLight: "lofi",
-});
+const { isDark } = useTheme();
 </script>
