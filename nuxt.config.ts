@@ -24,6 +24,8 @@ export default defineNuxtConfig({
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     COOKIE_NAME: process.env.COOKIE_NAME,
     ENV: process.env.ENV,
-    public: {},
+    public: {
+      BASE_URL: process.env.BASE_URL,
+    },
   },
 });

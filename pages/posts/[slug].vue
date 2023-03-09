@@ -43,7 +43,11 @@
 
       <div class="divider" />
 
-      <div class="py-4">
+      <SharePost :post="data.post" />
+
+      <div
+        class="p-4 card-compact bg-base-200 shadow-md hover:border border-zinc-600 rounded-md"
+      >
         <div class="flex gap-4">
           <img
             src="https://source.unsplash.com/75x75/?portrait"
