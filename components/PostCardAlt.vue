@@ -23,7 +23,10 @@
           <PhNotePencil :size="26" weight="duotone" />
         </NuxtLink>
 
-        <button class="btn btn-error btn-outline btn-sm">
+        <button
+          @click.prevent="$emit('confirm-post-deletion', post.slug)"
+          class="btn btn-error btn-outline btn-sm"
+        >
           <PhTrash :size="26" weight="duotone" />
         </button>
       </div>

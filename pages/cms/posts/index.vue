@@ -6,7 +6,12 @@
     </h2>
     <div class="grid sm:grid-cols-2 gap-6">
       <!-- postcardAlt -->
-      <PostCardAlt v-for="post in data.posts" :key="post" :post="post" />
+      <PostCardAlt
+        @confirm-post-deletion="setSlug"
+        v-for="post in data.posts"
+        :key="post"
+        :post="post"
+      />
       <!-- postcardAlt -->
     </div>
 
@@ -41,15 +46,66 @@
     </div>
 
     <!-- /pagination -->
+
+    <!-- delete post modal -->
+    <Teleport to="body">
+      <input type="checkbox" id="delete-tag" class="modal-toggle" />
+      <div class="modal" :class="{ 'modal-open': openPostDeletionModal }">
+        <div class="modal-box relative">
+          <button
+            @click="openPostDeletionModal = false"
+            class="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            <PhX :size="20" weight="duotone" />
+          </button>
+
+          <div class="flex gap-4">
+            <PhWarningCircle :size="64" class="text-warning" weight="duotone" />
+            <div>
+              <h3 class="text-lg font-semibold">Delete Post</h3>
+              <p class="py-4">Are you sure you want to delete this post?</p>
+            </div>
+          </div>
+          <div class="modal-action">
+            <button
+              @click="deletePost()"
+              for="my-modal"
+              class="btn gap-2 btn-error"
+              :loading="deletingPost"
+            >
+              <PhTrashSimple v-if="!deletingPost" :size="18" weight="duotone" />
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </Teleport>
+    <!-- delete post modal -->
   </div>
 </template>
 
 <script setup>
-import { PhEraser, PhCaretLeft, PhCaretRight } from "phosphor-vue";
+import {
+  PhEraser,
+  PhCaretLeft,
+  PhCaretRight,
+  PhX,
+  PhTrashSimple,
+  PhWarningCircle,
+} from "phosphor-vue";
 
 const route = useRoute();
 const router = useRouter();
 const page = ref(route.query.page || 1);
+
+const deletingPost = ref(false);
+const openPostDeletionModal = ref(false);
+const slug = ref("");
+
+const setSlug = (postSlug) => {
+  openPostDeletionModal.value = true;
+  slug.value = postSlug;
+};
 
 const { data, pending, refresh } = await useAsyncData(
   "use_posts",
@@ -59,6 +115,23 @@ const { data, pending, refresh } = await useAsyncData(
     }),
   { watch: [page] }
 );
+
+const deletePost = async () => {
+  try {
+    deletingPost.value = true;
+    await $fetch(`/api/posts/${slug.value}`, {
+      method: "DELETE",
+      headers: useRequestHeaders(["cookie"]),
+    });
+
+    slug.value = "";
+    openPostDeletionModal.value = false;
+    deletingPost.value = false;
+    refresh();
+  } catch (error) {
+    deletingPost.value = false;
+  }
+};
 
 const previousPage = () => {
   page.value--;
@@ -72,7 +145,7 @@ const nextPage = () => {
   refresh();
 };
 
-onBeforeUpdate(() => {
-  page.value = route.query.page;
-});
+// onBeforeUpdate(() => {
+//   page.value = route.query.page;
+// });
 </script>
