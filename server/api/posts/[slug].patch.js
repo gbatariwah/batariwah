@@ -19,9 +19,10 @@ export default defineAuthenticatedEventHandler(async (event) => {
     }, {});
 
     event.context.body = { ...formatedFields };
-    //   if (fields.tags[0]) {
-    //     tags = fields.tags.split(",");
-    //   }
+
+    if (formatedFields.tags) {
+      event.context.body.tags = formatedFields.tags.split(",");
+    }
 
     // delete old featured image and upload new one
 
@@ -51,9 +52,9 @@ export default defineAuthenticatedEventHandler(async (event) => {
       { slug: event.context.params.slug },
       { $set: event.context.body },
       { new: true }
-    ).populate("author", "firstname lastname");
-
-    //   .populate("tags", "name slug color");
+    )
+      .populate("author", "firstname lastname")
+      .populate("tags", "name _id");
 
     return updated_post;
   } catch (error) {
@@ -62,6 +63,7 @@ export default defineAuthenticatedEventHandler(async (event) => {
     if (featured_image) {
       await deleteImage(featured_image.public_id);
     }
+
     throw createError({
       statusCode: 400,
       statusMessage: "Post update failed.",
