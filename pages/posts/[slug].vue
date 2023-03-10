@@ -46,7 +46,7 @@
       <SharePost :post="data.post" />
 
       <div
-        class="p-4 card-compact bg-base-200 shadow-md hover:border border-zinc-600 rounded-md"
+        class="p-4 bg-base-200 shadow-md hover:border border-zinc-600 rounded-md"
       >
         <div class="flex gap-4">
           <img

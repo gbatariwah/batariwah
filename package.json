@@ -29,7 +29,6 @@
     "mongoose": "^6.9.3",
     "phosphor-vue": "^4.4.1",
     "slugify": "^1.6.5",
-    "vue-disqus": "^5.1.0",
-    "vue-social-sharing": "^4.0.0-alpha4"
+    "vue-disqus": "^5.1.0"
   }
 }
