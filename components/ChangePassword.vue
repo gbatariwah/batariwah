@@ -52,16 +52,18 @@
         </div>
       </div>
       <div class="flex gap-2 justify-end col-span-full">
-        <button
+        <Button
           type="submit"
-          class="btn btn-primary gap-2"
+          class="btn-primary"
           title="Change Password"
           :disabled="changingPassword"
-          :class="{ loading: changingPassword }"
+          :loading="changingPassword"
         >
-          <PhPassword v-if="!changingPassword" :size="18" weight="duotone" />
+          <template #icon>
+            <PhPassword :size="18" weight="duotone" />
+          </template>
           Change Password
-        </button>
+        </Button>
       </div>
     </fieldset>
   </FormKit>

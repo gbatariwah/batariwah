@@ -71,7 +71,7 @@
               @click="deletePost()"
               for="my-modal"
               class="btn gap-2 btn-error"
-              :loading="deletingPost"
+              :class="{ loading: deletingPost }"
             >
               <PhTrashSimple v-if="!deletingPost" :size="18" weight="duotone" />
               Delete
