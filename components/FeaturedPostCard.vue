@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="`/posts/${featuredPost.slug}`">
     <div
-      class="block card bg-base-200 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md hover:border rounded-md h-full border-zinc-600 overflow-hidden"
+      class="block card-compact card bg-base-200 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md border rounded-md h-full border-zinc-400 hover:border-zinc-600 overflow-hidden"
     >
       <figure class="md:col-span-7">
         <NuxtImg
@@ -14,12 +14,9 @@
           <h2 class="card-title text-xl sm:text-2xl">
             {{ featuredPost.title }}
           </h2>
-          <p class="flex items-center gap-2 mb-4 mt-1">
-            <PhCalendar :size="16" weight="duotone" />
-            <span class="text-sm font-thin">
-              {{ datePublished }}
-            </span>
-          </p>
+          <span class="text-sm font-thin mb-2">
+            {{ datePublished }}
+          </span>
           <p class="font-light">{{ featuredPost.content.slice(0, 220) }}...</p>
         </div>
       </div>
@@ -41,3 +38,13 @@ const datePublished = computed(() =>
   }).format(new Date(props.featuredPost.createdAt))
 );
 </script>
+
+<style scoped>
+[data-theme="halloween"] .card {
+  border-color: #3f3f46;
+}
+
+[data-theme="halloween"] .card:hover {
+  border-color: #52525b;
+}
+</style>

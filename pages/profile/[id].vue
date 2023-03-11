@@ -26,18 +26,16 @@
             </h2>
             <div class="flex">
               <div v-if="updateProfile" class="gap-4 flex">
-                <button
-                  :class="{ loading: isUpdatingProfile }"
+                <Button
+                  :loading="updatingProfile"
                   type="submit"
-                  class="btn btn-primary gap-2"
+                  class="btn-primary"
                 >
-                  <PhUserGear
-                    v-if="!isUpdatingProfile"
-                    :size="18"
-                    weight="duotone"
-                  />
+                  <template #icon>
+                    <PhUserGear :size="18" weight="duotone" />
+                  </template>
                   Update
-                </button>
+                </Button>
                 <button
                   @click="
                     updateProfile = false;
@@ -201,7 +199,7 @@ const { user } = useAuth();
 const fields = ref(user);
 const updateProfile = ref(false);
 
-const isUpdatingProfile = ref(false);
+const updatingProfile = ref(false);
 
 const newImageUrl = ref("");
 const changePassword = ref(false);
@@ -240,7 +238,7 @@ const update = async ({
     formData.append("profile_image", file);
   }
 
-  isUpdatingProfile.value = true;
+  updatingProfile.value = true;
 
   try {
     const res = await $fetch(`/api/users/${_id}`, {
@@ -249,11 +247,11 @@ const update = async ({
       headers: useRequestHeaders(["cookie"]),
     });
 
-    isUpdatingProfile.value = false;
+    updatingProfile.value = false;
     reset("update-profile-form", res.user);
     newImageUr.value = res.user.profile_picture.url;
   } catch (error) {
-    isUpdatingProfile.value = false;
+    updatingProfile.value = false;
   }
 };
 </script>

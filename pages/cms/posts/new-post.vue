@@ -22,15 +22,17 @@
               Create New Post
             </h2>
 
-            <button
+            <Button
               type="submit"
-              class="btn btn-primary hover:bg-primary-focus gap-2"
+              class="btn-primary"
               :disabled="loading"
-              :class="{ loading: loading }"
+              :loading="loading"
             >
-              <PhCheck v-if="!loading" :size="18" weight="duotone" />
+              <template #icon>
+                <PhCheck :size="18" weight="duotone" />
+              </template>
               Publish
-            </button>
+            </Button>
           </div>
 
           <FormKitMessages />

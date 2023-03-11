@@ -20,14 +20,16 @@
         :classes="{ input: 'input input-bordered' }"
       />
 
-      <button
+      <Button
         type="submit"
-        class="btn btn-ghost btn-square"
-        :class="{ loading: loading }"
+        class="btn-ghost btn-square"
+        :loading="loading"
         :disabled="field.tag.length < 3 || loading"
       >
-        <PhPlusCircle v-if="!loading" :size="32" weight="duotone" />
-      </button>
+        <template #icon>
+          <PhPlusCircle :size="32" weight="duotone" />
+        </template>
+      </Button>
     </div>
   </FormKit>
 </template>
