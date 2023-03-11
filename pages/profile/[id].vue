@@ -1,138 +1,259 @@
 <template>
   <section class="space-y-6">
-    <div class="flex justify-between items-center">
-      <h2 class="text-2xl font-semibold flex gap-2">
-        <PhUser :size="32" weight="duotone" />
-        Profile
-      </h2>
-      <button class="btn btn-primary hover:bg-primary-focus gap-2">
-        <PhUserGear :size="18" weight="duotone" />
-        Update
-      </button>
-    </div>
     <div
       class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
     >
-      <fieldset class="grid grid-cols-4 gap-6 rounded-md shadow-sm">
-        <div class="space-y-2 col-span-full lg:col-span-1">
-          <p class="font-medium">Personal Inormation</p>
-        </div>
-        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-          <div class="col-span-full sm:col-span-3">
-            <label for="firstname" class="label">First name</label>
-            <input
-              id="firstname"
-              type="text"
-              placeholder="First name"
-              class="w-full input input-bordered capitalize"
-              v-model="user.firstname"
-            />
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <label for="lastname" class="label">Last name</label>
-            <input
-              id="lastname"
-              type="text"
-              placeholder="Last name"
-              class="w-full input input-bordered capitalize"
-              v-model="user.lastname"
-            />
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <label for="email" class="label">Email</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Email"
-              class="w-full input input-bordered"
-              v-model="user.email"
-            />
-          </div>
-        </div>
-      </fieldset>
-      <fieldset class="grid grid-cols-4 gap-6 rounded-md shadow-sm">
-        <div class="space-y-2 col-span-full lg:col-span-1">
-          <p class="font-medium">Profile</p>
-        </div>
-        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-          <div class="col-span-full">
-            <label for="bio" class="label">Bio</label>
-            <textarea
-              id="bio"
-              placeholder=""
-              class="w-full textarea textarea-bordered"
-              v-model="user.bio"
-            ></textarea>
-          </div>
-          <div class="col-span-full">
-            <label for="bio" class="label">Photo</label>
-            <div class="space-y-2">
-              <div class="avatar block">
-                <div class="w-32 rounded">
-                  <img src="https://api.lorem.space/image/face?w=150&h=150" />
-                </div>
+      <FormKit
+        @submit="update"
+        id="update-profile-form"
+        type="form"
+        v-model="fields"
+        :actions="false"
+        :disabled="!updateProfile"
+        :config="{
+          classes: {
+            message: 'text-error text-sm py-2 font-thin',
+            label: 'label',
+          },
+        }"
+        #default="{ value }"
+      >
+        <div class="space-y-6">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-semibold flex gap-2">
+              <PhUser :size="32" weight="duotone" />
+              Profile
+            </h2>
+            <div class="flex">
+              <div v-if="updateProfile" class="gap-4 flex">
+                <button
+                  :class="{ loading: isUpdatingProfile }"
+                  type="submit"
+                  class="btn btn-primary gap-2"
+                >
+                  <PhUserGear
+                    v-if="!isUpdatingProfile"
+                    :size="18"
+                    weight="duotone"
+                  />
+                  Update
+                </button>
+                <button
+                  @click="
+                    updateProfile = false;
+                    reset('update-profile-form');
+                  "
+                  class="btn btn-outline btn-circle"
+                >
+                  <PhX :size="32" weight="duotone" />
+                </button>
               </div>
-              <button type="button" class="btn gap-2 btn-primary">
-                <PhImage :size="20" weight="duotone" />
-                Change
+
+              <button
+                @click="updateProfile = true"
+                v-else
+                class="btn btn-square btn-outline"
+              >
+                <PhUserCircleGear :size="32" weight="duotone" />
               </button>
             </div>
           </div>
-        </div>
-      </fieldset>
+          <fieldset class="grid grid-cols-4 gap-6 rounded-md shadow-sm">
+            <div class="space-y-2 col-span-full lg:col-span-1">
+              <p class="font-medium">Personal Inormation</p>
+            </div>
+            <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+              <div class="col-span-full sm:col-span-3">
+                <FormKit
+                  name="firstname"
+                  label="First Name"
+                  type="text"
+                  input-class="w-full input input-bordered capitalize"
+                />
+              </div>
+              <div class="col-span-full sm:col-span-3">
+                <FormKit
+                  name="lastname"
+                  label="Last Name"
+                  type="text"
+                  input-class="w-full input input-bordered capitalize"
+                />
+              </div>
+              <div class="col-span-full sm:col-span-3">
+                <FormKit
+                  name="email"
+                  label="Email"
+                  type="email"
+                  input-class="w-full input input-bordered"
+                />
+              </div>
+            </div>
+          </fieldset>
 
-      <fieldset class="grid grid-cols-4 gap-6">
-        <div class="space-y-2 col-span-full lg:col-span-1">
-          <p class="font-medium">Password</p>
+          <fieldset class="grid grid-cols-4 gap-6 rounded-md shadow-sm">
+            <div class="space-y-2 col-span-full lg:col-span-1">
+              <p class="font-medium">Profile</p>
+            </div>
+            <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+              <div class="col-span-full">
+                <FormKit
+                  name="bio"
+                  label="Bio"
+                  type="textarea"
+                  input-class="textarea textarea-bordered w-full"
+                />
+              </div>
+              <div class="col-span-full">
+                <FormKit
+                  type="file"
+                  name="profile_image"
+                  accept=".jpeg,.jpg"
+                  input-class="file-input block file-input-bordered file-input-md"
+                  fileItem-class="relative w-64"
+                  fileRemove-class="absolute right-2 top-2 text-transparent w-8"
+                >
+                  <template #label>
+                    <label class="label">
+                      <span class="label-text text-lg items-center flex gap-2">
+                        <PhImage :size="22" weight="duotone" />
+                        Profile Picture</span
+                      >
+                    </label>
+                  </template>
+
+                  <template v-if="newImageUrl" #fileName>
+                    <div class="w-full">
+                      <div class="avatar">
+                        <figure class="w-full h-64">
+                          <NuxtImg
+                            class="aspect-video object-cover w-full"
+                            :src="newImageUrl"
+                          />
+                        </figure>
+                      </div>
+                      <div class="flex justify-center py-4">
+                        <PhSwap :size="38" weight="duotone" />
+                      </div>
+                    </div>
+                  </template>
+
+                  <template #noFiles>
+                    <div class="avatar">
+                      <figure class="w-64 h-64">
+                        <NuxtImg
+                          class="aspect-video object-cover w-full"
+                          :src="value.profile_picture.url"
+                        />
+                      </figure>
+                    </div>
+                  </template>
+
+                  <template #fileRemoveIcon>
+                    <span
+                      class="btn btn-circle btn-sm opacity-70 hover:opacity-100"
+                    >
+                      <PhX :size="18" weight="duotone" />
+                    </span>
+                  </template>
+                </FormKit>
+              </div>
+            </div>
+          </fieldset>
         </div>
-        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-          <div class="col-span-full sm:col-span-3">
-            <label for="username" class="label">Old Password</label>
-            <input
-              id="username"
-              type="password"
-              placeholder="Username"
-              class="w-full input input-bordered"
-            />
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <label for="website" class="label">New Password</label>
-            <input
-              id="website"
-              type="password"
-              class="w-full input input-bordered"
-            />
-          </div>
-          <div class="col-span-full">
-            <label for="bio" class="label">Repeat Password</label>
-            <input
-              type="password"
-              id="password-repeat"
-              class="w-full input input-bordered"
-              v-model="bio"
-            />
-          </div>
-        </div>
-        <div class="flex gap-2 justify-end col-span-full">
+      </FormKit>
+      <div>
+        <div class="text-center mb-4">
           <button
-            class="btn btn-primary hover:bg-primary-focus gap-2"
-            title="Change Password"
+            class="btn btn-outline"
+            @click="changePassword = !changePassword"
           >
-            <PhPassword :size="18" weight="duotone" />
-            Change Password
+            <span v-if="changePassword" class="flex gap-2 items-center">
+              <PhX :size="20" weight="duotone" />
+              Cancel
+            </span>
+
+            <span v-else class="flex gap-2 items-center">
+              <PhPassword :size="20" weight="duotone" />
+              Change Password
+            </span>
           </button>
         </div>
-      </fieldset>
+        <ChangePassword :change="changePassword" />
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { PhImage, PhUser, PhUserGear, PhPassword } from "phosphor-vue";
+import {
+  PhImage,
+  PhUser,
+  PhUserGear,
+  PhX,
+  PhUserCircleGear,
+  PhSwap,
+  PhPassword,
+} from "phosphor-vue";
+import { reset } from "@formkit/core";
 
 const { user } = useAuth();
 
-const bio = ref(user.bio || "");
+const fields = ref(user);
+const updateProfile = ref(false);
+
+const isUpdatingProfile = ref(false);
+
+const newImageUrl = ref("");
+const changePassword = ref(false);
+
+watch(
+  () => fields.value.profile_image,
+  (value) => {
+    const file = value[0]?.file;
+
+    if (file) {
+      newImageUrl.value = URL.createObjectURL(file);
+    }
+  },
+  { deep: true }
+);
 
 definePageMeta({ middleware: "auth", layout: "cms" });
+
+const update = async ({
+  firstname,
+  lastname,
+  email,
+  bio = "",
+  profile_image,
+  _id,
+}) => {
+  const formData = new FormData();
+  formData.append("firstname", firstname);
+  formData.append("lastname", lastname);
+  formData.append("email", email);
+  formData.append("bio", bio);
+
+  const file = profile_image[0].file;
+
+  if (file) {
+    formData.append("profile_image", file);
+  }
+
+  isUpdatingProfile.value = true;
+
+  try {
+    const res = await $fetch(`/api/users/${_id}`, {
+      method: "PATCH",
+      body: formData,
+      headers: useRequestHeaders(["cookie"]),
+    });
+
+    isUpdatingProfile.value = false;
+    reset("update-profile-form", res.user);
+    newImageUr.value = res.user.profile_picture.url;
+  } catch (error) {
+    isUpdatingProfile.value = false;
+  }
+};
 </script>

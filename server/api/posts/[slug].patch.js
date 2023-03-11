@@ -26,7 +26,7 @@ export default defineAuthenticatedEventHandler(async (event) => {
 
     // delete old featured image and upload new one
 
-    if (!Boolean(files)) {
+    if (Object.keys(files).length >= 1) {
       await deleteImage(post.featured_image.public_id);
       featured_image = await uploadImage(files.featured_image[0].filepath);
 

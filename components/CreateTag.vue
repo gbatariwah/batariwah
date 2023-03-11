@@ -5,6 +5,7 @@
     id="tag-form"
     v-model="field"
     :actions="false"
+    :ignore="true"
     @submit="createTag"
     :config="{
       classes: {
