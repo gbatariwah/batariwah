@@ -1,9 +1,12 @@
 <template>
   <div>
     <figure class="mb-6">
-      <nuxt-img
+      <NuxtPicture
+        :imgAttrs="{
+          class: 'aspect-video w-full object-cover max-h-sm',
+        }"
+        :srcset="srcset(data.post.featured_image.srcset)"
         :src="data.post.featured_image.url"
-        class="aspect-video w-full object-cover max-h-sm"
       />
     </figure>
     <div class="space-y-8 max-w-2xl mx-auto">
@@ -24,12 +27,11 @@
             </p>
           </div>
         </div>
-        <div class="prose prose-xl pt-2">
+        <div class="prose prose-xl">
           <div
+            v-html="md.render(data.post.content, { html: true })"
             class="first-letter:text-5xl first-letter:font-semibold prose-lg font-thin"
-          >
-            {{ data.post.content }}
-          </div>
+          ></div>
         </div>
       </div>
 
@@ -47,22 +49,24 @@
 
       <div class="p-4 bg-base-200 shadow-md border border-zinc-700 rounded-md">
         <div class="flex gap-4">
-          <img
-            src="https://source.unsplash.com/75x75/?portrait"
+          <NuxtImg
+            :src="data.post.author.profile_picture.url"
             alt=""
             class="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700"
           />
           <div class="flex flex-col">
-            <h4 class="text-lg font-semibold">Leroy Jenkins</h4>
+            <h4 class="text-lg font-semibold capitalize pb-2">
+              {{ data.post.author.firstname }} {{ data.post.author.lastname }}
+            </h4>
             <p>
-              Sed non nibh iaculis, posuere diam vitae, consectetur neque.
-              Integer velit ligula, semper sed nisl in, cursus commodo elit.
-              Pellentesque sit amet mi luctus ligula euismod lobortis ultricies
-              et nibh.
+              {{ data.post.author.bio }}
             </p>
           </div>
         </div>
-        <div class="flex justify-center pt-4 space-x-4 align-center">
+        <div
+          v-if="data.post.author.admin"
+          class="flex justify-center pt-4 space-x-4 align-center"
+        >
           <button class="btn btn-sm btn-circle btn-ghost">
             <PhFacebookLogo :size="24" weight="duotone" />
           </button>
@@ -76,7 +80,7 @@
       </div>
 
       <ClientOnly>
-        <Disqus shortname="gblog-5" />
+        <Disqus class="py-8" shortname="gblog-5" />
       </ClientOnly>
 
       <div class="space-y-2">
@@ -104,6 +108,9 @@ import {
   PhInstagramLogo,
   PhArticle,
 } from "phosphor-vue";
+import MarkdownIt from "markdown-it";
+import sub from "markdown-it-sub";
+import sup from "markdown-it-sup";
 
 const route = useRoute();
 
@@ -124,5 +131,11 @@ const formatDate = (date) => {
     month: "short",
     day: "numeric",
   }).format(new Date(date));
+};
+
+const md = new MarkdownIt().use(sub).use(sup);
+
+const srcset = (srcset) => {
+  return srcset.map((image) => `${image.secure_url} ${image.width}w`).join(",");
 };
 </script>
