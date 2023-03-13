@@ -67,15 +67,16 @@
             </div>
           </div>
           <div class="modal-action">
-            <button
+            <Button
               @click="deletePost()"
-              for="my-modal"
               class="btn gap-2 btn-error"
-              :class="{ loading: deletingPost }"
+              :loading="deletingPost"
             >
-              <PhTrashSimple v-if="!deletingPost" :size="18" weight="duotone" />
+              <template #icon>
+                <PhTrashSimple :size="18" weight="duotone" />
+              </template>
               Delete
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -93,9 +94,11 @@ import {
   PhTrashSimple,
   PhWarningCircle,
 } from "phosphor-vue";
+import { useToast } from "vue-toastification";
 
 const route = useRoute();
 const router = useRouter();
+const toast = useToast();
 const page = ref(route.query.page || 1);
 
 const deletingPost = ref(false);
@@ -127,9 +130,11 @@ const deletePost = async () => {
     slug.value = "";
     openPostDeletionModal.value = false;
     deletingPost.value = false;
+    toast.success("Success!");
     refresh();
   } catch (error) {
     deletingPost.value = false;
+    toast.error("Post not deleted, please try again.");
   }
 };
 

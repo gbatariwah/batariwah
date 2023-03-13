@@ -157,6 +157,7 @@ import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { reset, setErrors } from "@formkit/core";
 import { FormKitMessages } from "@formkit/vue";
+import { useToast } from "vue-toastification";
 
 const fields = ref({
   title: "",
@@ -167,6 +168,7 @@ const fields = ref({
 
 const fileUrl = ref("");
 const loading = ref(false);
+const toast = useToast();
 
 watch(
   () => fields.value.featured_image,
@@ -204,13 +206,17 @@ const publish = async ({ title, content, featured_image, tags }) => {
 
     reset();
     loading.value = false;
+    toast.success("Success!");
   } catch (error) {
     const message = error.message;
 
     if (message.includes("title_1 dup key")) {
-      setErrors("new-post-form", "A post with the same title already exist");
+      const message = "A post with the same title already exist";
+      setErrors("new-post-form", message);
+      toast.error(message);
     } else {
       setErrors("new-post-form", error.message);
+      toast.error(error.message);
     }
     loading.value = false;
   }

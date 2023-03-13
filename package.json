@@ -33,6 +33,7 @@
     "mongoose": "^6.9.3",
     "phosphor-vue": "^4.4.1",
     "slugify": "^1.6.5",
-    "vue-disqus": "^5.1.0"
+    "vue-disqus": "^5.1.0",
+    "vue-toastification": "^2.0.0-rc.5"
   }
 }

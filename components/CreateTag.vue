@@ -37,11 +37,13 @@
 <script setup>
 import { PhPlusCircle } from "phosphor-vue";
 import { reset } from "@formkit/core";
+import { useToast } from "vue-toastification";
 
 const field = ref({ tag: "" });
 const loading = ref(false);
 
 const emit = defineEmits(["tagCreated"]);
+const toast = useToast();
 
 const createTag = async ({ tag }) => {
   try {
@@ -56,7 +58,14 @@ const createTag = async ({ tag }) => {
     emit("tagCreated");
 
     loading.value = false;
+    toast.success("Success!");
   } catch (error) {
+    if (error.message.includes("name_1 dup key")) {
+      toast.error("The tag already exist.");
+    } else {
+      toast.error("Tag not created, please try again.");
+    }
+
     loading.value = false;
   }
 };

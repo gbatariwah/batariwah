@@ -4,8 +4,8 @@ const tagSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
       lowercase: true,
+      unique: true,
     },
     slug: String,
     addedBy: { type: mongoose.Schema.Types.ObjectId, ref: User },
@@ -23,7 +23,7 @@ tagSchema.post("save", function (error, doc, next) {
         statusMessage: error.message,
       });
     }
-  }
+  } else next();
 });
 
 export default mongoose.model("tag", tagSchema);

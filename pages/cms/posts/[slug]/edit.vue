@@ -167,6 +167,7 @@ import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { reset, setErrors } from "@formkit/core";
 import { FormKitMessages } from "@formkit/vue";
+import { useToast } from "vue-toastification";
 
 const fields = ref({
   title: "",
@@ -196,6 +197,7 @@ const fieldsChanged = computed(() => {
 
 const route = useRoute();
 const router = useRouter();
+const toast = useToast();
 
 const fileUrl = ref("");
 const loading = ref(false);
@@ -269,10 +271,12 @@ const updatePost = async ({ title, content, featured_image, tags }) => {
     });
 
     loading.value = false;
+    toast.success("Success!");
     router.back();
   } catch (error) {
     const message = error.message;
     loading.value = false;
+    toast.error("Post not update, Please try again");
 
     setErrors("edit-post-form", message);
   }

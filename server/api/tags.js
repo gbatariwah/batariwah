@@ -15,9 +15,19 @@ router
   .post(
     "/",
     defineAuthenticatedEventHandler(async (event) => {
-      const { name } = await readBody(event);
-      const tag = await Tag.create({ name, addedBy: event.context.user._id });
-      return { tag };
+      try {
+        const { name } = await readBody(event);
+        const tag = await Tag.create({
+          name,
+          addedBy: event.context.user._id,
+        });
+        return { tag };
+      } catch (error) {
+        throw createError({
+          statusCode: 400,
+          statusMessage: error.message,
+        });
+      }
     })
   );
 

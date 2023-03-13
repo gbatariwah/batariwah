@@ -1,6 +1,5 @@
 import { createRouter, defineEventHandler, useBase } from "h3";
 import Post from "../models/post";
-import User from "../models/user";
 import slugify from "slugify";
 import { readFiles } from "h3-formidable";
 import { uploadImage, deleteImage } from "../utils/cloudinary";
