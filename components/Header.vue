@@ -75,7 +75,7 @@
         <div v-if="user" class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 rounded-full">
-              <NuxtImg src="https://api.lorem.space/image/face?w=150&h=150" />
+              <NuxtImg :src="user.profile_picture.url" />
             </div>
           </label>
           <ul

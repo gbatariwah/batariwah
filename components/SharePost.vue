@@ -37,7 +37,7 @@ function startShare() {
   share({
     title: props.post.title,
     text: description,
-    url: `${config.BASE_URL}/${props.post.slug}`,
+    url: `${config.BASE_URL}/posts/${props.post.slug}`,
   });
 }
 </script>
