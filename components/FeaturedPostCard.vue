@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="`/posts/${featuredPost.slug}`">
     <div
-      class="block card-compact card bg-base-200 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md border rounded-md h-full border-zinc-400 hover:border-zinc-600 overflow-hidden"
+      class="block card-compact card bg-base-200 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md border rounded-md h-full border-zinc-700 hover:ring-1 ring-zinc-900 overflow-hidden"
     >
       <figure class="md:col-span-7">
         <NuxtImg
@@ -17,7 +17,7 @@
           <span class="text-sm font-thin mb-2">
             {{ datePublished }}
           </span>
-          <p class="font-light">{{ featuredPost.content.slice(0, 220) }}...</p>
+          <p class="font-light">{{ excerpt }}</p>
         </div>
       </div>
     </div>
@@ -25,7 +25,9 @@
 </template>
 
 <script setup>
-import { PhCalendar } from "phosphor-vue";
+import MarkdownIt from "markdown-it";
+const md = new MarkdownIt();
+
 const props = defineProps({
   featuredPost: Object,
 });
@@ -37,6 +39,11 @@ const datePublished = computed(() =>
     day: "numeric",
   }).format(new Date(props.featuredPost.createdAt))
 );
+
+const excerpt = computed(() => {
+  const html = md.render(props.featuredPost.content, { html: true });
+  return `${html.replace(/(<([^>]+)>)/gi, "").slice(0, 224)}...`;
+});
 </script>
 
 <style scoped>

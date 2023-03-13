@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="`/posts/${post.slug}`"
-    class="flex flex-col card group border border-zinc-400 hover:border-zinc-600 shadow-lg bg-base-200 md:flex-row md:max-w-xl"
+    class="flex flex-col card group border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg bg-base-200 md:flex-row md:max-w-xl"
   >
     <NuxtImg
       class="object-cover aspect-video w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg"
