@@ -2,7 +2,7 @@
   <p class="text-center">
     <button
       class="btn gap-6 bg-base-200 btn-outline rounded-full relative border-zinc-700"
-      @click="startShare"
+      @click="startShare()"
     >
       <span class="tracking-wider"> Share </span>
       <span class="flex gap-4">
@@ -25,7 +25,8 @@ import {
   PhEnvelopeSimple,
   PhPlus,
 } from "phosphor-vue";
-const { share } = useShare();
+import { isClient } from "@vueuse/shared";
+
 const props = defineProps({
   post: Object,
 });
@@ -33,11 +34,13 @@ const props = defineProps({
 const description = computed(() => props.post.content.slice(0, 12));
 const config = useRuntimeConfig();
 
-function startShare() {
-  share({
-    title: props.post.title,
-    text: description,
-    url: `${config.BASE_URL}/posts/${props.post.slug}`,
-  });
-}
+const options = ref({
+  title: props.post.title,
+  text: description,
+  url: isClient ? `${config.BASE_URL}/posts/${props.post.slug}` : "",
+});
+
+const { share, isSupported } = useShare(options);
+
+const startShare = () => share();
 </script>

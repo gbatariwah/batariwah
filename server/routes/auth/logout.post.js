@@ -8,6 +8,7 @@ export default defineAuthenticatedEventHandler(async (event) => {
     path: "/",
     sameSite: "strict",
     secure: true,
+    maxAge: 0,
   });
 
   return { user: null };

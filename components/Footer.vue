@@ -3,7 +3,7 @@
     <div class="divider" />
     <div class="mb-2 flex items-center justify-between">
       <NuxtLink to="/">
-        <NuxtImg src="/logo.svg" class="w-2/5" />
+        <Logo class="w-[160px]" />
       </NuxtLink>
 
       <div class="flex gap-6 items-center">

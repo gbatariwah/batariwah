@@ -1,5 +1,10 @@
 <template>
-  <label for="search-modal" class="btn btn-ghost btn-circle" title="Search">
+  <label
+    for="search-modal"
+    class="btn btn-ghost btn-circle"
+    title="Search"
+    @click="searchInput.focus()"
+  >
     <PhMagnifyingGlass :size="32" weight="duotone" />
   </label>
 
@@ -19,6 +24,7 @@
               class="input input-bordered w-full"
               v-model="query"
               @keydown.enter="search()"
+              ref="searchInput"
             />
             <button
               :disabled="query.length < 3"
@@ -38,10 +44,15 @@
 import { PhMagnifyingGlass } from "phosphor-vue";
 
 const query = ref("");
+const searchInput = ref(null);
 
 const router = useRouter();
 
 const search = async () => {
   await router.push(`/search?q=${query.value}`);
 };
+
+onMounted(() => {
+  searchInput.value.focus();
+});
 </script>

@@ -4,7 +4,12 @@
       class="card bg-base-200 card-compact shadow-md border border-zinc-700 hover:ring-1 ring-zinc-900 rounded-md h-full"
     >
       <figure>
-        <NuxtImg :src="post.featured_image.url" class="object-cover" />
+        <NuxtImg
+          :src="post.featured_image.url"
+          loading="lazy"
+          placeholder="/images/loader.gif"
+          class="aspect-video object-cover"
+        />
       </figure>
       <div class="px-4 pt-2 pb-4 space-y-2 post-body">
         <p class="text-sm font-thin">

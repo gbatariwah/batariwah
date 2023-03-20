@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+import gm from "@nuxtjs/google-fonts";
 export default defineNuxtConfig({
   // css: ["~/assets/scss/index.scss"],
   modules: [
@@ -6,9 +8,29 @@ export default defineNuxtConfig({
     "@nuxt/image-edge",
     "@nuxtjs/tailwindcss",
     "@formkit/nuxt",
+    [
+      "@nuxtjs/google-fonts",
+      {
+        display: "swap",
+        download: true,
+        families: {
+          Roboto: true,
+          "Josefin+Sans": true,
+          Montserrat: {
+            wght: [100, 300, 400, 600, 700],
+            ital: [100, 300, 600],
+          },
+          "Work Sans": {
+            wght: [100, 300, 400, 600, 700],
+            ital: [100, 300, 600],
+          },
+        },
+      },
+    ],
   ],
-  plugins: [],
+
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
     head: {
       bodyAttrs: {
         class: "bg-base-300",

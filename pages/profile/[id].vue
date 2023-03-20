@@ -176,7 +176,7 @@
             </span>
           </button>
         </div>
-        <ChangePassword :change="changePassword" />
+        <LazyChangePassword :change="changePassword" />
       </div>
     </div>
   </section>
@@ -232,24 +232,26 @@ const update = async ({
   formData.append("email", email);
   formData.append("bio", bio);
 
-  const file = profile_image[0].file;
+  const file = profile_image[0]?.file;
 
   if (file) {
     formData.append("profile_image", file);
   }
 
-  updatingProfile.value = true;
-
   try {
+    updatingProfile.value = true;
+
     const res = await $fetch(`/api/users/${_id}`, {
       method: "PATCH",
       body: formData,
       headers: useRequestHeaders(["cookie"]),
     });
 
-    updatingProfile.value = false;
     reset("update-profile-form", res.user);
-    newImageUr.value = res.user.profile_picture.url;
+    newImageUrl.value = res.user.profile_picture.url;
+
+    updateProfile.value = false;
+    updatingProfile.value = false;
   } catch (error) {
     updatingProfile.value = false;
   }

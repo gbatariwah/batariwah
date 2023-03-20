@@ -5,6 +5,8 @@
     >
       <figure class="md:col-span-7">
         <NuxtImg
+          placeholder="/images/loader.gif"
+          loading="lazy"
           :src="featuredPost.featured_image.url"
           class="object-cover h-full w-full sm:aspect-video"
         />

@@ -1,11 +1,8 @@
 <template>
-  <div
-    class="navbar bg-base-300 px-6 transition-all"
-    :class="{ 'pl-0': !isDark }"
-  >
+  <div class="navbar pr-4">
     <div class="navbar-start">
-      <NuxtLink to="/">
-        <NuxtImg src="/logo.svg" class="w-48" />
+      <NuxtLink to="/" class="w-[220px]">
+        <Logo />
       </NuxtLink>
     </div>
 

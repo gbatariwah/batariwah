@@ -11,7 +11,9 @@ router
   .get(
     "/",
     defineEventHandler(async (event) => {
-      const { page = 1, limit = 7 } = getQuery(event);
+      const { page = 1 } = getQuery(event);
+
+      const limit = page == 1 ? 10 : 9;
 
       //   execute query with page and limit values
       const posts = await Post.find()

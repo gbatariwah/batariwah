@@ -6,12 +6,17 @@
     </h2>
     <div class="grid sm:grid-cols-2 gap-6">
       <!-- postcardAlt -->
-      <PostCardAlt
-        @confirm-post-deletion="setSlug"
-        v-for="post in data.posts"
-        :key="post"
-        :post="post"
-      />
+      <template v-if="pending">
+        <PostAltSkeleton v-for="s in 6" />
+      </template>
+      <template v-else>
+        <PostCardAlt
+          @confirm-post-deletion="setSlug"
+          v-for="post in data.posts"
+          :key="post"
+          :post="post"
+        />
+      </template>
       <!-- postcardAlt -->
     </div>
 
@@ -24,24 +29,27 @@
         <span class="font-semibold">{{ data.totalPages }}</span>
       </p>
       <div class="btn-group">
-        <button
+        <Button
           :disabled="page <= 1"
-          class="btn btn-primary btn-sm gap-2"
+          class="btn-primary btn-sm"
           @click="previousPage()"
-          :loading="pending"
-        >
-          <PhCaretLeft :size="18" weight="duotone" />
+          :loading="direction === 'previous' && pending"
+          ><template #icon>
+            <PhCaretLeft :size="18" weight="duotone" />
+          </template>
           previous
-        </button>
-        <button
+        </Button>
+        <Button
           :disabled="page >= data.totalPages"
-          class="btn btn-primary btn-sm gap-2"
+          class="btn-primary btn-sm"
           @click="nextPage()"
-          :loading="pending"
+          :loading="direction === 'next' && pending"
         >
           next
-          <PhCaretRight :size="18" weight="duotone" />
-        </button>
+          <template #suffix-icon>
+            <PhCaretRight :size="18" weight="duotone" />
+          </template>
+        </Button>
       </div>
     </div>
 
@@ -100,6 +108,7 @@ const route = useRoute();
 const router = useRouter();
 const toast = useToast();
 const page = ref(route.query.page || 1);
+const direction = ref("next");
 
 const deletingPost = ref(false);
 const openPostDeletionModal = ref(false);
@@ -141,16 +150,19 @@ const deletePost = async () => {
 const previousPage = () => {
   page.value--;
   router.push(`/cms/posts?page=${page.value}`);
+  direction.value = "previous";
   refresh();
 };
 
-const nextPage = () => {
+const nextPage = async () => {
   page.value++;
   router.push(`/cms/posts?page=${page.value}`);
-  refresh();
+  direction.value = "next";
+  await refresh();
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 };
-
-// onBeforeUpdate(() => {
-//   page.value = route.query.page;
-// });
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="mx-auto max-w-sm pb-6">
+  <div class="p-4">
+    <div class="mx-auto max-w-sm pb-8">
       <h2 class="text-center text-4xl font-semibold prose mb-6">
         Search Results
       </h2>
@@ -13,29 +13,37 @@
             placeholder="Search my blog.."
             v-model="q"
           />
-          <button
-            :disabled="query.length < 3"
-            class="btn btn-square"
+          <Button
+            :disabled="q.length < 3"
+            class="btn-square"
             @click="search()"
+            :loading="pending"
           >
-            <PhMagnifyingGlass :size="32" weight="duotone" />
-          </button>
+            <template #icon>
+              <PhMagnifyingGlass :size="32" weight="duotone" />
+            </template>
+          </Button>
         </div>
       </div>
     </div>
-
-    <div v-if="data.results.length > 1">
-      <div class="text-center mb-5 font-thin">
-        Search results for
-        <div :class="`badge badge-${tagType}`">
-          <span class="font-semibold tracking-wider">{{ query }}</span>
+    <div v-if="pending" class="flex flex-col items-center gap-4">
+      <NuxtImg src="/images/searching.svg" class="w-1/3" />
+      <p>Searching...</p>
+    </div>
+    <div v-else>
+      <div v-if="data.results.length >= 1">
+        <div class="text-center mb-5 font-thin">
+          Search results for
+          <div :class="`badge badge-${tagType}`">
+            <span class="font-semibold tracking-wider">{{ query }}</span>
+          </div>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2">
+          <PostCard v-for="post in data.results" :key="post.id" :post="post" />
         </div>
       </div>
-      <div class="grid gap-6 sm:grid-cols-2">
-        <PostCard v-for="post in data.results" :key="post.id" :post="post" />
-      </div>
+      <div v-else class="mx-auto max-w-sm">No results found</div>
     </div>
-    <div v-else class="mx-auto max-w-sm">No results found</div>
   </div>
 </template>
 
@@ -60,6 +68,7 @@ const { data, pending, refresh } = await useAsyncData(() =>
 const query = computed(() => route.query.q);
 
 const search = () => {
+  console.log(q.value);
   if (q.value.length >= 3) {
     tagType.value = generateRandomTagType();
 

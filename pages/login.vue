@@ -14,6 +14,11 @@
       :actions="false"
       v-model="initialValue"
       #default="{ value }"
+      :config="{
+        classes: {
+          message: 'text-error text-sm py-2 font-thin',
+        },
+      }"
     >
       <div class="space-y-4">
         <FormKit
@@ -45,10 +50,16 @@
 
       <div class="space-y-2">
         <div>
-          <button type="submit" class="btn btn-primary my-6 w-full gap-2">
-            <PhSignIn :size="18" weight="duotone" />
+          <Button
+            type="submit"
+            :loading="logingIn"
+            class="btn-primary my-6 w-full"
+          >
+            <template #icon>
+              <PhSignIn :size="18" weight="duotone" />
+            </template>
             Login
-          </button>
+          </Button>
         </div>
         <p class="px-6 text-sm text-center dark:text-gray-400">
           Don't have an account yet?
@@ -65,15 +76,24 @@
 </template>
 
 <script setup>
+import { setErrors } from "@formkit/core";
 import { PhSignIn } from "phosphor-vue";
 
 const initialValue = { email: "batariwahg@gmail.com", password: "123456" };
 
 const { login } = useAuth();
+const logingIn = ref(false);
 
 const handleSubmit = async ({ email, password }) => {
-  await login(email, password);
-  await navigateTo("/");
+  try {
+    logingIn.value = true;
+    await login(email, password);
+    logingIn.value = false;
+    await navigateTo("/");
+  } catch (error) {
+    setErrors("login-form", error.message);
+    logingIn.value = false;
+  }
 };
 
 definePageMeta({ layout: "login" });

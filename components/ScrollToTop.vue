@@ -2,7 +2,7 @@
   <button
     v-show="visible"
     @click="scrollUp"
-    class="btn btn-circle fixed bottom-8 right-8 z-50 opacity-80 hover:opacity-100"
+    class="btn btn-circle outline-none fixed bottom-8 right-8 z-50 opacity-80 hover:opacity-100"
   >
     <PhCaretDoubleUp :size="28" weight="duotone" />
   </button>
