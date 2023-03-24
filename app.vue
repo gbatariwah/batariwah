@@ -1,12 +1,15 @@
 <template>
   <div>
     <NuxtLayout>
+      <NuxtLoadingIndicator />
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import "animate.css";
+</script>
 
 <style>
 .page-enter-active,

@@ -18,6 +18,8 @@
           Back to homepage
         </Button>
       </div>
+
+      <pre>{{ error.message }}</pre>
     </div>
   </section>
 </template>

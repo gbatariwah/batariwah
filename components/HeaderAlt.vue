@@ -1,6 +1,6 @@
 <template>
-  <div class="navbar pr-4">
-    <div class="navbar-start">
+  <div class="navbar p-4">
+    <div class="navbar-start pr-2">
       <NuxtLink to="/" class="w-[220px]">
         <Logo />
       </NuxtLink>

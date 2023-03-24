@@ -1,5 +1,9 @@
 <template>
-  <NuxtImg class="-ml-2" :src="src" alt="logo" />
+  <NuxtImg
+    class="-ml-5 animate__animated animate__fadeIn"
+    :src="src"
+    alt="logo"
+  />
 </template>
 
 <script setup>
@@ -15,7 +19,15 @@ watch(isDark, (val) => {
   }
 });
 
-onBeforeUpdate(() => {
+// onBeforeUpdate(() => {
+//   if (isDark.value) {
+//     src.value = "/images/logo-dark.png";
+//   } else {
+//     src.value = "/images/logo-light.png";
+//   }
+// });
+
+onMounted(() => {
   if (isDark.value) {
     src.value = "/images/logo-dark.png";
   } else {

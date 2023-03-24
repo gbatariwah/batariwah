@@ -97,4 +97,8 @@ const handleSubmit = async ({ email, password }) => {
 };
 
 definePageMeta({ layout: "login" });
+useSeoMeta({
+  title: "Login",
+  titleTemplate: "%s | Batariwah",
+});
 </script>

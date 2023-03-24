@@ -1,25 +1,32 @@
 <template>
-  <div class="space-y-6 p-4">
-    <div v-if="page == 1">
-      <template v-if="pending">
-        <HomeSkeleton />
-      </template>
-      <template v-else>
-        <HomePage :posts="data.posts" />
-      </template>
-    </div>
+  <div class="space-y-6 p-4 min-h-[600px] relative pb-16">
+    <Transition
+      mode="out-in"
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut"
+    >
+      <div v-if="page == 1">
+        <template v-if="pending">
+          <HomeSkeleton />
+        </template>
+        <template v-else>
+          <HomePage :posts="data.posts" />
+        </template>
+      </div>
 
-    <div v-else class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <template v-if="pending">
-        <PostSkeleton v-for="s in 9" :key="s" />
-      </template>
-      <template v-else>
-        <PostCard v-for="post in data.posts" :key="post._id" :post="post" />
-      </template>
-    </div>
-
+      <div v-else class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <template v-if="pending">
+          <PostSkeleton v-for="s in data.posts.length" :key="s" />
+        </template>
+        <template v-else>
+          <PostCard v-for="post in data.posts" :key="post._id" :post="post" />
+        </template>
+      </div>
+    </Transition>
     <!-- pagination -->
-    <div class="py-4 flex gap-4 justify-end items-center">
+    <div
+      class="py-4 flex gap-4 justify-end items-center absolute right-4 bottom-0"
+    >
       <p>
         Page
         <span class="font-semibold">{{ page }}</span>

@@ -6,12 +6,12 @@
         <Logo class="w-[160px]" />
       </NuxtLink>
 
-      <div class="flex gap-6 items-center">
-        <NuxtLink to="/" class="flex gap-2 items-center hover:underline">
+      <div class="flex gap-4 items-center">
+        <NuxtLink to="/" class="flex gap-1 items-center hover:underline">
           <PhHouseLine :size="20" weight="duotone" />
           <span class="font-semibold tracking-wider uppercase">Home</span>
         </NuxtLink>
-        <NuxtLink to="/about" class="flex gap-2 items-center hover:underline">
+        <NuxtLink to="/about" class="flex gap-1 items-center hover:underline">
           <PhInfo :size="20" weight="duotone" />
           <span class="font-semibold tracking-wider uppercase">About</span>
         </NuxtLink>

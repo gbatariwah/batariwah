@@ -93,4 +93,12 @@ My interests generally span law and literature. In particular, I am genuinely pa
 I hope this blog achieves what it seeks to achieve: a platform for me to express my views and for you to see them. Do get in touch if you can. I will be glad to hear and learn from you. Have a great time!`);
 
 const messageHtml = md.render(message.value, { html: true });
+
+const config = useRuntimeConfig();
+
+useSeoMeta({
+  title: "About",
+  titleTemplate: "%s | Batariwah",
+  ogUrl: `${config.BASE_URL}/about`,
+});
 </script>

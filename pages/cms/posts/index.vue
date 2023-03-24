@@ -4,19 +4,25 @@
       <PhEraser :size="32" weight="duotone" />
       Manage Posts
     </h2>
-    <div class="grid sm:grid-cols-2 gap-6">
+    <div>
       <!-- postcardAlt -->
-      <template v-if="pending">
-        <PostAltSkeleton v-for="s in 6" />
-      </template>
-      <template v-else>
-        <PostCardAlt
-          @confirm-post-deletion="setSlug"
-          v-for="post in data.posts"
-          :key="post"
-          :post="post"
-        />
-      </template>
+      <Transition
+        mode="out-in"
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut"
+      >
+        <div class="grid sm:grid-cols-2 gap-6" v-if="pending">
+          <PostAltSkeleton v-for="s in 6" />
+        </div>
+        <div class="grid sm:grid-cols-2 gap-6" v-else>
+          <PostCardAlt
+            @confirm-post-deletion="setSlug"
+            v-for="post in data.posts"
+            :key="post"
+            :post="post"
+          />
+        </div>
+      </Transition>
       <!-- postcardAlt -->
     </div>
 

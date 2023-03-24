@@ -204,7 +204,7 @@ const publish = async ({ title, content, featured_image, tags }) => {
       headers: useRequestHeaders(["cookie"]),
     });
 
-    reset();
+    reset("new-post-form");
     loading.value = false;
     toast.success("Success!");
   } catch (error) {
