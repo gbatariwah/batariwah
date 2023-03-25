@@ -29,16 +29,15 @@ export default defineNuxtConfig({
         },
       },
     ],
+    "nuxt-simple-robots",
+    "@nuxt/devtools",
   ],
-  // gtag: {
-  //   id: 'G-XXXXXXXXXX'
-  // },
 
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
       bodyAttrs: {
-        class: "bg-base-300 transition-all ease-in-out delay-150",
+        class: "bg-base-300",
       },
       title: "Batariwah",
       meta: [
@@ -144,10 +143,26 @@ export default defineNuxtConfig({
     CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     COOKIE_NAME: process.env.COOKIE_NAME,
-    ENV: process.env.ENV,
+    ENV: process.env.NODE_ENV,
+    indexable: process.env.NUXT_INDEXABLE || false,
     public: {
       BASE_URL: process.env.BASE_URL,
+      NUXT_PUBLIC_SITE_URL: process.env.NUXT_PUBLIC_SITE_URL,
       DISQUS_SHORT_NAME: process.env.DISQUS_SHORT_NAME,
     },
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ["/"],
+    },
+  },
+  sitemap: {
+    exclude: ["/cms/**", "/profile/*", "/login"],
+  },
+  routeRules: {
+    "/cms/**": { index: false },
+    "/profile/**": { index: false },
+    "/login": { index: false },
   },
 });

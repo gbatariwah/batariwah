@@ -73,6 +73,7 @@
 import { PhPassword } from "phosphor-vue";
 
 import { FormKitMessages } from "@formkit/vue";
+import { useToast } from "vue-toastification";
 
 const fields = ref({
   oldPassword: "",
@@ -81,6 +82,7 @@ const fields = ref({
 });
 
 const { user, me } = useAuth();
+const toast = useToast();
 
 const props = defineProps({
   change: Boolean,
@@ -100,8 +102,10 @@ const changePassword = async ({ oldPassword, password }) => {
     changingPassword.value = false;
 
     await me();
+    toast.success("Success!");
   } catch (error) {
     changingPassword.value = false;
+    toast.error("Something went wrong, try again.");
   }
 };
 </script>

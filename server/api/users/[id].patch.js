@@ -66,8 +66,6 @@ export default defineAuthenticatedEventHandler(async (event) => {
       await deleteImage(profile_image.public_id);
     }
 
-    console.log(error.message);
-
     throw createError({
       statusCode: 400,
       statusMessage: "Profile update failed.",
