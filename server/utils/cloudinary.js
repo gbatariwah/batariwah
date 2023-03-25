@@ -2,7 +2,7 @@ import cloudinary from "cloudinary";
 
 const config = useRuntimeConfig();
 
-const folder = config.ENV === "dev" ? "batariwah_dev" : "batariwah";
+const folder = config.ENV === "development" ? "batariwah_dev" : "batariwah";
 
 cloudinary.v2.config({
   cloud_name: config.CLOUDINARY_CLOUD_NAME,
@@ -35,8 +35,9 @@ export async function deleteImage(public_id) {
 export async function uploadProfileImage(image) {
   return cloudinary.v2.uploader.upload(image, {
     folder,
-    transformation: [
-      { gravity: "face", height: 400, width: 400, crop: "crop" },
-    ],
+    // transformation: [
+    //   // { gravity: "face", height: 400, width: 400, crop: "crop" },
+    //   { height: 400, width: 400, crop: "crop" },
+    // ],
   });
 }

@@ -7,12 +7,12 @@
       </NuxtLink>
 
       <div class="flex gap-4 items-center">
-        <NuxtLink to="/" class="flex gap-1 items-center hover:underline">
-          <PhHouseLine :size="20" weight="duotone" />
+        <NuxtLink to="/" class="btn btn-ghost btn-sm gap-1">
+          <PhHouseSimple :size="18" weight="duotone" />
           <span class="font-semibold tracking-wider uppercase">Home</span>
         </NuxtLink>
-        <NuxtLink to="/about" class="flex gap-1 items-center hover:underline">
-          <PhInfo :size="20" weight="duotone" />
+        <NuxtLink to="/about" class="btn btn-ghost btn-sm gap-1">
+          <PhInfo :size="18" weight="duotone" />
           <span class="font-semibold tracking-wider uppercase">About</span>
         </NuxtLink>
       </div>
@@ -24,11 +24,20 @@
           >{{ new Date().getFullYear() }} Batariwah. All Rights Reserved.</span
         >
       </p>
-      <p>Developed by <a class="link link-hover link-primary">Geraldo</a></p>
+      <p>
+        Developed by
+        <NuxtLink
+          to="https://facebook.com/gerald.batariwah"
+          target="_blank"
+          rel="noopener"
+          class="link link-hover link-primary"
+          >Geraldo</NuxtLink
+        >
+      </p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { PhHouseLine, PhInfo, PhCopyright } from "phosphor-vue";
+import { PhInfo, PhCopyright, PhHouseSimple } from "phosphor-vue";
 </script>

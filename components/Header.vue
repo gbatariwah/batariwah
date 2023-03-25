@@ -14,7 +14,7 @@
           to="/"
           class="btn btn-ghost btn-circle"
         >
-          <PhHouseLine :size="32" weight="duotone" />
+          <PhHouseSimple :size="32" weight="duotone" />
         </NuxtLink>
 
         <NuxtLink
@@ -38,7 +38,7 @@
           <li>
             <a class="justify-between">
               <NuxtLink to="/" class="flex gap-4 items-center">
-                <PhHouseLine :size="28" weight="duotone" />
+                <PhHouseSimple :size="28" weight="duotone" />
 
                 <span class="font-semibold tracking-wider gap-2 uppercase">
                   Home
@@ -112,16 +112,14 @@
 
 <script setup>
 import {
-  PhHouseLine,
   PhInfo,
   PhSignOut,
   PhCaretCircleDown,
   PhUser,
   PhNotePencil,
+  PhHouseSimple,
 } from "phosphor-vue";
 
 const route = useRoute();
 const { user, logout } = useAuth();
-
-const { isDark } = useTheme();
 </script>

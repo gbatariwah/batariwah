@@ -79,7 +79,7 @@
 import { setErrors } from "@formkit/core";
 import { PhSignIn } from "phosphor-vue";
 
-const initialValue = { email: "batariwahg@gmail.com", password: "123456" };
+const initialValue = ref({ email: "", password: "" });
 
 const { login } = useAuth();
 const logingIn = ref(false);
@@ -96,7 +96,7 @@ const handleSubmit = async ({ email, password }) => {
   }
 };
 
-definePageMeta({ layout: "login" });
+definePageMeta({ layout: "login", middleware: "login" });
 useSeoMeta({
   title: "Login",
   titleTemplate: "%s | Batariwah",

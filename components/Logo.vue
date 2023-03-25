@@ -19,14 +19,6 @@ watch(isDark, (val) => {
   }
 });
 
-// onBeforeUpdate(() => {
-//   if (isDark.value) {
-//     src.value = "/images/logo-dark.png";
-//   } else {
-//     src.value = "/images/logo-light.png";
-//   }
-// });
-
 onMounted(() => {
   if (isDark.value) {
     src.value = "/images/logo-dark.png";

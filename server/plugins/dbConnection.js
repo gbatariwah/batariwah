@@ -1,13 +1,19 @@
 import mongoose from "mongoose";
 
-const config = useRuntimeConfig();
-
 export default defineNitroPlugin(async (nitroApp) => {
+  const config = useRuntimeConfig();
+  const dbUrl =
+    config.ENV === "development" ? config.MONGODB_URI : config.MONGODB_URL;
+
   try {
     mongoose.set("strictQuery", false);
-    await mongoose.connect(config.MONGODB_URI);
-    console.log("DB connection established.");
+    await mongoose.connect(dbUrl);
+    if (config.ENV === "development") {
+      console.log("DB connection established.");
+    }
   } catch (err) {
-    console.error("DB connection failed.", err);
+    if (config.ENV === "development") {
+      console.error("DB connection failed.", err);
+    }
   }
 });

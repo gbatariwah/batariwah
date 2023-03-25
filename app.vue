@@ -9,6 +9,7 @@
 
 <script setup>
 import "animate.css";
+defineRobotMeta();
 </script>
 
 <style>

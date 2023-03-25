@@ -9,7 +9,7 @@
         type="form"
         v-model="fields"
         :actions="false"
-        :disabled="!updateProfile"
+        :disabled="disableForm"
         :config="{
           classes: {
             message: 'text-error text-sm py-2 font-thin',
@@ -193,8 +193,10 @@ import {
   PhPassword,
 } from "phosphor-vue";
 import { reset } from "@formkit/core";
+import { useToast } from "vue-toastification";
 
 const { user } = useAuth();
+const toast = useToast();
 
 const fields = ref(user);
 const updateProfile = ref(false);
@@ -203,6 +205,7 @@ const updatingProfile = ref(false);
 
 const newImageUrl = ref("");
 const changePassword = ref(false);
+const disableForm = computed(() => !updateProfile.value);
 
 watch(
   () => fields.value.profile_image,
@@ -227,10 +230,22 @@ const update = async ({
   _id,
 }) => {
   const formData = new FormData();
-  formData.append("firstname", firstname);
-  formData.append("lastname", lastname);
-  formData.append("email", email);
-  formData.append("bio", bio);
+
+  if (user.value.firstname !== firstname) {
+    formData.append("firstname", firstname);
+  }
+
+  if (user.value.lastname !== lastname) {
+    formData.append("lastname", lastname);
+  }
+
+  if (user.value.email !== email) {
+    formData.append("email", email);
+  }
+
+  if (user.value.bio !== bio) {
+    formData.append("bio", bio);
+  }
 
   const file = profile_image[0]?.file;
 
@@ -247,13 +262,14 @@ const update = async ({
       headers: useRequestHeaders(["cookie"]),
     });
 
-    reset("update-profile-form", res.user);
+    updateProfile.value = false;
     newImageUrl.value = res.user.profile_picture.url;
 
-    updateProfile.value = false;
     updatingProfile.value = false;
+    toast.success("Success!");
   } catch (error) {
     updatingProfile.value = false;
+    toast.error("Profile not updated, try again.");
   }
 };
 </script>

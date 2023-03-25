@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto flex flex-col">
+  <div class="px-4 mx-auto flex flex-col">
     <div class="mx-auto">
       <div class="rounded-lg h-64 overflow-hidden">
         <NuxtImg
@@ -10,13 +10,13 @@
         ></NuxtImg>
       </div>
       <div class="flex p-4 flex-col sm:flex-row">
-        <div class="sm:w-1/3 text-center md:pr-4">
+        <div class="sm:w-1/3 text-center sm:pr-4">
           <div>
             <NuxtImg
               class="w-32 h-32 rounded-full inline-flex items-center justify-center object-cover"
               placeholder="/images/loader.gif"
               alt="Prosper Batariwah"
-              src="images/prosper-batariwah.jpg"
+              src="images/pb-2.jpg"
             >
             </NuxtImg>
             <div class="flex flex-col items-center text-center justify-center">
@@ -33,34 +33,129 @@
             </div>
           </div>
           <div class="space-y-4">
-            <div class="flex justify-center pt-4 space-x-4 align-center">
-              <button class="btn btn-sm btn-circle btn-ghost">
-                <PhFacebookLogo :size="24" weight="duotone" />
-              </button>
-              <button class="btn btn-sm btn-circle btn-ghost">
-                <PhTwitterLogo :size="24" weight="duotone" />
-              </button>
-              <button class="btn btn-sm btn-circle btn-ghost">
-                <PhInstagramLogo :size="24" weight="duotone" />
-              </button>
-            </div>
+            <div class="flex justify-center pt-4 space-x-1 align-center">
+              <NuxtLink
+                to="https://facebook.com/batariwahp"
+                target="_blank"
+                rel="noopener"
+              >
+                <button class="btn btn-circle btn-ghost">
+                  <PhFacebookLogo :size="38" weight="duotone" />
+                </button>
+              </NuxtLink>
 
-            <div class="text-center">
-              <p class="pb-2 font-light">Follow Batariwah on Facebook</p>
-              <Button class="btn-outline">
+              <NuxtLink
+                to="https://twitter.com/pbatariwah"
+                target="_blank"
+                rel="noopener"
+              >
+                <button class="btn btn-circle btn-ghost">
+                  <PhTwitterLogo :size="38" weight="duotone" />
+                </button>
+              </NuxtLink>
+
+              <NuxtLink
+                to="https://www.instagram.com/p_batariwah"
+                target="_blank"
+                rel="noopener"
+              >
+                <button class="btn btn-circle btn-ghost">
+                  <PhInstagramLogo :size="38" weight="duotone" />
+                </button>
+              </NuxtLink>
+
+              <NuxtLink
+                target="_blank"
+                rel="noopener"
+                to="mailto:batariwah@gmail.com"
+              >
+                <button class="btn btn-circle btn-ghost">
+                  <PhEnvelopeSimple :size="38" weight="duotone" />
+                </button>
+              </NuxtLink>
+            </div>
+            <NuxtImg src="/images/pb-4.jpg" class="hidden sm:block" />
+          </div>
+        </div>
+        <div class="sm:w-2/3">
+          <div
+            class="md:border-none sm:mt-0 sm:pt-0 border-t mt-6 pt-4 border-zinc-700 font-body prose-lg"
+          >
+            <h4 class="uppercase tracking-wider text-normal">
+              Hello and welcome!
+            </h4>
+            <p
+              class="first-line:uppercase first-line:tracking-wider first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left leading-relaxed"
+            >
+              I am <b>Prosper Batariwah</b>, a qualified <b>lawyer</b> called to
+              the Ghanaian bar. I currently work with an Accra-based law firm,
+              <b>AB Lexmall & Associates</b>, with core strengths in corporate
+              and commercial law. I am also a graduate assistant at the
+              <b>University of Ghana School of Law</b> (UGSOL) where I teach
+              tutorials in contracts and equity. I hold a qualifying law
+              certificate from the Ghana School of Law and a Bachelor of Laws
+              degree (First Class Honors) from Ghana’s premier law school, the
+              UGSOL.
+            </p>
+
+            <p>
+              Over the last couple of years, I have gained loads of experience
+              working on several projects in the areas of law reform, law and
+              development, natural resource management, family, trusts and
+              estates law. My current research focus on development policy
+              implementation and the integration of human rights norms into the
+              regulatory framework of extractive industries >.
+            </p>
+
+            <NuxtImg
+              src="/images/pb-5.jpg"
+              class="float-right h-48 w-48 ml-4 rounded-md my-2"
+            />
+            <p>
+              There are other things I am interested in – for example, law and
+              religion and IT law. For the last two years, I have dedicated this
+              blog to these other areas. This place has equally been an outlet
+              for me to reflect on life generally – from the absence of a middle
+              name to Ghanaian highlife.
+            </p>
+
+            <p>
+              I started this blog when I was in professional law school; now
+              that I have been called to the bar, I intend to continue writing –
+              this time aligning my output with my research and pet interests
+              and drawing depth from my practice and teaching experience.
+            </p>
+            <img
+              src="/images/pb-3.jpg"
+              class="float-left h-48 w-48 mr-4 rounded-md my-2"
+            />
+            <p>
+              If you are looking for me, you’ll most likely find me someplace
+              doing or coordinating research (plugged into Spotify, tapping into
+              the wisdom and rhyme of Passenger, Ebo Taylor or Kendrick Lamar).
+              If not, you should find me talking to my students, who will always
+              have 1001 questions to ask – or need an ear to listen to the
+              daunting trials of law school. On very rare occasions, you’ll see
+              me standing behind an artwork, savoring the perfection of human
+              accomplishment, and the sheer brilliance of humankind.
+            </p>
+          </div>
+          <div class="divider"></div>
+          <div class="text-center">
+            <p class="pb-2 font-light">Follow Batariwah on Facebook</p>
+            <NuxtLink
+              to="https://facebook.com/profile.php?id=100069087706398"
+              target="_blank"
+              rel="noopener"
+            >
+              <Button class="btn-info btn-sm">
                 <template #icon>
                   <PhThumbsUp :size="20" weight="duotone" />
                 </template>
                 Follow
               </Button>
-            </div>
+            </NuxtLink>
           </div>
-        </div>
-        <div class="sm:w-2/3">
-          <div
-            class="first-line:uppercase first-line:tracking-wider first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left leading-relaxed md:border-none md:mt-0 md:pt-0 border-t mt-6 pt-4 border-zinc-700 font-body prose-lg"
-            v-html="messageHtml"
-          ></div>
         </div>
       </div>
     </div>
@@ -68,31 +163,13 @@
 </template>
 
 <script setup>
-import MarkdownIt from "markdown-it";
 import {
   PhFacebookLogo,
   PhInstagramLogo,
   PhTwitterLogo,
   PhThumbsUp,
+  PhEnvelopeSimple,
 } from "phosphor-vue";
-const md = new MarkdownIt();
-
-const message =
-  ref(`I do hope a very hearty ‘hello!’ will do. Welcome to my blog!
-
-Some years back, I made the bold decision; one, which in my personal world and language could be described as a leap to the moon. Sooner rather than later, I realized, keeping a blog, though not a matter of cleaning the Augean stables, was still an extremely trying enterprise which required one to summon all the tools in one’s arsenal to ground the wherewithal to maintain consistency. Over the course of these years (the hiatus), I have amassed experiences and birthed perspectives which are begging for expression. I have, thus, grown and aged. This year, I make that decision I made some years back by reactivating my blog.
-
-I hope to accomplish two main objectives. First, I hope to write. Second, I want to share perspectives that are fresh and tell narratives that resonate.
-
-I am **Prosper Batariwah**. I hold a Bachelor of Laws Degree (with first class honours, of course lol) from the University Of Ghana School Of Law. Currently, I am a Part I Professional Law Course Student of the Ghana School of Law (wish me loads of luck, I totally need that).
-
-Though I am a law student, this blog, from the onset, is quintessentially personal. A large number of the things I shall write will focus on law and quasi-legal matters. When I am occasionally seized by Shakespeare or Pope, other things could come forth and be seen. Nonetheless, I may, from time to time, publish pieces from others.
-
-My interests generally span law and literature. In particular, I am genuinely passionate about law and society; law and anthropology; law and history. There is also a burgeoning interest in business and IT law.
-
-I hope this blog achieves what it seeks to achieve: a platform for me to express my views and for you to see them. Do get in touch if you can. I will be glad to hear and learn from you. Have a great time!`);
-
-const messageHtml = md.render(message.value, { html: true });
 
 const config = useRuntimeConfig();
 
@@ -100,5 +177,7 @@ useSeoMeta({
   title: "About",
   titleTemplate: "%s | Batariwah",
   ogUrl: `${config.BASE_URL}/about`,
+  description:
+    "I am Prosper Batariwah, a qualified lawyer called to the Ghanaian bar. I currently work with an Accra-based law firm, AB Lexmall & Associates, with core strengths in corporate and commercial law. I am also a graduate assistant at the University of Ghana School of Law (UGSOL) where I teach tutorials in contracts and equity. I hold a qualifying law certificate from the Ghana School of Law and a Bachelor of Laws degree (First Class Honors) from Ghana’s premier law school, the UGSOL",
 });
 </script>

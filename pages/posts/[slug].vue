@@ -191,23 +191,4 @@ useSeoMeta({
   twitterLabel2: "Filed under",
   twitterUrl: `${config.BASE_URL}/posts/${post.value.slug}`,
 });
-
-const minRead = (content) => {
-  const words_per_minute = 300;
-  const no_of_words = content.split(/\s/g).length;
-  const minutes = no_of_words / words_per_minute;
-  return `${Math.ceil(minutes)} min read`;
-};
-
-const formatDate = (date) => {
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  }).format(new Date(date));
-};
-
-const srcset = (srcset) => {
-  return srcset.map((image) => `${image.secure_url} ${image.width}w`).join(",");
-};
 </script>

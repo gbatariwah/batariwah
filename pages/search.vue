@@ -78,7 +78,6 @@ const { data, pending, refresh } = await useAsyncData(() =>
 const query = computed(() => route.query.q);
 
 const search = () => {
-  console.log(q.value);
   if (q.value.length >= 3) {
     tagType.value = generateRandomTagType();
 
