@@ -9,7 +9,6 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.2.5",
     "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
     "@nuxtjs/google-fonts": "^3.0.0",
     "@tailwindcss/typography": "^0.5.9",
@@ -41,5 +40,8 @@
     "slugify": "^1.6.5",
     "vue-disqus": "^5.1.0",
     "vue-toastification": "^2.0.0-rc.5"
+  },
+  "engines" : { 
+    "node" : ">=16.0.0 <18.15.0"
   }
 }

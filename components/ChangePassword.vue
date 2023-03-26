@@ -20,7 +20,7 @@
 
       <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
         <div class="col-span-full">
-          <FormKitMessages />
+          <!-- <FormKitMessages /> -->
         </div>
         <div class="col-span-full sm:col-span-3">
           <FormKit
@@ -72,7 +72,7 @@
 <script setup>
 import { PhPassword } from "phosphor-vue";
 
-import { FormKitMessages } from "@formkit/vue";
+// import { FormKitMessages } from "@formkit/vue";
 import { useToast } from "vue-toastification";
 
 const fields = ref({

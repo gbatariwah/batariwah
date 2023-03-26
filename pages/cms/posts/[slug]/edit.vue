@@ -35,7 +35,7 @@
             </Button>
           </div>
 
-          <FormKitMessages />
+          <!-- <FormKitMessages /> -->
 
           <!-- title -->
 
@@ -166,7 +166,7 @@ import {
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { reset, setErrors } from "@formkit/core";
-import { FormKitMessages } from "@formkit/vue";
+// import { FormKitMessages } from "@formkit/vue";
 import { useToast } from "vue-toastification";
 
 const fields = ref({
