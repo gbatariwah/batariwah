@@ -11,16 +11,19 @@ router
   .get(
     "/",
     defineEventHandler(async (event) => {
-      const { page = 1 } = getQuery(event);
+      const { limit, page } = getQuery(event);
 
-      const limit = page == 1 ? 10 : 9;
+      const p = parseInt(page);
+      const l = parseInt(limit);
+
+      const skip = p === 1 ? (p - 1) * l : (p - 1) * l + 4;
 
       //   execute query with page and limit values
       const posts = await Post.find()
         .select("title slug content featured_image createdAt")
         .sort({ createdAt: -1 })
-        .limit(Number(limit))
-        .skip((Number(page) - 1) * Number(limit))
+        .limit(l)
+        .skip(skip)
         .exec();
 
       // get total documents in the Posts collection
@@ -30,9 +33,7 @@ router
 
       return {
         posts,
-        totalPages: Math.ceil(Number(count) / Number(limit)),
-        total: count,
-        currentPage: page,
+        totalPosts: count,
       };
     })
   )

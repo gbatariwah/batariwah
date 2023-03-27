@@ -1,103 +1,68 @@
 <template>
-  <div class="space-y-6 p-4 min-h-[600px] relative pb-16">
+  <div class="space-y-6 p-4">
     <Transition
       mode="out-in"
       enter-active-class="animate__animated animate__fadeIn"
       leave-active-class="animate__animated animate__fadeOut"
     >
-      <div v-if="page == 1">
-        <template v-if="pending">
-          <HomeSkeleton />
-        </template>
-        <template v-else>
-          <HomePage :posts="data.posts" />
-        </template>
-      </div>
-
-      <div v-else class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <template v-if="pending">
-          <PostSkeleton v-for="s in data.posts.length" :key="s" />
-        </template>
-        <template v-else>
-          <PostCard v-for="post in data.posts" :key="post._id" :post="post" />
-        </template>
-      </div>
+      <template v-if="pending">
+        <Skeleton />
+      </template>
+      <template v-else>
+        <HomePage :posts="data.posts" />
+      </template>
     </Transition>
-    <!-- pagination -->
-    <div
-      class="py-4 flex gap-4 justify-end items-center absolute right-4 bottom-0"
-    >
-      <p>
-        Page
-        <span class="font-semibold">{{ page }}</span>
-        of
-        <span class="font-semibold">{{ data.totalPages }}</span>
-      </p>
-      <div class="btn-group">
-        <Button
-          :disabled="page <= 1"
-          class="btn-primary btn-sm"
-          @click="previousPage()"
-          :loading="direction === 'previous' && pending"
-        >
-          <template #icon>
-            <PhCaretLeft :size="18" weight="duotone" />
-          </template>
-          previous
-        </Button>
-        <Button
-          :disabled="page >= data.totalPages"
-          class="btn-primary btn-sm"
-          @click="nextPage()"
-          :loading="direction === 'next' && pending"
-        >
-          <template #suffix-icon>
-            <PhCaretRight :size="18" weight="duotone" />
-          </template>
-          next
-        </Button>
-      </div>
+    <!-- load more -->
+    <div class="text-center">
+      <Button
+        class="btn-primary"
+        @click="loadMorePosts"
+        :loading="fetchingMorePosts"
+        v-if="!fetchedAllPosts"
+      >
+        <template #icon>
+          <PhCaretDoubleDown :size="24" weight="duotone" />
+        </template>
+        Load More
+      </Button>
     </div>
-
-    <!-- pagination -->
+    <!-- load more -->
   </div>
 </template>
 
 <script setup>
-import { PhCaretLeft, PhCaretRight } from "phosphor-vue";
-const route = useRoute();
-const router = useRouter();
-const page = ref(Number(route.query.page) || 1);
-const direction = ref("next");
+import { PhCaretDoubleDown } from "phosphor-vue";
 
-const { data, pending, refresh } = await useAsyncData(
-  "posts",
-  () => $fetch(`/api/posts?page=${page.value}`),
-  { watch: [page] }
-);
+const page = ref(1);
 
-const previousPage = () => {
-  page.value--;
-  router.push(`?page=${page.value}`);
-  direction.value = "previous";
-  refresh();
-};
+const fetchingMorePosts = ref(false);
 
-const nextPage = async () => {
-  page.value++;
-  router.push(`?page=${page.value}`);
-  direction.value = "next";
-  await refresh();
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-};
-
-onBeforeUpdate(() => {
-  page.value = route.query.page || 1;
+const { data, pending } = await useFetch("/api/posts", {
+  query: { page: page.value, limit: 7 },
 });
+
+const loadMorePosts = async () => {
+  page.value++;
+
+  try {
+    fetchingMorePosts.value = true;
+
+    const response = await $fetch(`/api/posts?page=${page.value}&limit=${3}`);
+
+    data.value = {
+      ...data.value,
+      posts: [...data.value.posts, ...response.posts],
+    };
+
+    fetchingMorePosts.value = false;
+  } catch (error) {
+    fetchingMorePosts.value = true;
+  }
+};
+
+const fetchedAllPosts = computed(
+  () => data.value.posts.length === data.value.totalPosts
+);
 </script>
 
 <style>
