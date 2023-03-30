@@ -1,8 +1,9 @@
 <template>
   <div class="flex flex-col max-w-md p-6 rounded-md sm:p-10 mx-auto">
     <div class="mb-8 text-center">
-      <h1 class="my-3 text-4xl font-bold">Login</h1>
-      <p class="text-sm">Login to access your account</p>
+      <div class="flex justify-center">
+        <Logo class="my-3 w-[240px] border" />
+      </div>
     </div>
 
     <FormKit
@@ -13,7 +14,6 @@
       @submit="handleSubmit"
       :actions="false"
       v-model="initialValue"
-      #default="{ value }"
       :config="{
         classes: {
           message: 'text-error text-sm py-2 font-thin',
@@ -26,7 +26,6 @@
           name="email"
           label="Email"
           placeholder=""
-          validation="required"
           :classes="{
             input: 'input input-bordered w-full',
             label: 'label',
@@ -39,7 +38,6 @@
           type="password"
           name="password"
           label="Password"
-          validation="required"
           placeholder="Password"
           :classes="{
             input: 'input input-bordered w-full',
@@ -61,7 +59,7 @@
             Login
           </Button>
         </div>
-        <p class="px-6 text-sm text-center dark:text-gray-400">
+        <!-- <p class="px-6 text-sm text-center dark:text-gray-400">
           Don't have an account yet?
           <a
             rel="noopener noreferrer"
@@ -69,7 +67,7 @@
             class="hover:underline dark:text-violet-400"
             >Sign up</a
           >.
-        </p>
+        </p> -->
       </div>
     </FormKit>
   </div>

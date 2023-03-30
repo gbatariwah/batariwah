@@ -31,16 +31,15 @@ const props = defineProps({
   post: Object,
 });
 
-const description = computed(() => props.post.content.slice(0, 12));
 const config = useRuntimeConfig();
 
 const options = ref({
   title: props.post.title,
-  text: description,
+  text: props.post.description.slice(0, 30),
   url: isClient ? `${config.BASE_URL}/posts/${props.post.slug}` : "",
 });
 
-const { share, isSupported } = useShare(options);
+const { share } = useShare(options);
 
 const startShare = () => share();
 </script>

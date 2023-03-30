@@ -2,7 +2,12 @@ import Post from "../../models/post";
 import defineAuthenticatedEventHandler from "~~/server/utils/defineAuthenticatedEventHandler";
 
 export default defineAuthenticatedEventHandler(async (event) => {
-  const { page = 1, limit = 6 } = getQuery(event);
+  const { limit, page } = getQuery(event);
+
+  const p = parseInt(page);
+  const l = parseInt(limit);
+
+  const skip = p === 1 ? (p - 1) * l : (p - 1) * l + 4;
 
   const filter = event.context.user.isAdmin
     ? {}
@@ -10,15 +15,14 @@ export default defineAuthenticatedEventHandler(async (event) => {
 
   const posts = await Post.find(filter)
     .sort({ createdAt: -1 })
-    .limit(Number(limit))
-    .skip((Number(page) - 1) * Number(limit))
+    .limit(l)
+    .skip(skip)
     .exec();
 
   const count = await Post.countDocuments(filter);
 
   return {
     posts,
-    totalPages: Math.ceil(Number(count) / Number(limit)),
-    currentPage: page,
+    totalPosts: count,
   };
 });

@@ -30,7 +30,7 @@ export default defineNuxtConfig({
       },
     ],
     "nuxt-simple-robots",
-    // "@nuxt/devtools",
+    "@nuxt/devtools",
   ],
 
   app: {

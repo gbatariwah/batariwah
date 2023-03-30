@@ -1,7 +1,6 @@
 <template>
   <FormKit
     type="form"
-    method="post"
     id="tag-form"
     v-model="field"
     :actions="false"
@@ -23,14 +22,15 @@
       <Button
         type="submit"
         class="btn-ghost btn-square"
+        :disabled="field.tag.length < 3"
         :loading="loading"
-        :disabled="field.tag.length < 3 || loading"
       >
         <template #icon>
           <PhPlusCircle :size="32" weight="duotone" />
         </template>
       </Button>
     </div>
+    <div>{{ field.tag }}</div>
   </FormKit>
 </template>
 
@@ -54,7 +54,8 @@ const createTag = async ({ tag }) => {
       headers: useRequestHeaders(["cookie"]),
     });
 
-    reset("tag-form");
+    // reset("tag-form");
+    field.value = { tag: "" };
     emit("tagCreated");
 
     loading.value = false;

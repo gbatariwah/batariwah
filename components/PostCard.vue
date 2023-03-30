@@ -28,8 +28,6 @@ const props = defineProps({
   post: Object,
 });
 
-const { isDark } = useTheme();
-
 const datePublished = computed(() =>
   new Intl.DateTimeFormat("en-US", {
     year: "numeric",

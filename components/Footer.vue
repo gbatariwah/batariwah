@@ -3,10 +3,10 @@
     <div class="divider" />
     <div class="mb-2 flex items-center justify-between">
       <NuxtLink to="/">
-        <Logo class="w-[160px]" />
+        <Logo class="w-[120px]" />
       </NuxtLink>
 
-      <div class="flex gap-4 items-center">
+      <div class="flex items-center">
         <NuxtLink to="/" class="btn btn-ghost btn-sm gap-1">
           <PhHouseSimple :size="18" weight="duotone" />
           <span class="font-semibold tracking-wider uppercase">Home</span>
@@ -30,8 +30,8 @@
           to="https://facebook.com/gerald.batariwah"
           target="_blank"
           rel="noopener"
-          class="link link-hover link-primary"
-          >Geraldo</NuxtLink
+          class="link link-hover font-semibold"
+          >Gerald Batariwah</NuxtLink
         >
       </p>
     </div>

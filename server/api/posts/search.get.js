@@ -1,9 +1,12 @@
 import Post from "../../models/post";
 
 export default defineEventHandler(async (event) => {
-  const { q, page } = getQuery(event);
+  const { q, page, limit } = getQuery(event);
 
-  const limit = 4;
+  const p = parseInt(page);
+  const l = parseInt(limit);
+
+  const skip = p === 1 ? (p - 1) * l : (p - 1) * l + 2;
 
   const filter = {
     $or: [
@@ -13,8 +16,8 @@ export default defineEventHandler(async (event) => {
   };
 
   const results = await Post.find(filter)
-    .limit(Number(limit))
-    .skip((Number(page) - 1) * Number(limit))
+    .limit(l)
+    .skip(skip)
     .sort({ createdAt: -1 })
     .select("title featured_image createdAt slug");
 
@@ -22,7 +25,6 @@ export default defineEventHandler(async (event) => {
 
   return {
     results,
-    totalPages: Math.ceil(Number(count) / Number(limit)),
-    currentPage: page,
+    totalResults: count,
   };
 });

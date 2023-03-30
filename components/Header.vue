@@ -1,12 +1,12 @@
 <template>
   <div class="navbar p-4">
-    <div class="navbar-start pr-2">
-      <NuxtLink to="/" class="w-[220px]">
+    <div class="navbar-start">
+      <NuxtLink to="/" class="w-[200px]">
         <Logo />
       </NuxtLink>
     </div>
 
-    <div class="navbar-end gap-2">
+    <div class="navbar-end gap-1">
       <div class="space-x-1 hidden md:block">
         <NuxtLink
           active-class="text-primary"
@@ -62,7 +62,7 @@
 
       <div class="flex gap-1">
         <!-- search -->
-        <Search v-if="route.name !== 'search'" />
+        <LazySearch />
         <!-- search -->
 
         <ThemeToggler />
@@ -120,6 +120,5 @@ import {
   PhHouseSimple,
 } from "phosphor-vue";
 
-const route = useRoute();
 const { user, logout } = useAuth();
 </script>

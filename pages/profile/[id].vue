@@ -1,15 +1,17 @@
 <template>
   <section class="space-y-6">
+    <Loader v-if="pending" />
     <div
+      v-else
       class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
     >
       <FormKit
         @submit="update"
         id="update-profile-form"
         type="form"
-        v-model="fields"
+        v-model="data"
         :actions="false"
-        :disabled="disableForm"
+        :disabled="!updateProfile"
         :config="{
           classes: {
             message: 'text-error text-sm py-2 font-thin',
@@ -119,8 +121,8 @@
                     </label>
                   </template>
 
-                  <template v-if="newImageUrl" #fileName>
-                    <div class="w-full">
+                  <template #fileName>
+                    <div class="w-full" v-if="newImageUrl">
                       <div class="avatar">
                         <figure class="w-full h-64">
                           <NuxtImg
@@ -140,7 +142,7 @@
                       <figure class="w-64 h-64">
                         <NuxtImg
                           class="aspect-video object-cover w-full"
-                          :src="value.profile_picture.url"
+                          :src="value.profile_image_url"
                         />
                       </figure>
                     </div>
@@ -198,26 +200,36 @@ import { useToast } from "vue-toastification";
 const { user } = useAuth();
 const toast = useToast();
 
-const fields = ref(user);
 const updateProfile = ref(false);
 
 const updatingProfile = ref(false);
 
 const newImageUrl = ref("");
 const changePassword = ref(false);
-const disableForm = computed(() => !updateProfile.value);
 
-watch(
-  () => fields.value.profile_image,
-  (value) => {
-    const file = value[0]?.file;
+const { data, pending } = await useFetch(`/auth/me`, {
+  headers: useRequestHeaders(["cookie"]),
+  transform: (res) => {
+    const {
+      profile_picture: { url },
+      ...rest
+    } = res.user;
 
-    if (file) {
-      newImageUrl.value = URL.createObjectURL(file);
-    }
+    return {
+      ...rest,
+      profile_image: {},
+      profile_image_url: url,
+    };
   },
-  { deep: true }
-);
+});
+
+watchEffect(async () => {
+  const file = data.value.profile_image[0]?.file;
+
+  if (file) {
+    newImageUrl.value = URL.createObjectURL(file);
+  }
+});
 
 definePageMeta({ middleware: "auth", layout: "cms" });
 
@@ -262,10 +274,10 @@ const update = async ({
       headers: useRequestHeaders(["cookie"]),
     });
 
-    updateProfile.value = false;
     newImageUrl.value = res.user.profile_picture.url;
 
     updatingProfile.value = false;
+    setTimeout(() => (updateProfile.value = false), 50);
     toast.success("Success!");
   } catch (error) {
     updatingProfile.value = false;

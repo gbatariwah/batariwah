@@ -1,6 +1,6 @@
 <template>
-  <NuxtImg
-    class="-ml-5 animate__animated animate__fadeIn"
+  <img
+    class="border animate__animated animate__bounceIn animate__faster"
     :src="src"
     alt="logo"
   />
@@ -27,3 +27,10 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped>
+[data-theme="lofi"] .border {
+  border-color: #3f3f46;
+  border-width: 2px;
+}
+</style>

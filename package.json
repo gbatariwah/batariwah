@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@formkit/nuxt": "^1.0.0-beta.15",
+    "@nuxt/devtools": "^0.3.1",
     "@nuxtjs/tailwindcss": "^6.4.1",
     "@phosphor-icons/vue": "^1.5.0",
     "@vavt/md-editor-extension": "^1.5.0",

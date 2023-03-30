@@ -132,6 +132,36 @@ const deleteTag = async () => {
 
 <style scoped>
 .tags::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+  height: 8px;
+}
+.tags::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+.tags::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.tags::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+.tags::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+.tags::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.tags::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+.tags::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+.tags::-webkit-scrollbar-corner {
+  background: transparent;
 }
 </style>

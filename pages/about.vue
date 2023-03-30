@@ -2,23 +2,24 @@
   <div class="px-4 mx-auto flex flex-col">
     <div class="mx-auto">
       <div class="rounded-lg h-64 overflow-hidden">
-        <NuxtImg
+        <img
           alt="banner Image"
           class="object-cover object-center h-full w-full"
-          src="/images/banner.jpg"
+          src="~/assets/img/banner.jpg"
           placeholder="/images/loader.gif"
-        ></NuxtImg>
+          loading="lazy"
+        />
       </div>
       <div class="flex p-4 flex-col sm:flex-row">
         <div class="sm:w-1/3 text-center sm:pr-4">
           <div>
-            <NuxtImg
+            <img
               class="w-32 h-32 rounded-full inline-flex items-center justify-center object-cover"
               placeholder="/images/loader.gif"
               alt="Prosper Batariwah"
-              src="images/pb-2.jpg"
-            >
-            </NuxtImg>
+              src="~/assets/img/pb-2.jpg"
+              loading="lazy"
+            />
             <div class="flex flex-col items-center text-center justify-center">
               <h2
                 class="font-medium title-font mt-4 text-lg uppercase tracking-wide"
@@ -38,43 +39,43 @@
                 to="https://facebook.com/batariwahp"
                 target="_blank"
                 rel="noopener"
+                class="btn btn-circle btn-ghost"
               >
-                <button class="btn btn-circle btn-ghost">
-                  <PhFacebookLogo :size="38" weight="duotone" />
-                </button>
+                <PhFacebookLogo :size="38" weight="duotone" />
               </NuxtLink>
 
               <NuxtLink
                 to="https://twitter.com/pbatariwah"
                 target="_blank"
                 rel="noopener"
+                class="btn btn-circle btn-ghost"
               >
-                <button class="btn btn-circle btn-ghost">
-                  <PhTwitterLogo :size="38" weight="duotone" />
-                </button>
+                <PhTwitterLogo :size="38" weight="duotone" />
               </NuxtLink>
 
               <NuxtLink
                 to="https://www.instagram.com/p_batariwah"
                 target="_blank"
                 rel="noopener"
+                class="btn btn-circle btn-ghost"
               >
-                <button class="btn btn-circle btn-ghost">
-                  <PhInstagramLogo :size="38" weight="duotone" />
-                </button>
+                <PhInstagramLogo :size="38" weight="duotone" />
               </NuxtLink>
 
               <NuxtLink
                 target="_blank"
                 rel="noopener"
                 to="mailto:batariwah@gmail.com"
+                class="btn btn-circle btn-ghost"
               >
-                <button class="btn btn-circle btn-ghost">
-                  <PhEnvelopeSimple :size="38" weight="duotone" />
-                </button>
+                <PhEnvelopeSimple :size="38" weight="duotone" />
               </NuxtLink>
             </div>
-            <NuxtImg src="/images/pb-4.jpg" class="hidden sm:block" />
+            <img
+              src="~/assets/img/pb-4.jpg"
+              class="hidden sm:block"
+              loading="lazy"
+            />
           </div>
         </div>
         <div class="sm:w-2/3">
@@ -104,12 +105,13 @@
               development, natural resource management, family, trusts and
               estates law. My current research focus on development policy
               implementation and the integration of human rights norms into the
-              regulatory framework of extractive industries >.
+              regulatory framework of extractive industries.
             </p>
 
-            <NuxtImg
-              src="/images/pb-5.jpg"
-              class="float-right h-48 w-48 ml-4 rounded-md my-2"
+            <img
+              src="~/assets/img/pb-5.jpg"
+              loading="lazy"
+              class="float-right h-48 w-48 rounded-md my-2 ml-4"
             />
             <p>
               There are other things I am interested in – for example, law and
@@ -126,7 +128,8 @@
               and drawing depth from my practice and teaching experience.
             </p>
             <img
-              src="/images/pb-3.jpg"
+              src="~/assets/img/pb-3.jpg"
+              loading="lazy"
               class="float-left h-48 w-48 mr-4 rounded-md my-2"
             />
             <p>

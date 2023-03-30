@@ -13,13 +13,14 @@
             message: 'text-error text-sm py-2 font-thin',
           },
         }"
-        #default="{ error }"
       >
         <div class="space-y-6">
           <div class="flex justify-between items-center">
-            <h2 class="text-2xl font-semibold flex gap-2 items-center">
+            <h2
+              class="text-2xl uppercase font-semibold flex gap-2 items-center"
+            >
               <PhPen :size="32" weight="duotone" />
-              Create New Post
+              Create Post
             </h2>
 
             <Button
@@ -34,8 +35,6 @@
               Publish
             </Button>
           </div>
-
-          <!-- <FormKitMessages /> -->
 
           <!-- title -->
 
@@ -86,7 +85,7 @@
               </label>
             </template>
 
-            <template v-if="fileUrl" #fileName>
+            <template if="fileUrl" #fileName>
               <NuxtImg
                 class="aspect-video object-cover w-full"
                 :src="fileUrl"
@@ -156,7 +155,6 @@ import { PhArticle, PhTextT, PhImage, PhCheck, PhPen, PhX } from "phosphor-vue";
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { reset, setErrors } from "@formkit/core";
-// import { FormKitMessages } from "@formkit/vue";
 import { useToast } from "vue-toastification";
 
 const fields = ref({
@@ -170,17 +168,13 @@ const fileUrl = ref("");
 const loading = ref(false);
 const toast = useToast();
 
-watch(
-  () => fields.value.featured_image,
-  (value) => {
-    const file = value[0]?.file;
+watchEffect(async () => {
+  const file = fields.value.featured_image[0]?.file;
 
-    if (file) {
-      fileUrl.value = URL.createObjectURL(file);
-    }
-  },
-  { deep: true }
-);
+  if (file) {
+    fileUrl.value = URL.createObjectURL(file);
+  }
+});
 
 const publish = async ({ title, content, featured_image, tags }) => {
   loading.value = true;

@@ -1,21 +1,24 @@
 <template>
-  <label
-    for="search-modal"
-    class="btn btn-ghost btn-circle"
+  <Button
+    v-if="route.name !== 'search' && !user"
+    class="btn-ghost btn-circle"
     title="Search"
-    @click="searchInput.focus()"
+    @click.="openModal()"
   >
-    <PhMagnifyingGlass :size="32" weight="duotone" />
-  </label>
+    <template #icon>
+      <PhMagnifyingGlass :size="32" weight="duotone" />
+    </template>
+  </Button>
 
   <!-- Put this part before </body> tag -->
   <Teleport to="body">
-    <input type="checkbox" id="search-modal" class="modal-toggle" />
-    <label
-      for="search-modal"
+    <!-- <input type="checkbox" id="search-modal" class="modal-toggle" /> -->
+    <div
       class="modal modal-bottom items-start cursor-pointer"
+      :class="{ 'modal-open': modalOpen }"
+      @click.self="closeModal()"
     >
-      <label class="modal-box relative md:max-w-xl md:rounded-b-xl" for="">
+      <div class="modal-box relative md:max-w-xl md:rounded-b-xl">
         <div class="form-control">
           <div class="input-group">
             <input
@@ -26,33 +29,47 @@
               @keydown.enter="search()"
               ref="searchInput"
             />
-            <button
+            <Button
               :disabled="query.length < 3"
-              class="btn btn-square"
+              class="btn-square"
               @click="search()"
             >
-              <PhMagnifyingGlass :size="32" weight="duotone" />
-            </button>
+              <template #icon>
+                <PhMagnifyingGlass :size="32" weight="duotone" />
+              </template>
+            </Button>
           </div>
         </div>
-      </label>
-    </label>
+      </div>
+    </div>
   </Teleport>
 </template>
 
 <script setup>
 import { PhMagnifyingGlass } from "phosphor-vue";
+import { useFocus } from "@vueuse/core";
 
 const query = ref("");
-const searchInput = ref(null);
+const searchInput = ref();
+const modalOpen = ref(false);
+const { focused } = useFocus(searchInput);
 
 const router = useRouter();
+const { user } = useAuth();
+const route = useRoute();
 
 const search = async () => {
+  modalOpen.value = false;
   await router.push(`/search?q=${query.value}`);
 };
 
-onMounted(() => {
-  searchInput.value.focus();
-});
+const openModal = () => {
+  modalOpen.value = true;
+  setTimeout(() => (focused.value = true), 50);
+};
+
+const closeModal = () => {
+  modalOpen.value = false;
+  setTimeout(() => (focused.value = false), 50);
+};
 </script>

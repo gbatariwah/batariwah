@@ -1,17 +1,19 @@
 <template>
-  <NuxtLink
-    :to="`/posts/${post.slug}`"
-    class="flex flex-col card border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg bg-base-200 md:flex-row md:max-w-xl"
+  <div
+    class="flex flex-col card border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg rounded-md bg-base-200 md:flex-row md:max-w-xl"
   >
     <NuxtImg
-      class="object-cover w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg"
+      class="object-cover w-full rounded-t-md md:w-48 md:rounded-none md:rounded-l-md"
       :src="post.featured_image.url"
-      alt=""
+      :alt="post.title"
     />
-    <div class="leading-normal p-4 flex flex-col justify-between">
-      <h5 class="mb-2 text-lg font-bold tracking-tigh">
+    <div class="leading-normal p-4 flex flex-col justify-between h-full">
+      <NuxtLink
+        :to="`/posts/${post.slug}`"
+        class="mb-2 text-lg font-bold tracking-tigh"
+      >
         {{ post.title }}
-      </h5>
+      </NuxtLink>
 
       <div class="self-end btn-group">
         <NuxtLink
@@ -29,7 +31,7 @@
         </button>
       </div>
     </div>
-  </NuxtLink>
+  </div>
 </template>
 
 <script setup>

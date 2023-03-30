@@ -4,171 +4,75 @@
       <PhEraser :size="32" weight="duotone" />
       Manage Posts
     </h2>
-    <div>
-      <!-- postcardAlt -->
-      <Transition
-        mode="out-in"
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut"
-      >
-        <div class="grid sm:grid-cols-2 gap-6" v-if="pending">
-          <PostAltSkeleton v-for="s in 6" />
-        </div>
-        <div class="grid sm:grid-cols-2 gap-6" v-else>
-          <PostCardAlt
-            @confirm-post-deletion="setSlug"
-            v-for="post in data.posts"
-            :key="post"
-            :post="post"
-          />
-        </div>
-      </Transition>
-      <!-- postcardAlt -->
-    </div>
 
-    <!-- pagination -->
-    <div class="py-4 flex gap-4 justify-end items-center">
-      <p>
-        Page
-        <span class="font-semibold">{{ data.currentPage }}</span>
-        of
-        <span class="font-semibold">{{ data.totalPages }}</span>
-      </p>
-      <div class="btn-group">
-        <Button
-          :disabled="page <= 1"
-          class="btn-primary btn-sm"
-          @click="previousPage()"
-          :loading="direction === 'previous' && pending"
-          ><template #icon>
-            <PhCaretLeft :size="18" weight="duotone" />
-          </template>
-          previous
-        </Button>
-        <Button
-          :disabled="page >= data.totalPages"
-          class="btn-primary btn-sm"
-          @click="nextPage()"
-          :loading="direction === 'next' && pending"
+    <div class="space-y-6">
+      <div>
+        <!-- postcardAlt -->
+        <Transition
+          mode="out-in"
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
         >
-          next
-          <template #suffix-icon>
-            <PhCaretRight :size="18" weight="duotone" />
+          <div class="grid sm:grid-cols-2 gap-6" v-if="pending">
+            <PostAltSkeleton v-for="s in 6" />
+          </div>
+          <ManagePosts v-else :posts="data.posts" :refresh="refresh" />
+        </Transition>
+        <!-- postcardAlt -->
+      </div>
+
+      <!-- load more -->
+      <div class="text-center">
+        <Button
+          class="btn-primary"
+          @click="loadMorePosts"
+          :loading="fetchingMorePosts"
+          v-if="!fetchedAllPosts"
+        >
+          <template #icon>
+            <PhCaretDoubleDown :size="24" weight="duotone" />
           </template>
+          Load More
         </Button>
       </div>
+      <!-- load more -->
     </div>
-
-    <!-- /pagination -->
-
-    <!-- delete post modal -->
-    <Teleport to="body">
-      <input type="checkbox" id="delete-tag" class="modal-toggle" />
-      <div class="modal" :class="{ 'modal-open': openPostDeletionModal }">
-        <div class="modal-box relative">
-          <button
-            @click="openPostDeletionModal = false"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
-          >
-            <PhX :size="20" weight="duotone" />
-          </button>
-
-          <div class="flex gap-4">
-            <PhWarningCircle :size="64" class="text-warning" weight="duotone" />
-            <div>
-              <h3 class="text-lg font-semibold">Delete Post</h3>
-              <p class="py-4">Are you sure you want to delete this post?</p>
-            </div>
-          </div>
-          <div class="modal-action">
-            <Button
-              @click="deletePost()"
-              class="btn gap-2 btn-error"
-              :loading="deletingPost"
-            >
-              <template #icon>
-                <PhTrashSimple :size="18" weight="duotone" />
-              </template>
-              Delete
-            </Button>
-          </div>
-        </div>
-      </div>
-    </Teleport>
-    <!-- delete post modal -->
   </div>
 </template>
 
 <script setup>
-import {
-  PhEraser,
-  PhCaretLeft,
-  PhCaretRight,
-  PhX,
-  PhTrashSimple,
-  PhWarningCircle,
-} from "phosphor-vue";
-import { useToast } from "vue-toastification";
+import { PhEraser, PhCaretDoubleDown } from "phosphor-vue";
+const page = ref(1);
 
-const route = useRoute();
-const router = useRouter();
-const toast = useToast();
-const page = ref(route.query.page || 1);
-const direction = ref("next");
+const fetchingMorePosts = ref(false);
 
-const deletingPost = ref(false);
-const openPostDeletionModal = ref(false);
-const slug = ref("");
+const { data, pending, refresh } = await useFetch("/api/posts/user", {
+  query: { page: page.value, limit: 6 },
+  headers: useRequestHeaders(["cookie"]),
+});
 
-const setSlug = (postSlug) => {
-  openPostDeletionModal.value = true;
-  slug.value = postSlug;
-};
+const loadMorePosts = async () => {
+  page.value++;
 
-const { data, pending, refresh } = await useAsyncData(
-  "use_posts",
-  () =>
-    $fetch(`/api/posts/user?page=${page.value}`, {
-      headers: useRequestHeaders(["cookie"]),
-    }),
-  { watch: [page] }
-);
-
-const deletePost = async () => {
   try {
-    deletingPost.value = true;
-    await $fetch(`/api/posts/${slug.value}`, {
-      method: "DELETE",
+    fetchingMorePosts.value = true;
+
+    const response = await $fetch(`/api/posts?page=${page.value}&limit=${2}`, {
       headers: useRequestHeaders(["cookie"]),
     });
 
-    slug.value = "";
-    openPostDeletionModal.value = false;
-    deletingPost.value = false;
-    toast.success("Success!");
-    refresh();
+    data.value = {
+      ...data.value,
+      posts: [...data.value.posts, ...response.posts],
+    };
+
+    fetchingMorePosts.value = false;
   } catch (error) {
-    deletingPost.value = false;
-    toast.error("Post not deleted, please try again.");
+    fetchingMorePosts.value = true;
   }
 };
 
-const previousPage = () => {
-  page.value--;
-  router.push(`/cms/posts?page=${page.value}`);
-  direction.value = "previous";
-  refresh();
-};
-
-const nextPage = async () => {
-  page.value++;
-  router.push(`/cms/posts?page=${page.value}`);
-  direction.value = "next";
-  await refresh();
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "smooth",
-  });
-};
+const fetchedAllPosts = computed(
+  () => data.value.posts.length === data.value.totalPosts
+);
 </script>
