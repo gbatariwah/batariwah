@@ -36,8 +36,8 @@
 
 <script setup>
 import { PhPlusCircle } from "phosphor-vue";
-import { reset } from "@formkit/core";
-import { useToast } from "vue-toastification";
+import * as pkg from "vue-toastification";
+const { useToast } = pkg;
 
 const field = ref({ tag: "" });
 const loading = ref(false);
@@ -54,7 +54,6 @@ const createTag = async ({ tag }) => {
       headers: useRequestHeaders(["cookie"]),
     });
 
-    // reset("tag-form");
     field.value = { tag: "" };
     emit("tagCreated");
 

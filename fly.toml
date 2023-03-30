@@ -1,4 +1,4 @@
-# fly.toml file generated for batariwah on 2023-03-26T20:56:08Z
+# fly.toml file generated for batariwah on 2023-03-30T22:25:29Z
 
 app = "batariwah"
 kill_signal = "SIGINT"

@@ -69,8 +69,8 @@
 
 <script setup>
 import { PhPassword } from "phosphor-vue";
-
-import { useToast } from "vue-toastification";
+import * as pkg from "vue-toastification";
+const { useToast } = pkg;
 
 const fields = ref({
   oldPassword: "",

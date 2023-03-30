@@ -195,7 +195,8 @@ import {
   PhPassword,
 } from "phosphor-vue";
 import { reset } from "@formkit/core";
-import { useToast } from "vue-toastification";
+import * as pkg from "vue-toastification";
+const { useToast } = pkg;
 
 const { user } = useAuth();
 const toast = useToast();

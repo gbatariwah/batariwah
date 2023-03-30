@@ -85,7 +85,8 @@
 
 <script setup>
 import { PhTag, PhX, PhWarningCircle, PhTrashSimple } from "phosphor-vue";
-import { useToast } from "vue-toastification";
+import * as pkg from "vue-toastification";
+const { useToast } = pkg;
 
 const { isDark } = useTheme();
 

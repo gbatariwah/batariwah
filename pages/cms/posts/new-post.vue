@@ -155,7 +155,8 @@ import { PhArticle, PhTextT, PhImage, PhCheck, PhPen, PhX } from "phosphor-vue";
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { reset, setErrors } from "@formkit/core";
-import { useToast } from "vue-toastification";
+import * as pkg from "vue-toastification";
+const { useToast } = pkg;
 
 const fields = ref({
   title: "",
