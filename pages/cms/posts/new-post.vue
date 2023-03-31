@@ -155,8 +155,6 @@ import { PhArticle, PhTextT, PhImage, PhCheck, PhPen, PhX } from "phosphor-vue";
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { reset, setErrors } from "@formkit/core";
-import * as pkg from "vue-toastification";
-const { useToast } = pkg;
 
 const fields = ref({
   title: "",
@@ -167,7 +165,6 @@ const fields = ref({
 
 const fileUrl = ref("");
 const loading = ref(false);
-const toast = useToast();
 
 watchEffect(async () => {
   const file = fields.value.featured_image[0]?.file;
@@ -201,17 +198,17 @@ const publish = async ({ title, content, featured_image, tags }) => {
 
     reset("new-post-form");
     loading.value = false;
-    toast.success("Success!");
+    useNuxtApp().$toast.success("Success!");
   } catch (error) {
     const message = error.message;
 
     if (message.includes("title_1 dup key")) {
       const message = "A post with the same title already exist";
       setErrors("new-post-form", message);
-      toast.error(message);
+      useNuxtApp().$toast.error(message);
     } else {
       setErrors("new-post-form", error.message);
-      toast.error(error.message);
+      useNuxtApp().$toast.error(error.message);
     }
     loading.value = false;
   }

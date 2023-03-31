@@ -35,7 +35,7 @@ const config = useRuntimeConfig();
 
 const options = ref({
   title: props.post.title,
-  text: props.post.description.slice(0, 30),
+  text: `${props.post.description.split(".")[0]}.`,
   url: isClient ? `${config.BASE_URL}/posts/${props.post.slug}` : "",
 });
 

@@ -30,20 +30,16 @@
         </template>
       </Button>
     </div>
-    <div>{{ field.tag }}</div>
   </FormKit>
 </template>
 
 <script setup>
 import { PhPlusCircle } from "phosphor-vue";
-import * as pkg from "vue-toastification";
-const { useToast } = pkg;
 
 const field = ref({ tag: "" });
 const loading = ref(false);
 
 const emit = defineEmits(["tagCreated"]);
-const toast = useToast();
 
 const createTag = async ({ tag }) => {
   try {
@@ -58,12 +54,12 @@ const createTag = async ({ tag }) => {
     emit("tagCreated");
 
     loading.value = false;
-    toast.success("Success!");
+    useNuxtApp().$toast.success("Success!");
   } catch (error) {
     if (error.message.includes("name_1 dup key")) {
       toast.error("The tag already exist.");
     } else {
-      toast.error("Tag not created, please try again.");
+      useNuxtApp().$toast.error("Tag not created, please try again.");
     }
 
     loading.value = false;

@@ -51,15 +51,12 @@
 
 <script setup>
 import { PhX, PhTrashSimple, PhWarningCircle } from "phosphor-vue";
-import * as pkg from "vue-toastification";
-const { useToast } = pkg;
 
 const props = defineProps({
   posts: Object,
   refresh: Function,
 });
 
-const toast = useToast();
 const deletingPost = ref(false);
 const openPostDeletionModal = ref(false);
 const slug = ref("");
@@ -80,11 +77,11 @@ const deletePost = async () => {
     slug.value = "";
     openPostDeletionModal.value = false;
     deletingPost.value = false;
-    toast.success("Success!");
+    useNuxtApp().$toast.success("Success!");
     props.refresh();
   } catch (error) {
     deletingPost.value = false;
-    toast.error("Post not deleted, please try again.");
+    useNuxtApp().$toast.error("Post not deleted, please try again.");
   }
 };
 </script>

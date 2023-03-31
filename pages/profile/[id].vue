@@ -195,11 +195,8 @@ import {
   PhPassword,
 } from "phosphor-vue";
 import { reset } from "@formkit/core";
-import * as pkg from "vue-toastification";
-const { useToast } = pkg;
 
 const { user } = useAuth();
-const toast = useToast();
 
 const updateProfile = ref(false);
 
@@ -279,10 +276,10 @@ const update = async ({
 
     updatingProfile.value = false;
     setTimeout(() => (updateProfile.value = false), 50);
-    toast.success("Success!");
+    useNuxtApp().$toast.success("Success!");
   } catch (error) {
     updatingProfile.value = false;
-    toast.error("Profile not updated, try again.");
+    useNuxtApp().$toast.error("Profile not updated, try again.");
   }
 };
 </script>

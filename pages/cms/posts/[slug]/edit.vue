@@ -159,12 +159,9 @@ import {
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { setErrors } from "@formkit/core";
-import * as pkg from "vue-toastification";
-const { useToast } = pkg;
 
 const route = useRoute();
 const router = useRouter();
-const toast = useToast();
 
 const loading = ref(false);
 const imageChanged = ref(false);
@@ -259,12 +256,12 @@ const updatePost = async ({
     });
 
     loading.value = false;
-    toast.success("Success!");
+    useNuxtApp().$toast.success("Success!");
     router.back();
   } catch (error) {
     const message = error.message;
     loading.value = false;
-    toast.error("Post not update, Please try again");
+    useNuxtApp().$toast.error("Post not update, Please try again");
 
     setErrors("edit-post-form", message);
   }

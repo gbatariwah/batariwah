@@ -69,8 +69,6 @@
 
 <script setup>
 import { PhPassword } from "phosphor-vue";
-import * as pkg from "vue-toastification";
-const { useToast } = pkg;
 
 const fields = ref({
   oldPassword: "",
@@ -79,7 +77,6 @@ const fields = ref({
 });
 
 const { user, me } = useAuth();
-const toast = useToast();
 
 const props = defineProps({
   change: Boolean,
@@ -99,10 +96,10 @@ const changePassword = async ({ oldPassword, password }) => {
     changingPassword.value = false;
 
     await me();
-    toast.success("Success!");
+    useNuxtApp().$toast.success("Success!");
   } catch (error) {
     changingPassword.value = false;
-    toast.error("Something went wrong, try again.");
+    useNuxtApp().$toast.error("Something went wrong, try again.");
   }
 };
 </script>

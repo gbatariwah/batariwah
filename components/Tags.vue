@@ -85,15 +85,12 @@
 
 <script setup>
 import { PhTag, PhX, PhWarningCircle, PhTrashSimple } from "phosphor-vue";
-import * as pkg from "vue-toastification";
-const { useToast } = pkg;
 
 const { isDark } = useTheme();
 
 const tagId = ref("");
 const openTagDeletionModal = ref(false);
 const deletingTag = ref(false);
-const toast = useToast();
 
 const setTagId = (id) => {
   tagId.value = id;
@@ -122,11 +119,11 @@ const deleteTag = async () => {
     deletingTag.value = false;
     tagId.value = "";
     openTagDeletionModal.value = false;
-    toast.success("Success!");
+    useNuxtApp().$toast.success("Success!");
     refresh();
   } catch (error) {
     deletingTag.value = false;
-    toast.error("Tag not created, please try again.");
+    useNuxtApp().$toast.error("Tag not created, please try again.");
   }
 };
 </script>
