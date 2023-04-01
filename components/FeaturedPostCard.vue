@@ -52,7 +52,7 @@ const excerpt = computed(() => {
 
 const imageUrl = computed(() => {
   const srcset = props.featuredPost.featured_image.srcset;
-  return srcset[srcset.length - 1].secure_url;
+  return srcset[0].secure_url;
 });
 </script>
 

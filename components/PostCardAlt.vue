@@ -46,7 +46,7 @@ const props = defineProps({
 
 const imageUrl = computed(() => {
   const srcset = props.post.featured_image.srcset;
-  return srcset[srcset.length - 1].secure_url;
+  return srcset[0].secure_url;
 });
 </script>
 
