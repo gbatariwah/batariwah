@@ -70,7 +70,12 @@
         <div v-if="user" class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 rounded-full">
-              <NuxtImg :src="user.profile_picture.url" />
+              <VLazyImage
+                :src="user.profile_picture.url"
+                :alt="`${user.firstname} ${user.lastname}`"
+                :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+                src-placeholder="/images/loader.gif"
+              />
             </div>
           </label>
           <ul
@@ -119,6 +124,7 @@ import {
   PhNotePencil,
   PhHouseSimple,
 } from "phosphor-vue";
+import VLazyImage from "v-lazy-image";
 
 const { user, logout } = useAuth();
 </script>

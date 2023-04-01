@@ -1,16 +1,16 @@
 <template>
   <NuxtLink :to="`/posts/${post.slug}`">
     <div
-      class="card bg-base-200 card-compact shadow-md border border-zinc-700 hover:ring-1 ring-zinc-900 rounded-md h-full"
+      class="card bg-base-100 card-compact overflow-hidden shadow-md border border-zinc-700 hover:ring-1 ring-zinc-900 rounded-md h-full"
     >
-      <figure>
-        <NuxtImg
-          :src="post.featured_image.url"
-          loading="lazy"
-          placeholder="/images/loader.gif"
-          class="aspect-video object-cover"
-        />
-      </figure>
+      <VLazyImage
+        class="aspect-video h-auto min-h-48 object-cover"
+        :alt="post.title"
+        :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+        src-placeholder="/images/loader.gif"
+        :src="imageUrl"
+      />
+
       <div class="px-4 pt-2 pb-4 space-y-2 post-body">
         <p class="text-sm font-thin">
           {{ datePublished }}
@@ -24,6 +24,7 @@
 </template>
 
 <script setup>
+import VLazyImage from "v-lazy-image";
 const props = defineProps({
   post: Object,
 });
@@ -35,6 +36,11 @@ const datePublished = computed(() =>
     day: "numeric",
   }).format(new Date(props.post.createdAt))
 );
+
+const imageUrl = computed(() => {
+  const srcset = props.post.featured_image.srcset;
+  return srcset[srcset.length - 1].secure_url;
+});
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-  <img
+  <VLazyImage
     class="border animate__animated animate__bounceIn animate__faster"
     :src="src"
     alt="logo"
@@ -7,6 +7,7 @@
 </template>
 
 <script setup>
+import VLazyImage from "v-lazy-image";
 const { isDark } = useTheme();
 
 const src = ref("/images/logo-dark.png");

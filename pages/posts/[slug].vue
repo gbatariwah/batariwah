@@ -4,17 +4,16 @@
       <Loader />
     </div>
     <div v-else>
-      <figure>
-        <NuxtPicture
-          :imgAttrs="{
-            class: 'aspect-video w-full object-cover max-h-sm',
-          }"
-          placeholder="/images/loader.gif"
-          loading="lazy"
-          :srcset="post.srcset"
-          :src="post.image"
-        />
-      </figure>
+      <VLazyImage
+        :use-picture="true"
+        :src="post.image"
+        :srcset="post.srcset()"
+        :alt="post.title"
+        src-placeholder="/images/loader.gif"
+        :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+        class="aspect-video w-full object-cover max-h-sm"
+      />
+
       <div class="p-4 space-y-8 max-w-2xl mx-auto">
         <div class="space-y-8">
           <div class="space-y-4">
@@ -70,9 +69,11 @@
           class="p-4 bg-base-200 shadow-md border border-zinc-700 rounded-md"
         >
           <div class="flex gap-4">
-            <NuxtImg
+            <VLazyImage
               :src="data.post.author.profile_picture.url"
-              alt="Image of author"
+              :alt="post.author"
+              :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+              src-placeholder="/images/loader.gif"
               class="self-start flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700"
             />
             <div class="flex flex-col">
@@ -150,6 +151,7 @@ import {
   PhCalendarBlank,
   PhEnvelopeSimple,
 } from "phosphor-vue";
+import VLazyImage from "v-lazy-image";
 import MarkdownIt from "markdown-it";
 import sub from "markdown-it-sub";
 import sup from "markdown-it-sup";
@@ -188,7 +190,7 @@ const post = computed(() => ({
     return `${Math.ceil(minutes)} min read`;
   },
   srcset: () =>
-    data.value.featured_image.srcset
+    data.value.post.featured_image.srcset
       .map((image) => `${image.secure_url} ${image.width}w`)
       .join(","),
 }));

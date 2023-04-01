@@ -125,7 +125,7 @@
                     <div class="w-full" v-if="newImageUrl">
                       <div class="avatar">
                         <figure class="w-full h-64">
-                          <NuxtImg
+                          <VLazyImage
                             class="aspect-video object-cover w-full"
                             :src="newImageUrl"
                           />
@@ -140,7 +140,7 @@
                   <template #noFiles>
                     <div class="avatar">
                       <figure class="w-64 h-64">
-                        <NuxtImg
+                        <VLazyImage
                           class="aspect-video object-cover w-full"
                           :src="value.profile_image_url"
                         />
@@ -195,6 +195,7 @@ import {
   PhPassword,
 } from "phosphor-vue";
 import { reset } from "@formkit/core";
+import VLazyImage from "v-lazy-image";
 
 const { user } = useAuth();
 

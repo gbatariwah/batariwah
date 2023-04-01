@@ -4,7 +4,12 @@
       class="container flex flex-col items-center justify-center px-5 mx-auto my-8"
     >
       <div class="md:max-w-md w-full text-center">
-        <img src="~assets/img/404.svg" alt="404" />
+        <VLazyImage
+          src="images/404.svg"
+          alt="404"
+          :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+          src-placeholder="/images/loader.gif"
+        />
         <p class="text-2xl font-semibold md:text-3xl mt-4">
           There is NOTHING here...
         </p>
@@ -24,6 +29,7 @@
 
 <script setup>
 import { PhHouseSimple } from "phosphor-vue";
+import VLazyImage from "v-lazy-image";
 
 const props = defineProps({
   error: Object,

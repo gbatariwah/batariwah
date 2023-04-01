@@ -82,7 +82,7 @@
             </label>
           </template>
           <template #fileName>
-            <NuxtImg
+            <VLazyImage
               v-if="newImageUrl"
               class="aspect-video object-cover w-full"
               :src="newImageUrl"
@@ -90,7 +90,7 @@
           </template>
 
           <template #noFiles>
-            <NuxtImg
+            <NuxtImage
               v-show="!imageChanged"
               class="aspect-video object-cover w-full"
               :src="value.featured_image_url"
@@ -155,6 +155,7 @@ import {
   PhX,
   PhEraser,
 } from "phosphor-vue";
+import VLazyImage from "v-lazy-image";
 
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";

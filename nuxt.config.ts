@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   // css: ["~/assets/scss/index.scss"],
   modules: [
     "@vueuse/nuxt",
-    "@nuxt/image-edge",
     "@nuxtjs/tailwindcss",
     "@formkit/nuxt",
     "nuxt-gtag",

@@ -2,23 +2,23 @@
   <div class="px-4 mx-auto flex flex-col">
     <div class="mx-auto">
       <div class="rounded-lg h-64 overflow-hidden">
-        <img
-          alt="banner Image"
+        <VLazyImage
           class="object-cover object-center h-full w-full"
-          src="~/assets/img/banner.jpg"
-          placeholder="/images/loader.gif"
-          loading="lazy"
+          alt="banner Image"
+          :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+          src-placeholder="/images/loader.gif"
+          src="/images/banner.jpg"
         />
       </div>
       <div class="flex p-4 flex-col sm:flex-row">
         <div class="sm:w-1/3 text-center sm:pr-4">
           <div>
-            <img
+            <VLazyImage
               class="w-32 h-32 rounded-full inline-flex items-center justify-center object-cover"
-              placeholder="/images/loader.gif"
               alt="Prosper Batariwah"
-              src="~/assets/img/pb-2.jpg"
-              loading="lazy"
+              :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+              src-placeholder="/images/loader.gif"
+              src="/images/pb-2.jpg"
             />
             <div class="flex flex-col items-center text-center justify-center">
               <h2
@@ -71,10 +71,13 @@
                 <PhEnvelopeSimple :size="38" weight="duotone" />
               </NuxtLink>
             </div>
-            <img
-              src="~/assets/img/pb-4.jpg"
+
+            <VLazyImage
               class="hidden sm:block"
-              loading="lazy"
+              alt="Prosper Batariwah"
+              :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+              src-placeholder="/images/loader.gif"
+              src="/images/pb-4.jpg"
             />
           </div>
         </div>
@@ -108,11 +111,14 @@
               regulatory framework of extractive industries.
             </p>
 
-            <img
-              src="~/assets/img/pb-5.jpg"
-              loading="lazy"
+            <VLazyImage
               class="float-right h-48 w-48 rounded-md my-2 ml-4"
+              alt="Prosper Batariwah"
+              :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+              src-placeholder="/images/loader.gif"
+              src="/images/pb-5.jpg"
             />
+
             <p>
               There are other things I am interested in – for example, law and
               religion and IT law. For the last two years, I have dedicated this
@@ -127,10 +133,13 @@
               this time aligning my output with my research and pet interests
               and drawing depth from my practice and teaching experience.
             </p>
-            <img
-              src="~/assets/img/pb-3.jpg"
-              loading="lazy"
+
+            <VLazyImage
               class="float-left h-48 w-48 mr-4 rounded-md my-2"
+              alt="Prosper Batariwah"
+              :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+              src-placeholder="/images/loader.gif"
+              src="/images/pb-3.jpg"
             />
             <p>
               If you are looking for me, you’ll most likely find me someplace
@@ -173,6 +182,7 @@ import {
   PhThumbsUp,
   PhEnvelopeSimple,
 } from "phosphor-vue";
+import VLazyImage from "v-lazy-image";
 
 const config = useRuntimeConfig();
 

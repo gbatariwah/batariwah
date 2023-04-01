@@ -86,9 +86,10 @@
             </template>
 
             <template if="fileUrl" #fileName>
-              <NuxtImg
+              <VLazyImage
                 class="aspect-video object-cover w-full"
                 :src="fileUrl"
+                alt="featured image"
               />
             </template>
 
@@ -151,6 +152,7 @@
 
 <script setup>
 import { PhArticle, PhTextT, PhImage, PhCheck, PhPen, PhX } from "phosphor-vue";
+import VLazyImage from "v-lazy-image";
 
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";

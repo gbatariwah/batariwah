@@ -1,11 +1,13 @@
 <template>
   <div
-    class="flex flex-col card border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg rounded-md bg-base-200 md:flex-row md:max-w-xl"
+    class="flex flex-col card border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg rounded-md bg-base-100 md:flex-row md:max-w-xl"
   >
-    <NuxtImg
+    <VLazyImage
       class="object-cover w-full rounded-t-md md:w-48 md:rounded-none md:rounded-l-md"
-      :src="post.featured_image.url"
+      :src="imageUrl"
       :alt="post.title"
+      :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+      src-placeholder="/images/loader.gif"
     />
     <div class="leading-normal p-4 flex flex-col justify-between h-full">
       <NuxtLink
@@ -36,8 +38,15 @@
 
 <script setup>
 import { PhNotePencil, PhTrash } from "phosphor-vue";
+import VLazyImage from "v-lazy-image";
+
 const props = defineProps({
   post: Object,
+});
+
+const imageUrl = computed(() => {
+  const srcset = props.post.featured_image.srcset;
+  return srcset[srcset.length - 1].secure_url;
 });
 </script>
 

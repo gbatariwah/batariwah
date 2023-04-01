@@ -21,17 +21,21 @@
       <p class="flex justify-center items-center gap-1">
         <PhCopyright :size="16" weight="duotone" />
         <span
-          >{{ new Date().getFullYear() }} Batariwah. All Rights Reserved.</span
+          >{{ new Date().getFullYear() }}
+          <span class="tracking-wide">BATARIWAH</span>. All Rights
+          Reserved.</span
         >
       </p>
       <p>
-        Developed by
+        Developed By -
         <NuxtLink
           to="https://facebook.com/gerald.batariwah"
           target="_blank"
           rel="noopener"
-          class="link link-hover font-semibold"
-          >Gerald Batariwah</NuxtLink
+          class="badge badge-outline badge-sm"
+          ><span class="font-semibold uppercase tracking-wide">
+            Gerald Batariwah
+          </span></NuxtLink
         >
       </p>
     </div>

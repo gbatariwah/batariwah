@@ -9,7 +9,6 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
     "@nuxtjs/google-fonts": "^3.0.0",
     "@tailwindcss/typography": "^0.5.9",
     "@vueuse/core": "^9.12.0",
@@ -39,6 +38,7 @@
     "mongoose": "^6.9.3",
     "phosphor-vue": "^4.4.1",
     "slugify": "^1.6.5",
+    "v-lazy-image": "^2.1.1",
     "vue-disqus": "^5.1.0",
     "vue3-toastify": "^0.1.6"
   }
