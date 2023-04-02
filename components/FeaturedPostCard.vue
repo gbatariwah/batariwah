@@ -21,7 +21,15 @@
           <span class="text-sm font-thin mb-2">
             {{ datePublished }}
           </span>
-          <p class="font-light">{{ excerpt }}</p>
+          <div class="flex flex-col h-full justify-between gap-4">
+            <p class="font-light">{{ excerpt }}</p>
+            <Button class="btn-primary w-auto self-start">
+              <template #icon>
+                <i class="ph-duotone ph-book-open-text text-[20px]"></i>
+              </template>
+              read more
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -47,7 +55,7 @@ const datePublished = computed(() =>
 
 const excerpt = computed(() => {
   const html = md.render(props.featuredPost.content, { html: true });
-  return `${html.replace(/(<([^>]+)>)/gi, "").slice(0, 224)}...`;
+  return `${html.replace(/(<([^>]+)>)/gi, "").slice(0, 280)}...`;
 });
 
 const imageUrl = computed(() => {

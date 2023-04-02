@@ -24,7 +24,9 @@
           </button>
 
           <div class="flex gap-4">
-            <i class="ph-duotone ph-warning-circle text-[64px]"></i>
+            <i
+              class="ph-duotone ph-warning-circle text-warning text-[64px]"
+            ></i>
             <div>
               <h3 class="text-lg font-semibold">Delete Post</h3>
               <p class="py-4">Are you sure you want to delete this post?</p>

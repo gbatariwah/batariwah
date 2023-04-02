@@ -5,13 +5,14 @@
     </div>
     <div v-else>
       <VLazyImage
+        sizes="(max-width: 1400px) 100vw, 1400px"
         :use-picture="true"
         :src="post.image"
         :srcset="post.srcset()"
         :alt="post.title"
         src-placeholder="/images/loader.gif"
         :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
-        class="aspect-video w-full object-cover max-h-sm md:px-4"
+        class="aspect-video w-full object-cover max-h-sm md:px-4 md:h-[450px]"
       />
 
       <div class="p-4 space-y-8 max-w-2xl mx-auto">

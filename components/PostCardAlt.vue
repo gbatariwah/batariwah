@@ -9,7 +9,7 @@
       :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
       src-placeholder="/images/loader.gif"
     />
-    <div class="leading-normal p-4 flex flex-col justify-between h-full">
+    <div class="leading-normal p-4 flex flex-col justify-between h-full w-full">
       <NuxtLink
         :to="`/posts/${post.slug}`"
         class="mb-2 text-lg font-bold tracking-tigh"
@@ -25,12 +25,14 @@
           <i class="ph-duotone ph-note-pencil text-[26px]"></i>
         </NuxtLink>
 
-        <button
+        <Button
           @click.prevent="$emit('confirm-post-deletion', post.slug)"
           class="btn btn-error btn-outline btn-sm"
         >
-          <i class="ph-duotone ph-trash-simple text-[26px]"></i>
-        </button>
+          <template #icon>
+            <i class="ph-duotone ph-trash-simple text-[26px]"></i>
+          </template>
+        </Button>
       </div>
     </div>
   </div>

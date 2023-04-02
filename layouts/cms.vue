@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto max-w-4xl">
+  <div class="container mx-auto max-w-5xl">
     <!-- header -->
 
     <header class="sticky z-50 top-0 bg-base-300">
