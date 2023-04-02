@@ -58,7 +58,7 @@
           :loading="changingPassword"
         >
           <template #icon>
-            <PhPassword :size="18" weight="duotone" />
+            <i class="ph-duotone ph-password text-[18px]"></i>
           </template>
           Change Password
         </Button>
@@ -68,8 +68,6 @@
 </template>
 
 <script setup>
-import { PhPassword } from "phosphor-vue";
-
 const fields = ref({
   oldPassword: "",
   password: "",

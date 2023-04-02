@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="text-2xl font-semibold mb-6 gap-2 flex">
-      <PhEraser :size="32" weight="duotone" />
+    <h2 class="text-2xl font-semibold mb-6 gap-2 flex uppercase">
+      <i class="ph-duotone ph-eraser text-[32px]"></i>
       Manage Posts
     </h2>
 
@@ -30,7 +30,7 @@
           v-if="!fetchedAllPosts"
         >
           <template #icon>
-            <PhCaretDoubleDown :size="24" weight="duotone" />
+            <i class="ph-duotone ph-caret-double-down text-[24px]"></i>
           </template>
           Load More
         </Button>
@@ -41,7 +41,6 @@
 </template>
 
 <script setup>
-import { PhEraser, PhCaretDoubleDown } from "phosphor-vue";
 const page = ref(1);
 
 const fetchingMorePosts = ref(false);

@@ -4,13 +4,12 @@
     @click="scrollUp"
     class="btn btn-circle outline-none fixed bottom-8 right-8 z-50 opacity-80 hover:opacity-100"
   >
-    <PhArrowULeftUp :size="28" weight="duotone" />
+    <i class="ph-duotone ph-arrow-u-left-up text-[28px]"></i>
   </button>
 </template>
 
 <script setup>
 import { useEventListener } from "@vueuse/core";
-import { PhArrowULeftUp } from "phosphor-vue";
 
 const visible = ref(false);
 

@@ -23,7 +23,7 @@
         <div class="space-y-6">
           <div class="flex justify-between items-center">
             <h2 class="text-2xl font-semibold flex gap-2">
-              <PhUser :size="32" weight="duotone" />
+              <i class="ph-duotone ph-user text-[32px]"></i>
               Profile
             </h2>
             <div class="flex">
@@ -34,7 +34,7 @@
                   class="btn-primary"
                 >
                   <template #icon>
-                    <PhUserGear :size="18" weight="duotone" />
+                    <i class="ph-duotone ph-user-gear text-[18px]"></i>
                   </template>
                   Update
                 </Button>
@@ -45,7 +45,7 @@
                   "
                   class="btn btn-outline btn-circle"
                 >
-                  <PhX :size="32" weight="duotone" />
+                  <i class="ph-duotone ph-x text-[32px]"></i>
                 </button>
               </div>
 
@@ -54,7 +54,7 @@
                 v-else
                 class="btn btn-square btn-outline"
               >
-                <PhUserCircleGear :size="32" weight="duotone" />
+                <i class="ph-duotone ph-user-circle-gear text-[32px]"></i>
               </button>
             </div>
           </div>
@@ -115,7 +115,7 @@
                   <template #label>
                     <label class="label">
                       <span class="label-text text-lg items-center flex gap-2">
-                        <PhImage :size="22" weight="duotone" />
+                        <i class="ph-duotone ph-image text-[22px]"></i>
                         Profile Picture</span
                       >
                     </label>
@@ -132,7 +132,7 @@
                         </figure>
                       </div>
                       <div class="flex justify-center py-4">
-                        <PhSwap :size="38" weight="duotone" />
+                        <i class="ph-duotone ph-swap text-[38px]"></i>
                       </div>
                     </div>
                   </template>
@@ -152,7 +152,7 @@
                     <span
                       class="btn btn-circle btn-sm opacity-70 hover:opacity-100"
                     >
-                      <PhX :size="18" weight="duotone" />
+                      <i class="ph-duotone ph-x text-[18px]"></i>
                     </span>
                   </template>
                 </FormKit>
@@ -168,12 +168,12 @@
             @click="changePassword = !changePassword"
           >
             <span v-if="changePassword" class="flex gap-2 items-center">
-              <PhX :size="20" weight="duotone" />
+              <i class="ph-duotone ph-x text-[20px]"></i>
               Cancel
             </span>
 
             <span v-else class="flex gap-2 items-center">
-              <PhPassword :size="20" weight="duotone" />
+              <i class="ph-duotone ph-password text-[20px]"></i>
               Change Password
             </span>
           </button>
@@ -185,15 +185,6 @@
 </template>
 
 <script setup>
-import {
-  PhImage,
-  PhUser,
-  PhUserGear,
-  PhX,
-  PhUserCircleGear,
-  PhSwap,
-  PhPassword,
-} from "phosphor-vue";
 import { reset } from "@formkit/core";
 import VLazyImage from "v-lazy-image";
 

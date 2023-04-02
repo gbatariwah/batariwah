@@ -21,7 +21,7 @@
         v-if="!fetchedAllPosts"
       >
         <template #icon>
-          <PhCaretDoubleDown :size="24" weight="duotone" />
+          <i class="ph-duotone ph-caret-double-down text-[24px]"></i>
         </template>
         Load More
       </Button>
@@ -31,8 +31,6 @@
 </template>
 
 <script setup>
-import { PhCaretDoubleDown } from "phosphor-vue";
-
 const page = ref(1);
 
 const fetchingMorePosts = ref(false);

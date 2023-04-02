@@ -4,6 +4,7 @@
       class="card bg-base-100 card-compact overflow-hidden shadow-md border border-zinc-700 hover:ring-1 ring-zinc-900 rounded-md h-full"
     >
       <VLazyImage
+        format="image/webp"
         class="aspect-video h-auto min-h-48 object-cover"
         :alt="post.title"
         :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"

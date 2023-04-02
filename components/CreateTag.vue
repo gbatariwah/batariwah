@@ -26,7 +26,7 @@
         :loading="loading"
       >
         <template #icon>
-          <PhPlusCircle :size="32" weight="duotone" />
+          <i class="ph-duotone ph-plus-circle text-[32px]"></i>
         </template>
       </Button>
     </div>
@@ -34,8 +34,6 @@
 </template>
 
 <script setup>
-import { PhPlusCircle } from "phosphor-vue";
-
 const field = ref({ tag: "" });
 const loading = ref(false);
 

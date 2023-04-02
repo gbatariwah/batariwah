@@ -2,7 +2,9 @@
   <div class="flex flex-col max-w-md p-6 rounded-md sm:p-10 mx-auto">
     <div class="mb-8 text-center">
       <div class="flex justify-center">
-        <Logo class="my-3 w-[240px] border" />
+        <NuxtLink to="/">
+          <Logo class="my-3 w-[240px] border" />
+        </NuxtLink>
       </div>
     </div>
 
@@ -54,7 +56,7 @@
             class="btn-primary my-6 w-full"
           >
             <template #icon>
-              <PhSignIn :size="18" weight="duotone" />
+              <i class="ph-duotone ph-sign-in text-[18px]"></i>
             </template>
             Login
           </Button>
@@ -75,7 +77,6 @@
 
 <script setup>
 import { setErrors } from "@formkit/core";
-import { PhSignIn } from "phosphor-vue";
 
 const initialValue = ref({ email: "", password: "" });
 

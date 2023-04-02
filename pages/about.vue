@@ -41,7 +41,7 @@
                 rel="noopener"
                 class="btn btn-circle btn-ghost"
               >
-                <PhFacebookLogo :size="38" weight="duotone" />
+                <i class="ph-duotone ph-facebook-logo text-[38px]"></i>
               </NuxtLink>
 
               <NuxtLink
@@ -50,7 +50,7 @@
                 rel="noopener"
                 class="btn btn-circle btn-ghost"
               >
-                <PhTwitterLogo :size="38" weight="duotone" />
+                <i class="ph-duotone ph-twitter-logo text-[38px]"></i>
               </NuxtLink>
 
               <NuxtLink
@@ -59,7 +59,7 @@
                 rel="noopener"
                 class="btn btn-circle btn-ghost"
               >
-                <PhInstagramLogo :size="38" weight="duotone" />
+                <i class="ph-duotone ph-instagram-logo text-[38px]"></i>
               </NuxtLink>
 
               <NuxtLink
@@ -68,12 +68,12 @@
                 to="mailto:batariwah@gmail.com"
                 class="btn btn-circle btn-ghost"
               >
-                <PhEnvelopeSimple :size="38" weight="duotone" />
+                <i class="ph-duotone ph-envelope-simple text-[38px]"></i>
               </NuxtLink>
             </div>
 
             <VLazyImage
-              class="hidden sm:block"
+              class="hidden sm:block object-cover"
               alt="Prosper Batariwah"
               :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
               src-placeholder="/images/loader.gif"
@@ -112,7 +112,7 @@
             </p>
 
             <VLazyImage
-              class="float-right h-48 w-48 rounded-md my-2 ml-4"
+              class="float-right h-48 w-48 rounded-md my-2 ml-4 object-cover"
               alt="Prosper Batariwah"
               :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
               src-placeholder="/images/loader.gif"
@@ -135,7 +135,7 @@
             </p>
 
             <VLazyImage
-              class="float-left h-48 w-48 mr-4 rounded-md my-2"
+              class="float-left h-48 w-48 mr-4 rounded-md my-2 object-cover"
               alt="Prosper Batariwah"
               :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
               src-placeholder="/images/loader.gif"
@@ -162,7 +162,7 @@
             >
               <Button class="btn-info btn-sm">
                 <template #icon>
-                  <PhThumbsUp :size="20" weight="duotone" />
+                  <i class="ph-duotone ph-thumbs-up text-[20px]"></i>
                 </template>
                 Follow
               </Button>
@@ -175,13 +175,6 @@
 </template>
 
 <script setup>
-import {
-  PhFacebookLogo,
-  PhInstagramLogo,
-  PhTwitterLogo,
-  PhThumbsUp,
-  PhEnvelopeSimple,
-} from "phosphor-vue";
 import VLazyImage from "v-lazy-image";
 
 const config = useRuntimeConfig();

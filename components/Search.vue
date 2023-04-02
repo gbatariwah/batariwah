@@ -6,7 +6,7 @@
     @click.="openModal()"
   >
     <template #icon>
-      <PhMagnifyingGlass :size="32" weight="duotone" />
+      <i class="ph-duotone ph-magnifying-glass text-[32px]"></i>
     </template>
   </Button>
 
@@ -35,7 +35,7 @@
               @click="search()"
             >
               <template #icon>
-                <PhMagnifyingGlass :size="32" weight="duotone" />
+                <i class="ph-duotone ph-magnifying-glass text-[32px]"></i>
               </template>
             </Button>
           </div>
@@ -46,7 +46,6 @@
 </template>
 
 <script setup>
-import { PhMagnifyingGlass } from "phosphor-vue";
 import { useFocus } from "@vueuse/core";
 
 const query = ref("");

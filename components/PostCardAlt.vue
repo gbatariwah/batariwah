@@ -22,14 +22,14 @@
           :to="`/cms/posts/${post.slug}/edit`"
           class="btn btn-warning btn-outline btn-sm"
         >
-          <PhNotePencil :size="26" weight="duotone" />
+          <i class="ph-duotone ph-note-pencil text-[26px]"></i>
         </NuxtLink>
 
         <button
           @click.prevent="$emit('confirm-post-deletion', post.slug)"
           class="btn btn-error btn-outline btn-sm"
         >
-          <PhTrash :size="26" weight="duotone" />
+          <i class="ph-duotone ph-trash-simple text-[26px]"></i>
         </button>
       </div>
     </div>
@@ -37,7 +37,6 @@
 </template>
 
 <script setup>
-import { PhNotePencil, PhTrash } from "phosphor-vue";
 import VLazyImage from "v-lazy-image";
 
 const props = defineProps({

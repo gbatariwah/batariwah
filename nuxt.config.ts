@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@formkit/nuxt",
     "nuxt-gtag",
     "nuxt-simple-sitemap",
+    "@nuxt/image-edge",
     [
       "@nuxtjs/google-fonts",
       {
@@ -51,6 +52,10 @@ export default defineNuxtConfig({
         { name: "format-detection", content: "telephone=no" },
       ],
       link: [
+        {
+          rel: "stylesheet",
+          href: "https://unpkg.com/@phosphor-icons/web@2.0.3/src/duotone/style.css",
+        },
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         {
           rel: "apple-touch-icon",
@@ -145,9 +150,18 @@ export default defineNuxtConfig({
     ENV: process.env.NODE_ENV,
     indexable: process.env.NUXT_INDEXABLE || false,
     public: {
-      BASE_URL: process.env.BASE_URL,
-      NUXT_PUBLIC_SITE_URL: process.env.NUXT_PUBLIC_SITE_URL,
-      DISQUS_SHORT_NAME: process.env.DISQUS_SHORT_NAME,
+      BASE_URL:
+        process.env.NODE_ENV === "development"
+          ? process.env.DEV_BASE_URL
+          : process.env.BASE_URL,
+      NUXT_PUBLIC_SITE_URL:
+        process.env.NODE_ENV === "development"
+          ? process.env.DEV_NUXT_PUBLIC_SITE_URL
+          : process.env.NUXT_PUBLIC_SITE_URL,
+      DISQUS_SHORT_NAME:
+        process.env.NODE_ENV === "development"
+          ? process.env.DEV_DISQUS_SHORT_NAME
+          : process.env.DISQUS_SHORT_NAME,
     },
   },
   nitro: {

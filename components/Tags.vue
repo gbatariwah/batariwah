@@ -4,7 +4,7 @@
     <div>
       <label class="label">
         <span class="label-text text-lg items-center flex gap-2">
-          <PhTag :size="20" weight="duotone" />
+          <i class="ph-duotone ph-tag text-[20px]"></i>
           Tags</span
         >
       </label>
@@ -33,7 +33,7 @@
                   :class="{ 'btn-circle btn-ghost': isDark }"
                   @click="setTagId(option.value)"
                 >
-                  <PhX :size="18" weight="duotone" />
+                  <i class="ph-duotone ph-x text-[18px]"></i>
                 </label>
               </div>
             </template>
@@ -55,26 +55,30 @@
             @click="openTagDeletionModal = false"
             class="btn btn-sm btn-circle absolute right-2 top-2"
           >
-            <PhX :size="20" weight="duotone" />
+            <i class="ph-duotone ph-x text-[20px]"></i>
           </button>
 
           <div class="flex gap-4">
-            <PhWarningCircle :size="32" class="text-warning" weight="duotone" />
+            <i
+              class="ph-duotone ph-warning-circle text-[32px] text-warning"
+            ></i>
             <div>
               <h3 class="text-lg font-semibold">Delete tag</h3>
               <p class="py-4">Are you sure you want to delete this tag?</p>
             </div>
           </div>
           <div class="modal-action">
-            <button
+            <Button
               @click="deleteTag()"
               for="my-modal"
               class="btn gap-2 btn-error"
               :loading="deletingTag"
             >
-              <PhTrashSimple v-if="!deletingTag" :size="18" weight="duotone" />
+              <template #icon>
+                <i class="ph-duotone ph-trash-simple text-[18px]"></i>
+              </template>
               Delete
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -84,8 +88,6 @@
 </template>
 
 <script setup>
-import { PhTag, PhX, PhWarningCircle, PhTrashSimple } from "phosphor-vue";
-
 const { isDark } = useTheme();
 
 const tagId = ref("");

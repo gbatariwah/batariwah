@@ -6,6 +6,7 @@
       <div class="md:max-w-md w-full text-center">
         <VLazyImage
           src="images/404.svg"
+          class="object-cover"
           alt="404"
           :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
           src-placeholder="/images/loader.gif"
@@ -18,7 +19,7 @@
         </p>
         <Button @click="handleError" class="btn-primary">
           <template #icon>
-            <PhHouseSimple :size="18" weight="duotone" />
+            <i class="ph-duotone ph-house-simple text-[18px]"></i>
           </template>
           Back to homepage
         </Button>
@@ -28,7 +29,6 @@
 </template>
 
 <script setup>
-import { PhHouseSimple } from "phosphor-vue";
 import VLazyImage from "v-lazy-image";
 
 const props = defineProps({

@@ -8,18 +8,18 @@
 
       <div class="flex items-center">
         <NuxtLink to="/" class="btn btn-ghost btn-sm gap-1">
-          <PhHouseSimple :size="18" weight="duotone" />
+          <i class="ph-duotone ph-house-simple text-[18px]"></i>
           <span class="font-semibold tracking-wider uppercase">Home</span>
         </NuxtLink>
         <NuxtLink to="/about" class="btn btn-ghost btn-sm gap-1">
-          <PhInfo :size="18" weight="duotone" />
+          <i class="ph-duotone ph-info text-[18px]"></i>
           <span class="font-semibold tracking-wider uppercase">About</span>
         </NuxtLink>
       </div>
     </div>
     <div class="text-sm text-center space-y-1 pt-2">
       <p class="flex justify-center items-center gap-1">
-        <PhCopyright :size="16" weight="duotone" />
+        <i class="ph-duotone ph-copyright text-[16px]"></i>
         <span
           >{{ new Date().getFullYear() }}
           <span class="tracking-wide">BATARIWAH</span>. All Rights
@@ -41,7 +41,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { PhInfo, PhCopyright, PhHouseSimple } from "phosphor-vue";
-</script>

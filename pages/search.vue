@@ -4,7 +4,7 @@
       <h2
         class="text-2xl font-semibold flex gap-2 items-center justify-center uppercase mb-6"
       >
-        <PhMagnifyingGlass :size="32" weight="duotone" />
+        <i class="ph-duotone ph-magnifying-glass text-[32px]"></i>
         Search
       </h2>
 
@@ -23,7 +23,7 @@
             :loading="pending"
           >
             <template #icon>
-              <PhMagnifyingGlass :size="32" weight="duotone" />
+              <i class="ph-duotone ph-magnifying-glass text-[32px]"></i>
             </template>
           </Button>
         </div>
@@ -63,7 +63,7 @@
                   v-if="data.results.totalResults > 4 || !fetchedAllResults"
                 >
                   <template #icon>
-                    <PhCaretDoubleDown :size="24" weight="duotone" />
+                    <i class="ph-duotone ph-caret-double-down text-[24px]"></i>
                   </template>
                   Load More
                 </Button>
@@ -82,8 +82,6 @@
 </template>
 
 <script setup>
-import { PhCaretDoubleDown, PhMagnifyingGlass } from "phosphor-vue";
-
 const route = useRoute();
 const router = useRouter();
 const q = ref(route.query.q || "");

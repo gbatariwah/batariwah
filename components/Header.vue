@@ -14,7 +14,7 @@
           to="/"
           class="btn btn-ghost btn-circle"
         >
-          <PhHouseSimple :size="32" weight="duotone" />
+          <i class="ph-duotone ph-house-simple text-[32px]"></i>
         </NuxtLink>
 
         <NuxtLink
@@ -23,13 +23,13 @@
           to="/about"
           class="btn btn-ghost btn-circle"
         >
-          <PhInfo :size="32" weight="duotone" />
+          <i class="ph-duotone ph-info text-[32px]"></i>
         </NuxtLink>
       </div>
 
       <div class="dropdown dropdown-end md:hidden">
         <button class="btn btn-ghost btn-circle">
-          <PhCaretCircleDown :size="32" weight="duotone" />
+          <i class="ph-duotone ph-caret-circle-down text-[32px]"></i>
         </button>
         <ul
           tabindex="0"
@@ -38,7 +38,7 @@
           <li>
             <a class="justify-between">
               <NuxtLink to="/" class="flex gap-4 items-center">
-                <PhHouseSimple :size="28" weight="duotone" />
+                <i class="ph-duotone ph-house-simple text-[28px]"></i>
 
                 <span class="font-semibold tracking-wider gap-2 uppercase">
                   Home
@@ -49,7 +49,7 @@
           <li>
             <a>
               <NuxtLink to="/about" class="flex gap-4 items-center">
-                <PhInfo :size="28" weight="duotone" />
+                <i class="ph-duotone ph-info text-[28px]"></i>
 
                 <span class="font-semibold tracking-wider gap-2 uppercase">
                   About
@@ -75,6 +75,7 @@
                 :alt="`${user.firstname} ${user.lastname}`"
                 :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
                 src-placeholder="/images/loader.gif"
+                class="object-cover"
               />
             </div>
           </label>
@@ -87,8 +88,9 @@
                 :to="`/profile/${user._id}`"
                 class="flex justify-between"
               >
-                <span class="gap-2 flex items-center"
-                  ><PhUser :size="16" weight="duotone" /> Profile</span
+                <span class="gap-2 flex items-center">
+                  <i class="ph-duotone ph-user text-[16px]"></i>
+                  Profile</span
                 >
                 <span class="badge badge-sm badge-info capitalize">{{
                   user.firstname
@@ -98,13 +100,13 @@
 
             <li>
               <NuxtLink to="/cms/posts" class="gap-2">
-                <PhNotePencil :size="16" weight="duotone" />
+                <i class="ph-duotone ph-note-pencil text-[16px]"></i>
                 Manage Content
               </NuxtLink>
             </li>
             <li>
               <a class="gap-2 hover:bg-error" @click="logout()">
-                <PhSignOut :size="16" weight="duotone" />
+                <i class="ph-duotone ph-sign-out text-[16px]"></i>
                 Logout
               </a>
             </li>
@@ -116,14 +118,6 @@
 </template>
 
 <script setup>
-import {
-  PhInfo,
-  PhSignOut,
-  PhCaretCircleDown,
-  PhUser,
-  PhNotePencil,
-  PhHouseSimple,
-} from "phosphor-vue";
 import VLazyImage from "v-lazy-image";
 
 const { user, logout } = useAuth();

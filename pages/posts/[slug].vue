@@ -11,7 +11,7 @@
         :alt="post.title"
         src-placeholder="/images/loader.gif"
         :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
-        class="aspect-video w-full object-cover max-h-sm"
+        class="aspect-video w-full object-cover max-h-sm md:px-4"
       />
 
       <div class="p-4 space-y-8 max-w-2xl mx-auto">
@@ -25,21 +25,21 @@
               class="flex text-sm flex-col items-start justify-between w-full md:flex-row md:items-center"
             >
               <div class="flex items-center md:space-x-2">
-                <div class="inline-flex items-center gap-2">
+                <div class="inline-flex items-center gap-1">
                   <span class="inline-flex gap-1 items-center capitalize">
-                    <PhUser :size="16" weight="duotone" />
+                    <i class="ph-duotone ph-user text-[16px]"></i>
                     {{ post.author }}
                   </span>
-                  <span> • </span>
+                  <i class="ph-duotone ph-dot-outline text-[24px]"></i>
                   <span class="inline-flex gap-1 items-center">
-                    <PhCalendarBlank :size="16" weight="duotone" />
+                    <i class="ph-duotone ph-calendar-blank text-[16px]"></i>
                     {{ post.formatedCreatedAt }}
                   </span>
                 </div>
               </div>
               <div class="flex-shrink-0 mt-3 md:mt-0">
                 <p class="flex gap-1 items-center">
-                  <PhClock :size="16" weight="duotone" />
+                  <i class="ph-duotone ph-clock text-[16px]"></i>
                   {{ post.minRead() }}
                 </p>
               </div>
@@ -74,7 +74,7 @@
               :alt="post.author"
               :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
               src-placeholder="/images/loader.gif"
-              class="self-start flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700"
+              class="self-start flex-shrink-0 w-24 h-24 border object-cover rounded-full md:justify-self-start"
             />
             <div class="flex flex-col">
               <h4 class="text-lg font-semibold capitalize pb-2">
@@ -92,27 +92,31 @@
             <NuxtLink
               to="https://facebook.com/batariwahp"
               class="btn-sm btn-circle btn-ghost flex justify-center items-center"
+              target="_blank"
             >
-              <PhFacebookLogo :size="24" weight="duotone" />
+              <i class="ph-duotone ph-facebook-logo text-[24px]"></i>
             </NuxtLink>
             <NuxtLink
               to="https://twitter.com/pbatariwah"
               class="btn-sm btn-circle btn-ghost flex justify-center items-center"
+              target="_blank"
             >
-              <PhTwitterLogo :size="24" weight="duotone" />
+              <i class="ph-duotone ph-twitter-logo text-[24px]"></i>
             </NuxtLink>
             <NuxtLink
               to="https://www.instagram.com/p_batariwah"
               class="btn-sm btn-circle btn-ghost flex justify-center items-center"
+              target="_blank"
             >
-              <PhInstagramLogo :size="24" weight="duotone" />
+              <i class="ph-duotone ph-instagram-logo text-[24px]"></i>
             </NuxtLink>
 
             <NuxtLink
-              to="https://www.instagram.com/p_batariwah"
+              to="mailto:batariwah@gmail.com"
+              target="_blank"
               class="btn-sm btn-circle btn-ghost flex justify-center items-center"
             >
-              <PhEnvelopeSimple :size="24" weight="duotone" />
+              <i class="ph-duotone ph-envelope-simple text-[24px]"></i>
             </NuxtLink>
           </div>
         </div>
@@ -123,7 +127,7 @@
 
         <div class="space-y-2">
           <h4 class="text-lg font-semibold pb-2 flex items-center gap-2">
-            <PhArticle :size="20" weight="duotone" />
+            <i class="ph-duotone ph-article text-[20px]"></i>
             Suggested posts
           </h4>
           <div class="grid sm:grid-cols-2 gap-6">
@@ -141,16 +145,6 @@
 
 <script setup>
 import { Disqus } from "vue-disqus";
-import {
-  PhFacebookLogo,
-  PhTwitterLogo,
-  PhInstagramLogo,
-  PhArticle,
-  PhClock,
-  PhUser,
-  PhCalendarBlank,
-  PhEnvelopeSimple,
-} from "phosphor-vue";
 import VLazyImage from "v-lazy-image";
 import MarkdownIt from "markdown-it";
 import sub from "markdown-it-sub";

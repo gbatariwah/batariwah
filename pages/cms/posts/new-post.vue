@@ -19,7 +19,7 @@
             <h2
               class="text-2xl uppercase font-semibold flex gap-2 items-center"
             >
-              <PhPen :size="32" weight="duotone" />
+              <i class="ph-duotone ph-pen text-[32px]"></i>
               Create Post
             </h2>
 
@@ -30,7 +30,7 @@
               :loading="loading"
             >
               <template #icon>
-                <PhCheck :size="18" weight="duotone" />
+                <i class="ph-duotone ph-check text-[18px]"></i>
               </template>
               Publish
             </Button>
@@ -49,7 +49,7 @@
             <template #label>
               <label class="label items-center gap-2">
                 <span class="label-text text-lg items-center flex gap-2">
-                  <PhTextT :size="22" weight="duotone" />
+                  <i class="ph-duotone ph-text-t text-[22px]"></i>
                   Title
                 </span>
               </label>
@@ -79,7 +79,7 @@
             <template #label>
               <label class="label">
                 <span class="label-text text-lg items-center flex gap-2">
-                  <PhImage :size="22" weight="duotone" />
+                  <i class="ph-duotone ph-image text-[22px]"></i>
                   Featured Image</span
                 >
               </label>
@@ -95,7 +95,7 @@
 
             <template #fileRemoveIcon>
               <span class="btn btn-circle btn-sm opacity-70 hover:opacity-100">
-                <PhX :size="18" weight="duotone" />
+                <i class="ph-duotone ph-x text-[18px]"></i>
               </span>
             </template>
           </FormKit>
@@ -116,7 +116,7 @@
             <template #label>
               <label class="label">
                 <span class="label-text text-lg items-center flex gap-2">
-                  <PhArticle :size="22" weight="duotone" />
+                  <i class="ph-duotone ph-article text-[22px]"></i>
                   Content</span
                 >
               </label>
@@ -151,7 +151,6 @@
 </template>
 
 <script setup>
-import { PhArticle, PhTextT, PhImage, PhCheck, PhPen, PhX } from "phosphor-vue";
 import VLazyImage from "v-lazy-image";
 
 import MdEditor from "md-editor-v3";

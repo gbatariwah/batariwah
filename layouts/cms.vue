@@ -8,7 +8,7 @@
 
     <!-- /header -->
 
-    <main class="p-6 min-h-[600px]">
+    <main class="p-4 min-h-[600px]">
       <slot />
     </main>
     <footer><Footer /></footer>

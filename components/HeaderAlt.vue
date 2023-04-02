@@ -12,7 +12,7 @@
         to="/cms/posts/new-post"
         class="btn btn-circle btn-ghost"
       >
-        <PhPen :size="32" weight="duotone" />
+        <i class="ph-duotone ph-pen text-[32px]"></i>
       </NuxtLink>
 
       <ThemeToggler />
@@ -25,6 +25,7 @@
               :alt="`${user.firstname} ${user.lastname}`"
               :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
               src-placeholder="/images/loader.gif"
+              class="object-cover"
             />
           </div>
         </label>
@@ -34,8 +35,9 @@
         >
           <li>
             <NuxtLink :to="`/profile/${user._id}`" class="flex justify-between">
-              <span class="gap-2 flex items-center"
-                ><PhUser :size="16" weight="duotone" /> Profile</span
+              <span class="gap-2 flex items-center">
+                <i class="ph-duotone ph-user text-[16px]"></i>
+                Profile</span
               >
               <span class="badge badge-sm badge-info capitalize">{{
                 user.firstname
@@ -44,13 +46,13 @@
           </li>
           <li>
             <NuxtLink to="/cms/posts" class="gap-2">
-              <PhNotePencil :size="16" weight="duotone" />
+              <i class="ph-duotone ph-note-pencil text-[16px]"></i>
               Manage Posts
             </NuxtLink>
           </li>
           <li>
             <a class="gap-2 hover:bg-error" @click="logout()">
-              <PhSignOut :size="16" weight="duotone" />
+              <i class="ph-duotone ph-sign-out text-[16px]"></i>
               Logout
             </a>
           </li>
@@ -61,12 +63,9 @@
 </template>
 
 <script setup>
-import { PhSignOut, PhUser, PhPen, PhNotePencil } from "phosphor-vue";
 import VLazyImage from "v-lazy-image";
 
 const { user, logout } = useAuth();
 
 const route = useRoute();
-
-const { isDark } = useTheme();
 </script>

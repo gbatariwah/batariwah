@@ -6,11 +6,11 @@
     >
       <span class="tracking-wider"> Share </span>
       <span class="flex gap-4">
-        <PhFacebookLogo :size="24" weight="duotone" />
-        <PhTwitterLogo :size="24" weight="duotone" />
-        <PhWhatsappLogo :size="24" weight="duotone" />
-        <PhEnvelopeSimple :size="24" weight="duotone" />
-        <PhPlus :size="24" weight="duotone" />
+        <i class="ph-duotone ph-facebook-logo text-[24px]"></i>
+        <i class="ph-duotone ph-twitter-logo text-[24px]"></i>
+        <i class="ph-duotone ph-whatsapp-logo text-[24px]"></i>
+        <i class="ph-duotone ph-envelope-simple text-[24px]"></i>
+        <i class="ph-duotone ph-plus text-[24px]"></i>
       </span>
     </button>
   </p>
@@ -18,13 +18,6 @@
 
 <script setup>
 import { useShare } from "@vueuse/core";
-import {
-  PhFacebookLogo,
-  PhTwitterLogo,
-  PhWhatsappLogo,
-  PhEnvelopeSimple,
-  PhPlus,
-} from "phosphor-vue";
 import { isClient } from "@vueuse/shared";
 
 const props = defineProps({

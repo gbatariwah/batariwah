@@ -20,11 +20,11 @@
             @click="openPostDeletionModal = false"
             class="btn btn-sm btn-circle absolute right-2 top-2"
           >
-            <PhX :size="20" weight="duotone" />
+            <i class="ph-duotone ph-x text-[20px]"></i>
           </button>
 
           <div class="flex gap-4">
-            <PhWarningCircle :size="64" class="text-warning" weight="duotone" />
+            <i class="ph-duotone ph-warning-circle text-[64px]"></i>
             <div>
               <h3 class="text-lg font-semibold">Delete Post</h3>
               <p class="py-4">Are you sure you want to delete this post?</p>
@@ -37,7 +37,7 @@
               :loading="deletingPost"
             >
               <template #icon>
-                <PhTrashSimple :size="18" weight="duotone" />
+                <i class="ph-duotone ph-trash-simple text-[18px]"></i>
               </template>
               Delete
             </Button>
@@ -50,8 +50,6 @@
 </template>
 
 <script setup>
-import { PhX, PhTrashSimple, PhWarningCircle } from "phosphor-vue";
-
 const props = defineProps({
   posts: Object,
   refresh: Function,
