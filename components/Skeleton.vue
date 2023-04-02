@@ -25,7 +25,7 @@
     </div>
 
     <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <PostSkeleton v-for="s in 9" :key="s" />
+      <PostSkeleton v-for="s in 6" :key="s" />
     </div>
   </div>
 </template>

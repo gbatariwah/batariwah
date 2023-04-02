@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     "@formkit/nuxt",
     "nuxt-gtag",
     "nuxt-simple-sitemap",
-    "@nuxt/image-edge",
     [
       "@nuxtjs/google-fonts",
       {

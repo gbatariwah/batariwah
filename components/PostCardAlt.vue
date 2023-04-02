@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col card border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg rounded-md bg-base-100 md:flex-row md:max-w-xl"
+    class="flex flex-col card border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg rounded-md bg-base-100 md:flex-row md:max-w-xl animate__animated animate__zoomIn animate__faster"
   >
     <VLazyImage
       class="object-cover w-full rounded-t-md md:w-48 md:rounded-none md:rounded-l-md"
@@ -56,5 +56,9 @@ const imageUrl = computed(() => {
 
 [data-theme="halloween"] .card:hover {
   border-color: #52525b;
+}
+
+.card {
+  --animate-duration: 0.3s;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="`/posts/${post.slug}`">
     <div
-      class="card bg-base-100 card-compact overflow-hidden shadow-md border border-zinc-700 hover:ring-1 ring-zinc-900 rounded-md h-full"
+      class="card bg-base-100 card-compact overflow-hidden shadow-md border border-zinc-700 hover:ring-1 ring-zinc-900 rounded-md h-full animate__animated animate__zoomIn animate__faster"
     >
       <VLazyImage
         format="image/webp"
@@ -51,5 +51,9 @@ const imageUrl = computed(() => {
 
 [data-theme="halloween"] .card:hover {
   border-color: #52525b;
+}
+
+.card {
+  --animate-duration: 0.3s;
 }
 </style>
