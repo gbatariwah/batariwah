@@ -84,16 +84,17 @@
           <template #fileName>
             <VLazyImage
               v-if="newImageUrl"
-              class="aspect-video object-cover w-full"
+              class="aspect-video object-cover w-full max-h-[400px]"
               :src="newImageUrl"
             />
           </template>
 
           <template #noFiles>
-            <NuxtImage
+            <VLazyImage
               v-show="!imageChanged"
-              class="aspect-video object-cover w-full"
+              class="aspect-video object-cover w-full max-h-[400px]"
               :src="value.featured_image_url"
+              src-placeholder="/images/loader.gif"
             />
           </template>
 

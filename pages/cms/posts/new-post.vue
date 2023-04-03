@@ -87,7 +87,7 @@
 
             <template if="fileUrl" #fileName>
               <VLazyImage
-                class="aspect-video object-cover w-full"
+                class="aspect-video object-cover w-full max-h-[400px]"
                 :src="fileUrl"
                 alt="featured image"
               />
