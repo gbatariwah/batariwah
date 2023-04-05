@@ -163,12 +163,12 @@ export default defineNuxtConfig({
           : process.env.DISQUS_SHORT_NAME,
     },
   },
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ["/"],
-    },
-  },
+  // nitro: {
+  //   prerender: {
+  //     crawlLinks: true,
+  //     routes: ["/"],
+  //   },
+  // },
   sitemap: {
     exclude: ["/cms/**", "/profile/*", "/login"],
   },
