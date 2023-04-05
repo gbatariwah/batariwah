@@ -93,8 +93,8 @@
             >
               I am <b>Prosper Batariwah</b>, a qualified <b>lawyer</b> called to
               the Ghanaian bar. I currently work with an Accra-based law firm,
-              <b>AB Lexmall & Associates</b>, with core strengths in corporate
-              and commercial law. I am also a graduate assistant at the
+              AB Lexmall & Associates, with core strengths in corporate and
+              commercial law. I am also a graduate assistant at the
               <b>University of Ghana School of Law</b> (UGSOL) where I teach
               tutorials in contracts and equity. I hold a qualifying law
               certificate from the Ghana School of Law and a Bachelor of Laws
@@ -133,14 +133,6 @@
               this time aligning my output with my research and pet interests
               and drawing depth from my practice and teaching experience.
             </p>
-
-            <VLazyImage
-              class="float-left h-48 w-48 mr-4 rounded-md my-2 object-cover"
-              alt="Prosper Batariwah"
-              :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
-              src-placeholder="/images/loader.gif"
-              src="/images/pb-3.jpg"
-            />
             <p>
               If you are looking for me, you’ll most likely find me someplace
               doing or coordinating research (plugged into Spotify, tapping into
@@ -150,6 +142,10 @@
               daunting trials of law school. On very rare occasions, you’ll see
               me standing behind an artwork, savoring the perfection of human
               accomplishment, and the sheer brilliance of humankind.
+            </p>
+            <p>
+              It should be noted that the views expressed here are mine and mine
+              alone; they are not those of the place where I work.
             </p>
           </div>
           <div class="divider"></div>
