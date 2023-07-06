@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/tailwindcss",
     "@formkit/nuxt",
-    "nuxt-gtag",
     "nuxt-simple-sitemap",
     [
       "@nuxtjs/google-fonts",
@@ -35,6 +34,13 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
+      script: [
+        {
+          src: "https://analytics.umami.is/script.js",
+          async: true,
+          "data-website-id": "b2b387f4-dd4d-482f-8bf4-7dd70f1a4433",
+        },
+      ],
       bodyAttrs: {
         class: "bg-base-300",
       },
