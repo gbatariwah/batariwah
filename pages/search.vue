@@ -9,7 +9,7 @@
       </h2>
 
       <div class="form-control py-6">
-        <div class="input-group">
+        <div class="join">
           <input
             class="input input-bordered w-full"
             @keydown.enter="search()"

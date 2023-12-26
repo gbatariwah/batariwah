@@ -12,7 +12,7 @@
       },
     }"
   >
-    <div class="input-group">
+    <div class="join">
       <FormKit
         placeholder="Add tag.."
         name="tag"

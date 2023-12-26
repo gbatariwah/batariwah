@@ -18,7 +18,7 @@
       <div class="p-4 space-y-8 max-w-2xl mx-auto">
         <div class="space-y-8">
           <div class="space-y-4">
-            <h1 class="text-3xl font-bold md:tracking-tight md:text-4xl prose">
+            <h1 class="text-3xl font-bold  md:text-4xl prose font-['oswald'] tracking-wide">
               {{ post.title }}
             </h1>
 
@@ -67,7 +67,7 @@
         <SharePost :post="post" />
 
         <div
-          class="p-4 bg-base-200 shadow-md border border-zinc-700 rounded-md"
+          class="p-4 bg-base-200 border card rounded-none"
         >
           <div class="flex gap-4">
             <VLazyImage
@@ -102,8 +102,10 @@
               class="btn-sm btn-circle btn-ghost flex justify-center items-center"
               target="_blank"
             >
-              <i class="ph-duotone ph-twitter-logo text-[24px]"></i>
+<!--              <i class="ph-duotone ph-twitter-logo text-[24px]"></i>-->
+              <svg class="h-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M18.205 2.25h3.308l-7.227 8.26l8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/></svg>
             </NuxtLink>
+
             <NuxtLink
               to="https://www.instagram.com/p_batariwah"
               class="btn-sm btn-circle btn-ghost flex justify-center items-center"
@@ -123,7 +125,7 @@
         </div>
 
         <ClientOnly>
-          <Disqus class="py-8" :shortname="config.DISQUS_SHORT_NAME" />
+          <Disqus class="py-8" :shortname="config.public.DISQUS_SHORT_NAME" />
         </ClientOnly>
 
         <div class="space-y-2">
@@ -213,3 +215,5 @@ useSeoMeta({
   twitterUrl: () => `${config.BASE_URL}/posts/${post.value.slug}`,
 });
 </script>
+
+

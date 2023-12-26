@@ -3,46 +3,46 @@
 import gm from "@nuxtjs/google-fonts";
 export default defineNuxtConfig({
   // css: ["~/assets/scss/index.scss"],
-  modules: [
-    "@vueuse/nuxt",
-    "@nuxtjs/tailwindcss",
-    "@formkit/nuxt",
-    "nuxt-simple-sitemap",
-    [
-      "@nuxtjs/google-fonts",
-      {
-        display: "swap",
-        download: true,
-        families: {
-          Roboto: true,
-          "Josefin+Sans": true,
-          Montserrat: {
-            wght: [100, 300, 400, 600, 700],
-            ital: [100, 300, 600],
-          },
-          "Work Sans": {
-            wght: [100, 300, 400, 600, 700],
-            ital: [100, 300, 600],
-          },
+  modules: ["@vueuse/nuxt", "@formkit/nuxt", "nuxt-simple-sitemap", [
+    "@nuxtjs/google-fonts",
+    {
+      display: "swap",
+      download: true,
+      families: {
+        Roboto: true,
+        "Josefin+Sans": true,
+        Montserrat: {
+          wght: [100, 300, 400, 600, 700],
+          ital: [100, 300, 600],
+        },
+        "Work Sans": {
+          wght: [100, 300, 400, 600, 700],
+          ital: [100, 300, 600],
+        },
+        "Oswald": {
+          wght: [200,400, 600],
+        },
+        "Space Mono": {
+          wght: [400],
         },
       },
-    ],
-    "nuxt-simple-robots",
-    "@nuxt/devtools",
-  ],
-
+    },
+  ], "nuxt-simple-robots", "@nuxt/devtools", "@nuxtjs/tailwindcss"],
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
       script: [
-        {
-          src: "https://analytics.umami.is/script.js",
-          async: true,
-          "data-website-id": "b2b387f4-dd4d-482f-8bf4-7dd70f1a4433",
-        },
+        // {
+        //   src: "https://analytics.umami.is/script.js",
+        //   async: true,
+        //   "data-website-id": "b2b387f4-dd4d-482f-8bf4-7dd70f1a4433",
+        // },
       ],
       bodyAttrs: {
         class: "bg-base-300",
+      },
+      htmlAttrs: {
+        "data-theme": "lofi"
       },
       title: "Batariwah",
       meta: [

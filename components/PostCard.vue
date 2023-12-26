@@ -1,22 +1,24 @@
 <template>
   <NuxtLink :to="`/posts/${post.slug}`">
     <div
-      class="card bg-base-100 card-compact overflow-hidden shadow-md border border-zinc-700 hover:ring-1 ring-zinc-900 rounded-md h-full animate__animated animate__zoomIn animate__faster"
+      class="card group rounded-none card-compact hover:bg-base-200 overflow-hidden h-full animate__animated animate__zoomIn animate__faster"
     >
-      <VLazyImage
-        format="image/webp"
-        class="aspect-video h-auto min-h-48 object-cover"
-        :alt="post.title"
-        :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
-        src-placeholder="/images/loader.gif"
-        :src="imageUrl"
-      />
+      <figure class="border card rounded-none overflow-hidden">
+        <VLazyImage
+          format="image/webp"
+          class="aspect-video h-auto min-h-48 object-cover group-hover:scale-105 transition-all duration-300 "
+          :alt="post.title"
+          :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
+          src-placeholder="/images/loader.gif"
+          :src="imageUrl"
+        />
+      </figure>
 
       <div class="px-4 pt-2 pb-4 space-y-2 post-body">
-        <p class="text-sm font-thin">
+        <p class="text-sm italic">
           {{ datePublished }}
         </p>
-        <h2 class="text-xl font-semibold post-card-title">
+        <h2 class="text-xl link link-hover font-semibold post-card-title font-['Oswald'] tracking-wider">
           {{ post.title }}
         </h2>
       </div>

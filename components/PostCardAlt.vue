@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex flex-col card border border-zinc-700 hover:ring-1 ring-zinc-900 shadow-lg rounded-md bg-base-100 md:flex-row md:max-w-xl animate__animated animate__zoomIn animate__faster"
+    class="flex flex-col card border shadow-lg rounded-none bg-base-200 md:flex-row md:max-w-xl animate__animated animate__zoomIn animate__faster"
   >
     <VLazyImage
-      class="object-cover w-full rounded-t-md md:w-48 md:rounded-none md:rounded-l-md"
+      class="object-cover w-full  md:w-48 "
       :src="imageUrl"
       :alt="post.title"
       :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
@@ -12,7 +12,7 @@
     <div class="leading-normal p-4 flex flex-col justify-between h-full w-full">
       <NuxtLink
         :to="`/posts/${post.slug}`"
-        class="mb-2 text-lg font-bold tracking-tigh"
+        class="mb-2 text-lg font-bold font-['oswald'] tracking-wider link link-hover"
       >
         {{ post.title }}
       </NuxtLink>

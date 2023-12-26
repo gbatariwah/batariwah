@@ -1,39 +1,82 @@
 <template>
-  <NuxtLink :to="`/posts/${featuredPost.slug}`">
-    <div
-      class="block card-compact card bg-base-100 mx-auto sm:max-w-full md:grid md:grid-cols-12 shadow-md border rounded-md h-full border-zinc-700 hover:ring-1 ring-zinc-900 overflow-hidden animate__animated animate__zoomIn animate__faster"
+  <div>
+    <!--    <nuxt-link :to="`/posts/${featuredPost.slug}`"-->
+
+    <!--      class="gap-3 mx-auto md:max-w-full group  dark:bg-gray-900 "-->
+    <!--    >-->
+
+    <!--      <div  class="block mx-auto md:grid md:grid-cols-12 animate__animated animate__zoomIn animate__faster">-->
+    <!--       <figure class="sm:h-96 md:col-span-7 lg:col-span-8">-->
+    <!--         <VLazyImage-->
+    <!--           class="object-cover w-full h-64  group-hover:scale-105 transition-all duration-300 "-->
+    <!--           :alt="featuredPost.title"-->
+    <!--           :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"-->
+    <!--           src-placeholder="/images/loader.gif"-->
+    <!--           :src="imageUrl"-->
+    <!--         />-->
+    <!--       </figure>-->
+    <!--&lt;!&ndash;        <nuxt-img placeholder="/images/loader.gif"  class="object-cover w-full h-64 sm:h-96 md:col-span-7 lg:col-span-8 group-hover:scale-105 transition-all duration-300 " :src="imageUrl"/>&ndash;&gt;-->
+    <!--        <div class="p-6 space-y-2 lg:col-span-4 md:col-span-5 flex">-->
+    <!--          <div class="p-4 bg-base-300 relative -mt-14 md:mt-0 md:-ml-16 border dark:border-zinc-700 group-hover:bg-base-200">-->
+    <!--            <h2-->
+    <!--              class="card-title text-xl sm:text-2xl font-['Oswald'] link link-hover tracking-wider"-->
+    <!--            >-->
+    <!--              {{ featuredPost.title }}-->
+    <!--            </h2>-->
+    <!--            <span class="text-sm italic mb-2">-->
+    <!--          {{ datePublished }}-->
+    <!--        </span>-->
+
+    <!--            <p class="pb-4">{{ excerpt }}</p>-->
+
+    <!--            <a-->
+    <!--              class="link text-primary underline-offset-2 transition-all hover:underline-offset-4 decoration-4 "-->
+    <!--            >Read more</a-->
+    <!--            >-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </nuxt-link>-->
+
+    <nuxt-link
+
+      :to="`/posts/${featuredPost.slug}`"
+      class="block gap-3 mx-auto group sm:max-w-full md:grid md:grid-cols-12 animate__animated animate__zoomIn animate__faster "
     >
-      <figure class="md:col-span-7">
+
+      <figure class="lg:col-span-8 md:col-span-7 border card rounded-none border-zinc-700 overflow-hidden">
         <VLazyImage
-          class="object-cover h-full w-full sm:aspect-video"
+          class="object-cover w-full  h-64 sm:h-full   group-hover:scale-105 transition-all duration-300 "
           :alt="featuredPost.title"
           :intersection-options="{ rootMargin: '0px', threshold: 0.1 }"
           src-placeholder="/images/loader.gif"
           :src="imageUrl"
         />
       </figure>
+      <div class="p-6 md:px-0 lg:col-span-4 md:col-span-5 flex">
+       <div class="p-4 bg-base-300 relative -mt-14 md:mt-0 md:-ml-16 border card rounded-none group-hover:bg-base-200">
+         <h3
+           class="font-semibold link link-hover text-xl sm:text-2xl font-['Oswald'] link link-hover tracking-wider"
+         >
+           {{ featuredPost.title }}
+         </h3>
+         <span class="text-sm italic">{{ datePublished }}</span>
 
-      <div class="p-6 md:col-span-5">
-        <div class="flex flex-col h-full full-h post-body">
-          <h2 class="card-title text-xl sm:text-2xl">
-            {{ featuredPost.title }}
-          </h2>
-          <span class="text-sm font-thin mb-2">
-            {{ datePublished }}
-          </span>
-          <div class="flex flex-col h-full justify-between gap-4">
-            <p class="font-light">{{ excerpt }}</p>
-            <Button class="btn-primary w-auto self-start">
-              <template #icon>
-                <i class="ph-duotone ph-book-open-text text-[20px]"></i>
-              </template>
-              read more
-            </Button>
-          </div>
-        </div>
+         <p class="pt-4 pb-2">
+           {{ excerpt }}
+
+         </p>
+
+         <span
+           class="link text-primary tracking-wider underline-offset-2 transition-all hover:underline-offset-4 decoration-4 "
+         >Read more</span
+         >
+
+       </div>
+
       </div>
-    </div>
-  </NuxtLink>
+    </nuxt-link>
+  </div>
 </template>
 
 <script setup>

@@ -2,6 +2,7 @@
 module.exports = {
   content: [],
   theme: {
+    colors: {},
     extend: {},
     fontFamily: {
       body: ["Montserrat"],

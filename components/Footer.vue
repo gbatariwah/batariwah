@@ -27,13 +27,13 @@
         >
       </p>
       <p>
-        Developed By -
+        Developed by
         <NuxtLink
           to="https://facebook.com/gerald.batariwah"
           target="_blank"
           rel="noopener"
-          class="badge badge-outline badge-sm"
-          ><span class="font-semibold uppercase tracking-wide">
+          class="link link-hover text-sm font-semibold"
+          ><span class="tracking-wide">
             Gerald Batariwah
           </span></NuxtLink
         >
@@ -41,3 +41,4 @@
     </div>
   </div>
 </template>
+

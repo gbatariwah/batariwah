@@ -71,4 +71,6 @@ const fetchedAllPosts = computed(
 iframe {
   color-scheme: light;
 }
+
+
 </style>

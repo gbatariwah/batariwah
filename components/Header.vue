@@ -27,12 +27,11 @@
         </NuxtLink>
       </div>
 
-      <div class="dropdown dropdown-end md:hidden">
-        <button class="btn btn-ghost btn-circle">
+      <details class="dropdown dropdown-end md:hidden">
+        <summary  class="btn btn-ghost btn-circle">
           <i class="ph-duotone ph-caret-circle-down text-[32px]"></i>
-        </button>
+        </summary>
         <ul
-          tabindex="0"
           class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-44"
         >
           <li>
@@ -58,7 +57,7 @@
             </a>
           </li>
         </ul>
-      </div>
+      </details>
 
       <div class="flex gap-1">
         <!-- search -->
